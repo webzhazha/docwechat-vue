@@ -8,7 +8,14 @@ module.exports = {
       https: false,
       proxy: {
         '/cube-data/*': {
-          target: 'https://wechatgate.91160.com'
+          target: 'https://wechatgate.91160.com',
+          changeOrigin: true,
+          secure: false
+        },
+        '/doctor_business/*': {
+          target: 'http://wechatgate.91160.com',
+          changeOrigin: true,
+          secure: false
         }
       }
     },

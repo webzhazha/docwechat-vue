@@ -8,10 +8,11 @@ import { Sticky } from 'vant';
 import { TreeSelect } from 'vant';
 import { Overlay } from 'vant';
 import { DropdownMenu, DropdownItem } from 'vant';
+import { List } from 'vant'
 
 Vue.use(DropdownMenu);
 Vue.use(DropdownItem);
 
 Vue.use(Checkbox)
 Vue.use(CheckboxGroup)
-Vue.use(Button).use(Swipe).use(SwipeItem).use(ActionSheet).use(Search).use(Sticky).use(TreeSelect).use(Overlay)
+Vue.use(Button).use(Swipe).use(SwipeItem).use(ActionSheet).use(Search).use(Sticky).use(TreeSelect).use(Overlay).use(List)

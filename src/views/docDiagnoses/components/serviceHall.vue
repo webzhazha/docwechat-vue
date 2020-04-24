@@ -5,39 +5,93 @@
       <span>搜索医生以及诊疗服务</span>
     </div>
     <div class="mb25">
-      <CommonBanner id="25"/>
+      <CommonBanner id="25" />
     </div>
     <van-sticky :offset-top="45">
-      <div class="hall_tab pl15 bg_white">
-        <div class="typo_black fs16 typo_bold">医生会诊</div>
+      <div id="bar">
+        <div class="hall_tab pl15 bg_white">
+          <div class="typo_black fs16 typo_bold">医生会诊</div>
+        </div>
+        <DiagFilterBar @scrollToTop="scrollToTop" @update="changeFilterData"/>
       </div>
-      <DiagFilterBar />
+
     </van-sticky>
-    
-    <div v-for="item in docList" :key="item">
-      <HallDocItem />
-    </div>
+
+    <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" v-if="docList.length>0" offset='100'>
+      <div v-for="(item,index) in docList" :key="index">
+        <HallDocItem :docItem="item" />
+      </div>
+    </van-list>
+    <NoData v-if="docList.length==0" :height="height" />
   </div>
 </template>
 <script>
-const CommonBanner = () => import('@/components/commonBanner')
-const DiagFilterBar = () => import('../components/diagFilterBar')
-const HallDocItem = () => import('../components/hallDocItem')
-export default {
-  data() {
-    return {
-      active: 0,
-      docList: [1,2,3,4,5]
-    }
-  },
-  components: { CommonBanner, DiagFilterBar, HallDocItem }
-}
+  import $ from "jquery"
+  import service from '_services/'
+  const CommonBanner = () => import('@/components/commonBanner')
+  const DiagFilterBar = () => import('../components/diagFilterBar')
+  const HallDocItem = () => import('../components/hallDocItem')
+  const NoData = () => import('@/components/noData')
+  export default {
+    data() {
+      return {
+        docList: [],
+        loading: false,
+        finished: false,
+        page: 0,
+        height: ''
+      }
+    },
+    components: { CommonBanner, DiagFilterBar, HallDocItem, NoData },
+    mounted() {
+      this._getHalldoctor()
+      this.$nextTick(()=>{
+        this.height = $('body').height()-$('#bar').height()-40+'px'
+      })
+    },
+    methods: {
+      onLoad() {
+        this.page++
+        console.log(11111);
+        this._getHalldoctor({
+          city_id: '',
+          cat_id1: '',
+          cat_id2: '',
+          sort_type: 0
+        })
+      },
+      _getHalldoctor(params) {
+        service.docDiagnoses.getHalldoctor({
+          page: this.page,
+          size: 5,
+          ...params
+        }).then(res => {
+          console.log(res);
+          this.docList = this.docList.concat(res.data)
+          this.loading = false
+          if(res.data.length<3){
+            this.finished = true
+          }
+        })
+      },
+      changeFilterData(params){
+        this.page = 1
+        this.finished = false
+        this._getHalldoctor(params)
+      },
+      scrollToTop() {
+        const offsetTop = parseInt($('#bar').parent().parent().offset().top) - 45
+        $('html,body').animate({ scrollTop: offsetTop }, 300)
+      },
+    },
+  }
 </script>
 <style lang="scss" scoped>
-.hall_tab {
-  height: 1.173333rem;
-  line-height: 1.173333rem;
-}
+  .hall_tab {
+    height: 1.173333rem;
+    line-height: 1.173333rem;
+  }
+
   .search {
     height: .906667rem;
     width: 9.2rem;

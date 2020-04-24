@@ -4,22 +4,20 @@
       <div class="backgroundimg doc_img mr16" :style="generateImageUrl('','/wechat/img/common/default.png')"></div>
       <div class="relative flex1">
         <div class="mb8">
-          <span class="fs18 c333 typo_bold mr5">文冰冰</span>
+          <span class="fs18 c333 typo_bold mr5">{{docItem.doctor_name}}</span>
           <span class="fs14 c666 typo_bold">主任医师</span>
         </div>
         <div class="fs14 c999 typo_bold mb15">
-          深圳第二人民医院
+          {{docItem.unit_name}}
         </div>
         <div class="illness">
-          <span>过敏</span>
-          <span>湿疹</span>
-          <span>皮炎</span>
+          <span v-for="item in docItem.ill_name" :key="item">{{item}}</span>
         </div>
         <div>
-          <span class="price typo_bold">￥210</span>
+          <span class="price typo_bold">￥{{docItem.price}}</span>
           <span class="c_ccc">
             <i class="iconfont">&#xe697;</i>
-            深圳南山</span>
+            {{docItem.city_area}}</span>
         </div>
         <div class="collect" v-if="isHall">
           收藏
@@ -39,6 +37,10 @@ export default {
     isHall: {
       type: [Boolean],
       default: true
+    },
+    docItem: {
+      type: [Object],
+      defalut: () => {}
     }
   }
 }

@@ -1,96 +1,128 @@
 <template>
-  <div>
+  <div class="diagFilterBar">
     <van-dropdown-menu>
-      <van-dropdown-item title="地区" ref="area">
-        <van-tree-select :items="areaList" :active-id.sync="areaId" :main-active-index.sync="cityId" />
+      <van-dropdown-item :title="areaName" ref="area" @open="openDrop" max='1' @close="closeDrop">
+        <van-tree-select :items="areaList" :active-id.sync="areaId" :main-active-index.sync="cityIndex" 
+        @click-item="onClickArea"/>
       </van-dropdown-item>
-      <van-dropdown-item title="科室" ref="dep">>
-        <van-tree-select :items="depList" :active-id.sync="depId" :main-active-index.sync="maindepId" />
+      <van-dropdown-item :title="depName" ref="dep" max='1' @open="openDrop"  @close="closeDrop"
+       >
+        <van-tree-select :items="depList" :active-id.sync="depId" :main-active-index.sync="maindepIndex" 
+        @click-item="onClickDep"/>
       </van-dropdown-item>
-      <van-dropdown-item v-model="value" :options="priceList" />
+      <van-dropdown-item v-model="priceId" :options="sort_type"  max='1' @open="openDrop"  @close="closeDrop"/>
     </van-dropdown-menu>
   </div>
 </template>
 <script>
+import service from '@/services/index'
 export default {
   data() {
     return {
+      areaId: '',
+      areaName: '地区',
+      cityIndex: -1,
       areaList: [
-        {
-          text: '全国'
-        }
       ],
-      value1: 0,
-      value2: 'a',
-      option1: [
-        { text: '全部商品', value: 0 },
-        { text: '新款商品', value: 1 },
-        { text: '活动商品', value: 2 },
+      depId: '',
+      depName: '科室',
+      maindepId: '',
+      maindepIndex: -1,
+      depList: [],
+      priceId: 0,
+      sort_type: [
       ],
-      option2: [
-        { text: '默认排序', value: 'a' },
-        { text: '好评排序', value: 'b' },
-        { text: '销量排序', value: 'c' },
-      ],
-      items: [{
-          text: '所有城市',
-          children: [{
-              text: '温州',
-              id: 1,
-            },
-            {
-              text: '杭州',
-              id: 2,
-            },
-            {
-              text: '杭州',
-              id: 3,
-            },
-            {
-              text: '杭州',
-              id: 4,
-            },
-            {
-              text: '杭州',
-              id: 5,
-            },
-            {
-              text: '杭州',
-              id: 6,
-            },
-            {
-              text: '杭州',
-              id: 7,
-            },
-            {
-              text: '杭州',
-              id: 8,
-            },
-            {
-              text: '杭州',
-              id: 9,
-            },
-            {
-              text: '杭州',
-              id: 10,
-            },
-            {
-              text: '杭州',
-              id: 11,
-            },
-            {
-              text: '杭州',
-              id: 12,
-            },
-            {
-              text: '杭州',
-              id: 13,
-            }
-          ]
-        }],
-        activeId: 1,
-        activeIndex: 0,
     }
-  }
+  },
+  mounted() {
+    console.log(service);
+    this._getFilterData()
+  },
+  methods: {
+    _getFilterData(){
+      service.docDiagnoses.getFilterData().then(res=>{
+      console.log(res);
+      res.data.city.forEach(item=>{
+        let childArr = []
+        if(item.children && item.children.length>0){
+          item.children.forEach(i=>{
+            childArr.push({
+              text: i.areaName,
+              id: i.areaId
+            })
+          })
+        }else {
+          childArr = [{
+            text: '全国',
+            id: 0
+          }]
+        }
+        this.areaList.push({
+          text: item.areaName,
+          id: item.areaId,
+          children: childArr
+        })
+      })
+      res.data.cat.forEach(item=>{
+        let childArr = []
+        if(item.childList && item.childList.length>0){
+          item.childList.forEach(i=>{
+            childArr.push({
+              text: i.catname,
+              id: i.catid
+            })
+          })
+        }
+        this.depList.push({
+          text: item.catname,
+          id: item.catid,
+          children: childArr
+        })
+      })
+      this.sort_type = res.data.sort_type
+    })
+    },
+    onClickArea(data){
+      this.$refs.area.toggle()
+      this.areaName = data.text
+    },
+    onClickDep(data){
+      this.$refs.dep.toggle()
+      this.depName = data.text
+      this.maindepId = this.depList[this.maindepIndex].id
+    },
+    openDrop(){
+      this.$emit('scrollToTop')
+    },
+    closeDrop(){
+      let params = {
+        city_id: this.areaId,
+        cat_id1: this.depId,
+        cat_id2: this.maindepId,
+        sort_type: this.priceId
+      }
+      this.$emit('update', params)
+    }
+  },
 }
 </script>
+<style lang="scss">
+  .diagFilterBar {
+    .van-tree-select {
+      .van-icon {
+        display: none;
+      }
+      .van-tree-select__item--active {
+        color: #009EE6;
+      }
+      .van-sidebar-item--select {
+        border-color: #fff;
+      }
+    }
+    .van-popup {
+      .van-dropdown-item__icon {
+        display: none;
+      }
+    }
+  }
+</style>

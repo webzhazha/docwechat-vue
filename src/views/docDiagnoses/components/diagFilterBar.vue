@@ -35,7 +35,6 @@ export default {
     }
   },
   mounted() {
-    console.log(service);
     this._getFilterData()
   },
   methods: {

@@ -22,7 +22,7 @@
         <HallDocItem :docItem="item" />
       </div>
     </van-list>
-    <NoData v-if="docList.length==0" :height="height" />
+    <NoData v-if="!loading && docList.length==0" :height="height" />
   </div>
 </template>
 <script>
@@ -38,21 +38,24 @@
         docList: [],
         loading: false,
         finished: false,
-        page: 0,
-        height: ''
+        page: 1,
+        height: '100vh'
       }
     },
     components: { CommonBanner, DiagFilterBar, HallDocItem, NoData },
     mounted() {
       this._getHalldoctor()
       this.$nextTick(()=>{
-        this.height = $('body').height()-$('#bar').height()-40+'px'
+        setTimeout(()=>{
+          console.log($('#bar').height());
+          this.height = $('body').height()-$('#bar').height()-40+'px'
+        },500)
+        
       })
     },
     methods: {
       onLoad() {
         this.page++
-        console.log(11111);
         this._getHalldoctor({
           city_id: '',
           cat_id1: '',

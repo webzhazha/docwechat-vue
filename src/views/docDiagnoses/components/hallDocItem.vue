@@ -10,7 +10,7 @@
         <div class="fs14 c999 typo_bold mb15">
           {{docItem.unit_name}}
         </div>
-        <div class="illness">
+        <div class="illness" v-if="docItem.ill_name">
           <span v-for="item in docItem.ill_name" :key="item">{{item}}</span>
         </div>
         <div>

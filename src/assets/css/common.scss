@@ -127,6 +127,9 @@ button, input, textarea {
 .fullwidth { width: 100%; }
 .fullheight { height: 100%; }
 .w30 { width: .8rem;}
+.w150 {
+  width: 4rem;
+}
 .w345 { width: 9.2rem;}
 .h30 { height: .8rem;}
 .lh20 {
@@ -287,4 +290,10 @@ button, input, textarea {
 }
 .inline {
   display: inline;
+}
+
+.elli {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

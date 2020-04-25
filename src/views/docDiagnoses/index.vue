@@ -29,11 +29,17 @@
       <div class="round_bot"></div>
     </div>
     <van-sticky z-index='100'>
-    <Tab :tabs="tabs" />
+    <Tab :tabs="tabs" @tabChange="tabChange" />
     </van-sticky>
-    <ServiceHall />
-    
-    <!-- <Order /> -->
+    <template v-if="curtab=='hall'">
+      <ServiceHall  />
+    </template>
+    <template  v-if="curtab=='apply'">
+      <ApplyOrder />
+    </template>
+    <template  v-if="curtab=='received'">
+      <ReceivedOrder />
+    </template>
   </div>
 </template>
 <script>
@@ -41,29 +47,33 @@ const Tab = () => import('./components/tab')
 const CommonBanner = () => import('@/components/commonBanner')
 // 功能组件
 const ServiceHall = () => import('./components/serviceHall')
-const Order = () => import('./components/order')
+const ApplyOrder = () => import('./components/apply_order')
+const ReceivedOrder = () => import('./components/received_order')
 export default {
   data() {
     return {
+      curtab: 'hall',
       tabs: [
         {
-          id: 1,
+          id: 'hall',
           name: "服务大厅"
         },
         {
-          id: 2,
+          id: 'apply',
           name: "我发起的"
         },
         {
-          id: 3,
+          id: 'received',
           name: "我接收的"
         },
       ],
     }
   },
-  components: { Tab, ServiceHall, Order },
+  components: { Tab, ServiceHall, ApplyOrder, ReceivedOrder },
   methods: {
-    
+    tabChange(index){
+      this.curtab = this.tabs[index].id
+    }
   },
 }
 </script>

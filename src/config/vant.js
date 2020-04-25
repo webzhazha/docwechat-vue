@@ -9,10 +9,11 @@ import { TreeSelect } from 'vant';
 import { Overlay } from 'vant';
 import { DropdownMenu, DropdownItem } from 'vant';
 import { List } from 'vant'
+import { Toast } from 'vant'
 
 Vue.use(DropdownMenu);
 Vue.use(DropdownItem);
-
+Vue.use(Toast);
 Vue.use(Checkbox)
 Vue.use(CheckboxGroup)
 Vue.use(Button).use(Swipe).use(SwipeItem).use(ActionSheet).use(Search).use(Sticky).use(TreeSelect).use(Overlay).use(List)

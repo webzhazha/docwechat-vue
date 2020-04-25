@@ -1,5 +1,5 @@
 
-import { get } from '@/config/request'
+import { get, post } from '@/config/request'
 
 const user_key = '7020bbf98d296117fd85ec52401d1070gtewTque20200511153356'
 
@@ -33,11 +33,22 @@ const get_order_data = (params) => {
   return get(`/doctor_business/v1/consultation/order_data?user_key=${user_key}`,params)
 }
 
+// 收藏列表
+const get_collect_list = (params) => {
+  return get(`/doctor_business/v1/consultation/collect_list?user_key=${user_key}`,params)
+}
+// 取消收藏
+const cancel_collect_doctor = (params) => {
+  return post(`/doctor_business/v1/consultation/multi_cancel_collect_doctor`,params)
+}
+
 export default {
   getFilterData,
   getHalldoctor,
   get_received_order,
   get_apply_order,
   get_search,
-  get_order_data
+  get_order_data,
+  get_collect_list,
+  cancel_collect_doctor
 }

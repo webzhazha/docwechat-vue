@@ -2,7 +2,7 @@
   <div class="collectIndex">
     <div class="nav">
       <span class="">
-        <i class="iconfont fs18 lh44">&#xe688;</i>
+        <i class="iconfont fs18 lh44" @click="returns">&#xe688;</i>
       </span>
       <span class="c333 fs18 typo_bold lh44">我的收藏</span>
       <span class="fs16 typo_blue lh44" @click="editEvent">{{edit?'取消':'编辑'}}</span>
@@ -15,7 +15,7 @@
     </div>
     <div v-else class="pl25">
       <van-checkbox-group v-model="select" >
-        <van-checkbox :name="item.doctor_id" v-for="(item,index) in docList" :key="index">
+        <van-checkbox :name="item.account_user_id" v-for="(item,index) in docList" :key="index">
           <CollectDocItem :docItem="item" />
         </van-checkbox>
       </van-checkbox-group>
@@ -53,6 +53,9 @@ import service from '_services/'
       this._get_collect_list()
     },
     methods: {
+      returns(){
+        this.$router.go(-1)
+      },
       _get_collect_list(){
         service.docDiagnoses.get_collect_list({
           page: this.page,
@@ -66,14 +69,15 @@ import service from '_services/'
       },
       // 确认取消
       selectCancel(){
-        console.log('确认取消');
         service.docDiagnoses.cancel_collect_doctor({
-          collect_ids: collect_ids
+          collect_account_user_ids: this.select.join(',')
         }).then(res=>{
-          console.log(res);
-          
+          this.page = 1
+          this._get_collect_list()
+          this.show = false
+          this.edit = false
         })
-        this.show = false
+        
       },
       cancelCollect(){
         if(this.select.length==0){

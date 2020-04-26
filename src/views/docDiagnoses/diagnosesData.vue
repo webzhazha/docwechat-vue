@@ -1,5 +1,11 @@
 <template>
   <div class="diagnosesData">
+    <div class="nav textc typo_white">
+      <span class="absolute left10" @click="returns">
+        <i class="iconfont fs18 lh44" >&#xe688;</i>
+      </span>
+      <span class="fs18 typo_bold lh44">会诊数据</span>
+    </div>
     <div class="top">
       <div class="left">
         <div class="typo_white fs14 mb10">累计转诊/会诊收入(元)</div>
@@ -10,7 +16,7 @@
         <div class="typo_white fs24 typo_bold">+{{data.month_income}}</div>
       </div>
     </div>
-    <div class="bottom mt__15">
+    <div class="bottom mt__15" @click="goIndexReceived">
       <div class="items">
         <div class="item_left">
           <div class="mb5">
@@ -33,7 +39,7 @@
         </div>
       </div>
     </div>
-    <div class="bottom">
+    <div class="bottom" @click="goIndexApply">
       <div class="items">
         <div class="item_left">
           <div class="mb5">
@@ -67,10 +73,32 @@ export default {
     }
   },
   mounted() {
+    
     service.docDiagnoses.get_order_data().then(res=>{
       console.log(res);
       this.data = res.data
     })
+  },
+  methods: {
+    goIndexReceived(){
+      this.$router.push({
+        path: './index',
+        query: {
+          curtab: 'apply'
+        }
+      })
+    },
+    goIndexApply(){
+      this.$router.push({
+        path: './index',
+        query: {
+          curtab: 'received'
+        }
+      })
+    },
+    returns(){
+      this.$router.go(-1)
+    }
   },
 }
 </script>
@@ -81,6 +109,11 @@ export default {
 .mt__15 {
   margin-top: -0.4rem;
 }
+.nav {
+  position: relative;
+      height: 1.173333rem;
+      background-color: #009EE6;
+    }
   .diagnosesData {
     background-color: #FCFCFC;
     height: 100%;

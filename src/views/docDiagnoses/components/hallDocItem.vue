@@ -5,7 +5,7 @@
       <div class="relative flex1">
         <div class="mb8">
           <span class="fs18 c333 typo_bold mr5">{{docItem.doctor_name}}</span>
-          <span class="fs14 c666 typo_bold">主任医师</span>
+          <span class="fs14 c666 typo_bold">{{docItem.zc_name}}</span>
         </div>
         <div class="fs14 c999 typo_bold mb15">
           {{docItem.unit_name}}
@@ -19,14 +19,21 @@
             <i class="iconfont">&#xe697;</i>
             {{docItem.city_area}}</span>
         </div>
-        <div class="collect" v-if="isHall">
-          收藏
-        </div>
+        <template v-if="isHall" >
+          <div class="collect" v-if="docItem.is_followed==0" @click='collect(docItem.doctor_id)'>
+            <i class="iconfont">&#xe736;</i> 收藏
+          </div>
+          <div class="collect yet" v-if="docItem.is_followed==1">
+            已收藏
+          </div>
+        </template>
+        
       </div>
     </div>
   </div>
 </template>
 <script>
+import service from "_services/"
 export default {
   data() {
     return {
@@ -42,22 +49,24 @@ export default {
       type: [Object],
       defalut: () => {}
     }
-  }
+  },
+  methods: {
+    collect(id){
+      service.docDiagnoses.collect_doctor({
+        doctor_id: id
+      }).then(res=>{
+        console.log(res);
+        if(res.result_code==1){
+          this.docItem.is_followed = 1
+        }else {
+          this.$toast('收藏失败')
+        }
+      })
+    }
+  },
 }
 </script>
 <style lang="scss" scoped>
-  .flex1 {
-    flex: 1;
-  }
-
-  .c_ccc {
-    color: #ccc;
-  }
-
-  .mb8 {
-    margin-bottom: 0.213333rem;
-  }
-
   .hallDocItem {
     display: flex;
     padding: 0.533333rem 0.4rem;
@@ -103,6 +112,11 @@ export default {
       text-align: center;
       line-height: 0.8rem;
       border-radius: 0.853333rem;
+      &.yet {
+        color: #999;
+        background-color: #F7F7F7;
+        border: none;
+      }
     }
   }
 </style>

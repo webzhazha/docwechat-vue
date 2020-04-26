@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="search">
+    <div class="search" @click="goSearch">
       <i class="iconfont mr10">&#xe725;</i>
       <span>搜索医生以及诊疗服务</span>
     </div>
@@ -54,6 +54,9 @@
       })
     },
     methods: {
+      goSearch(){
+        this.$router.push('../docDiagnoses/searchIndex')
+      },
       onLoad() {
         this.page++
         this._getHalldoctor({

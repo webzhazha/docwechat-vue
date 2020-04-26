@@ -31,9 +31,10 @@ export default {
     }
   },
   methods: {
+    changeTab(index) {
+      this.activeIndex = index
+    },
     selectTab(index) {
-      console.log(index);
-      
       if (this.activeIndex != index) {
         this.activeIndex = index
         this.$emit('tabChange', index)

@@ -62,7 +62,7 @@ export default {
     },
     onCancel() {
       console.log('取消');
-      
+      this.$router.push("./index")
     },
     onClear(){
       console.log('清除');

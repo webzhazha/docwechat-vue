@@ -10,14 +10,14 @@
         <div class="fs14 c999 mb15">
           {{docItem.unit_name}} | {{docItem.dep_name}}
         </div>
-        <div class="illness" v-if="docItem.ill_tags">
-          <span v-for="item in docItem.ill_tags" :key="item">{{item}}</span>
+        <div class="illness" v-if="docItem.ill_names">
+          <span v-for="item in docItem.ill_names" :key="item">{{item}}</span>
         </div>
         <div>
-          <span class="price typo_bold">￥{{docItem.min_price}}</span>
+          <span class="price typo_bold">￥{{docItem.price}}</span>
           <span class="c_ccc">
             <i class="iconfont">&#xe697;</i>
-            {{docItem.area_name}}</span>
+            {{docItem.city_area}}</span>
         </div>
       </div>
     </div>

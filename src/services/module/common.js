@@ -7,6 +7,10 @@ const getAdvertData = params => {
   return get(`/cube-data/v1/adlist.html`, params)
 }
 
+// 获取医生端userInfo
+const loginByAppToken = params => get('/user/loginByAppToken.html', params)
+
 export default {
-  getAdvertData
+  getAdvertData,
+  loginByAppToken
 }

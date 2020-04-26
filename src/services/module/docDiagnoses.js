@@ -39,7 +39,11 @@ const get_collect_list = (params) => {
 }
 // 取消收藏
 const cancel_collect_doctor = (params) => {
-  return post(`/doctor_business/v1/consultation/multi_cancel_collect_doctor`,params)
+  return post(`/doctor_business/v1/consultation/multi_cancel_collect_doctor?user_key=${user_key}`,params)
+}
+// 收藏医生
+const collect_doctor = (params) => {
+  return post(`/doctor_business/v1/consultation/collect_doctor?user_key=${user_key}`,params)
 }
 
 export default {
@@ -50,5 +54,6 @@ export default {
   get_search,
   get_order_data,
   get_collect_list,
-  cancel_collect_doctor
+  cancel_collect_doctor,
+  collect_doctor
 }

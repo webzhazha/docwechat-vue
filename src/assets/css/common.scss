@@ -245,14 +245,21 @@ button, input, textarea {
 // border
 .bt_gray{border-bottom: 1px solid #F1F1F1;}
 
-
-// other
+// 定位
+.fixed {
+  position: fixed;
+}
 .relative {
   position: relative;
 }
 .absolute {
   position: absolute;
 }
+.left10 {
+  left: .266667rem;
+}
+
+// other
 .textc {
   text-align: center;
 }

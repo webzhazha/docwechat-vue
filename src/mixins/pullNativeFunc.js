@@ -11,6 +11,7 @@ export const titleLucency = {
 export const closeWebView = {
   methods: {
     closeWebView(){
+
       window.NativeActionProxy.doJSAction({"action":"close","params":{}});
     }
   }
@@ -20,17 +21,26 @@ export const closeWebView = {
 export const pullServiceConf = {
   methods: {
     pullServiceConf(){
-      window.NativeActionProxy.callbackNative({
+      console.log('触发');
+      const obj = {
         "android": {
           "page_clase_name":"com.ny.jiuyi160_doctor.module.consultation.ConsultationServiceSettingListActivity",
           "parameters": []
-        },
-        "ios": {
-          "page_clase_name": "NYConsultationServeListViewController",
-          "parameters": [],
-          "show_type": "push"
         }
-      })
+      }
+      const jsons = JSON.stringify(obj)
+      window.NativeActionProxy.callbackNativeFunc(jsons)
+      // window.NativeActionProxy.callbackNative({
+        // "android": {
+        //   "page_clase_name":"com.ny.jiuyi160_doctor.module.consultation.ConsultationServiceSettingListActivity",
+        //   "parameters": []
+        // },
+      //   "ios": {
+      //     "page_clase_name": "NYConsultationServeListViewController",
+      //     "parameters": [],
+      //     "show_type": "push"
+      //   }
+      // })
     }
   }
 }

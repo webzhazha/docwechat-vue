@@ -20,7 +20,7 @@
             {{docItem.city_area}}</span>
         </div>
         <template v-if="isHall" >
-          <div class="collect" v-if="docItem.is_followed==0" @click='collect(docItem.doctor_id)'>
+          <div class="collect" v-if="docItem.is_followed==0" @click.stop='collect(docItem.doctor_id)'>
             <i class="iconfont">&#xe736;</i> 收藏
           </div>
           <div class="collect yet" v-if="docItem.is_followed==1">

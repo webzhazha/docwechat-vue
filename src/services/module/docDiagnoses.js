@@ -4,7 +4,7 @@ import { doctorBus } from '@/config/apiHost'
 if(window.TokenNativeActionProxy){
   var user_key = window.TokenNativeActionProxy.getAccessToken()
 }else {
-  var user_key = 'f7246601e1cdbe5a7072e367abb780c2Z4RHg1JM20200517162327'
+  var user_key = '918753f30d73650476d3931fc9366612SjW3tGLU20200517214546'
 }
 
 // 获取过滤器数据

@@ -124,11 +124,16 @@ export default {
         })
         .then((res) => {
           console.log(res);
+          if(!res.data.list){
+            this.loading = false
+            this.finished = true;
+            return
+          }
           if(res.data.list && res.data.list.length>0){
             this.orderList = this.orderList.concat(res.data.list);
           }
           this.loading = false;
-          if (!res.data.list || res.data.list.length < 3) {
+          if (res.data.list && res.data.list.length < 3) {
             this.finished = true;
           }
         });

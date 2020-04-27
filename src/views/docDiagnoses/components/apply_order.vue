@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="diagnoses_doc">
+    <div class="diagnoses_doc" v-if='orderList.length>0'>
       <van-list
         v-model="loading"
         :finished="finished"
@@ -126,11 +126,18 @@ export default {
         })
         .then((res) => {
           console.log(res);
+          if(!res.data.list){
+            this.loading = false;
+            this.finished = true;
+            return
+          }
           if(res.data.list && res.data.list.length>0){
             this.orderList = this.orderList.concat(res.data.list);
           }
           this.loading = false;
-          if (!res.data.list || res.data.list.length < 3) {
+          if (res.data.list && res.data.list.length < 3) {
+            console.log('没有');
+            
             this.finished = true;
           }
         });

@@ -46,11 +46,9 @@ export default {
   },
   methods: {
     onLoad(){
-      console.log(567575);
-      
       if(this.value){
         this.page++
-        this.get_result()
+        this.get_result(this.value)
       }else {
         this.loading = false
       }
@@ -59,7 +57,7 @@ export default {
     onSearch(val) {
       console.log(val);
       console.log(this.value);
-      
+      this.docList = []
       this.get_result(val)
     },
     onCancel() {

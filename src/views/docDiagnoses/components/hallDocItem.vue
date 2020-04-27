@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="hallDocItem bt_gray" @click="goNativeDoc">
-      <div class="backgroundimg doc_img mr16" :style="generateImageUrl('','/wechat/img/common/default.png')"></div>
+      <div class="backgroundimg doc_img mr16" :style="generateImageUrl(docItem.image,'/wechat/img/common/default.png')"></div>
       <div class="relative flex1">
         <div class="mb8">
           <span class="fs18 c333 typo_bold mr5">{{docItem.doctor_name}}</span>

@@ -11,7 +11,7 @@
       <div class="top_icon_inner">
         <div class="textc flex1" @click="goMyCollect">
           <img src="./image/top_icon_1.png" alt="" class="mb20">
-          <div class="fs14 typo_white">我的收藏</div>
+          <div class="fs14 typo_white">我的测试</div>
         </div>
         <div class="textc flex1" @click="goDiagData">
           <img src="./image/top_icon_2.png" alt="" class="mb20">

@@ -1,17 +1,17 @@
 import { getUrlParam } from '../config/util.js'
 
-const isIos = getUrlParam('cid') == '100000001'
-const isAnd = getUrlParam('cid') == '100000002'
+const isAnd = getUrlParam('cid') == '100000001'
+const isIos = getUrlParam('cid') == '100000002'
 
 // h5设置导航栏透明化
 export const titleLucency = {
   methods: {
     titleLucency() {
-      if (isAnd) {
+      if (isIos) {
+        window.NativeActionProxy.doJSAction({ "action": "setNavigationBarTransparent", "params": {} })
+      } else {
         const jsons = JSON.stringify({ "action": "setNavigationBarTransparent", "params": {} })
         window.NativeActionProxy.doJSAction(jsons)
-      } else {
-        window.NativeActionProxy.doJSAction({ "action": "setNavigationBarTransparent", "params": {} })
       }
     }
   }
@@ -21,11 +21,11 @@ export const titleLucency = {
 export const closeWebView = {
   methods: {
     closeWebView() {
-      if (isAnd) {
+      if (isIos) {
+        window.NativeActionProxy.doJSAction({ "action": "close", "params": {} });
+      } else {
         const jsons = JSON.stringify({ "action": "close", "params": {} })
         window.NativeActionProxy.doJSAction(jsons)
-      } else {
-        window.NativeActionProxy.doJSAction({ "action": "close", "params": {} });
       }
     }
   }
@@ -35,7 +35,15 @@ export const closeWebView = {
 export const pullServiceConf = {
   methods: {
     pullServiceConf() {
-      if (isAnd) {
+      if (isIos) {
+        window.NativeActionProxy.callbackNative({
+          "ios": {
+            "page_clase_name": "NYConsultationServeListViewController",
+            "parameters": [],
+            "show_type": "push"
+          }
+        })
+      } else {
         const obj = {
           "android": {
             "page_clase_name": "com.ny.jiuyi160_doctor.module.consultation.ConsultationServiceSettingListActivity",
@@ -44,14 +52,6 @@ export const pullServiceConf = {
         }
         const jsons = JSON.stringify(obj)
         window.NativeActionProxy.callbackNativeFunc(jsons)
-      } else {
-        window.NativeActionProxy.callbackNative({
-          "ios": {
-            "page_clase_name": "NYConsultationServeListViewController",
-            "parameters": [],
-            "show_type": "push"
-          }
-        })
       }
     }
   }

@@ -61,26 +61,7 @@ export const pullServiceConf = {
 export const pullDocIndex = {
   methods: {
     pullDocIndex(docId) {
-      if (isAnd) {
-        const obj = {
-          "android": {
-            "page_clase_name": "com.ny.jiuyi160_doctor.activity.tab.circle.DocProfileDetailActivity",
-            "parameters": [{
-                "name": "doctor_cid",
-                "value": docId.toString(),
-                "type": "String"
-              },
-              {
-                "name": "mode",
-                "value": 3,
-                "type": "String"
-              }
-            ]
-          }
-        }
-        const jsons = JSON.stringify(obj)
-        window.NativeActionProxy.callbackNativeFunc(jsons)
-      } else {
+      if (isIos) {
         window.NativeActionProxy.callbackNative({
           "ios": {
             "storyboard_name": "TransferTreatment",
@@ -99,8 +80,26 @@ export const pullDocIndex = {
             "show_type": "push"
           }
         })
+      } else {
+        const obj = {
+          "android": {
+            "page_clase_name": "com.ny.jiuyi160_doctor.activity.tab.circle.DocProfileDetailActivity",
+            "parameters": [{
+                "name": "doctor_cid",
+                "value": docId.toString(),
+                "type": "String"
+              },
+              {
+                "name": "mode",
+                "value": 3,
+                "type": "String"
+              }
+            ]
+          }
+        }
+        const jsons = JSON.stringify(obj)
+        window.NativeActionProxy.callbackNativeFunc(jsons)
       }
-
     }
   }
 }
@@ -109,20 +108,7 @@ export const pullDocIndex = {
 export const pullDiagOrder = {
   methods: {
     pullDiagOrder(orderId) {
-      if (isAnd) {
-        const obj = {
-          "android": {
-            "page_clase_name": "com.ny.jiuyi160_doctor.module.consultation.ConsultationOrderActivity",
-            "parameters": [{
-              "name": "order_id",
-              "value": orderId.toString(),
-              "type": "String"
-            }]
-          }
-        }
-        const jsons = JSON.stringify(obj)
-        window.NativeActionProxy.callbackNativeFunc(jsons)
-      } else {
+      if (isIos) {
         window.NativeActionProxy.callbackNative({
           "ios": {
             "storyboard_name": "ReferralConsultation_cqw",
@@ -135,6 +121,19 @@ export const pullDiagOrder = {
             "show_type": "push"
           }
         })
+      } else {
+        const obj = {
+          "android": {
+            "page_clase_name": "com.ny.jiuyi160_doctor.module.consultation.ConsultationOrderActivity",
+            "parameters": [{
+              "name": "order_id",
+              "value": orderId.toString(),
+              "type": "String"
+            }]
+          }
+        }
+        const jsons = JSON.stringify(obj)
+        window.NativeActionProxy.callbackNativeFunc(jsons)
       }
     }
   }

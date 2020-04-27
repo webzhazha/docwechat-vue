@@ -2,7 +2,7 @@
   <div class="docDiagnoses">
     <!-- 顶部 -->
     <div class="nav textc typo_white">
-      <span class="absolute left10" @click="closeWebView">
+      <span class="absolute left10" @click="closePage">
         <i class="iconfont fs18 lh44">&#xe688;</i>
       </span>
       <span class="fs18 typo_bold lh44">转诊/会诊</span>
@@ -89,7 +89,7 @@ import { pullServiceConf, closeWebView, titleLucency } from '@/mixins/pullNative
       })
     },
     methods: {
-      closeWebView(){
+      closePage(){
         this.closeWebView()
       },
       instructions(){

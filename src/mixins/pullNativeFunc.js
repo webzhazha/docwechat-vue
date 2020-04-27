@@ -20,12 +20,12 @@ export const closeWebView = {
 export const pullServiceConf = {
   methods: {
     pullServiceConf(){
-      window.NativeActionProxy.didNativeCallback({
-        android: {
+      window.NativeActionProxy.callbackNative({
+        "android": {
           "page_clase_name":"com.ny.jiuyi160_doctor.module.consultation.ConsultationServiceSettingListActivity",
-          "parameters": {}
+          "parameters": []
         },
-        ios: {
+        "ios": {
           "page_clase_name": "NYConsultationServeListViewController",
           "parameters": [],
           "show_type": "push"
@@ -39,15 +39,19 @@ export const pullServiceConf = {
 export const pullDocIndex = {
   methods: {
     pullDocIndex(docId){
-      window.NativeActionProxy.didNativeCallback({
-        android: {
+      window.NativeActionProxy.callbackNative({
+        "android": {
           "page_clase_name":"com.ny.jiuyi160_doctor.activity.tab.circle.DocProfileDetailActivity",
-          "parameters":  {
-            "doctor_cid": docId,
-            "mode": 3
-            }
+          "parameters":[
+            {"name":"doctor_cid",
+            "value":docId,
+            "type":"String"},
+            {"name":"mode",
+            "value":3,
+            "type":"String"}
+            ]
         },
-        ios: {
+        "ios": {
           "storyboard_name": "TransferTreatment",
           "page_clase_name": "DoctorIndexViewController",
           "parameters": [
@@ -72,14 +76,16 @@ export const pullDocIndex = {
 export const pullDiagOrder = {
   methods: {
     pullDiagOrder(orderId){
-      window.NativeActionProxy.didNativeCallback({
-        android: {
+      window.NativeActionProxy.callbackNative({
+        "android": {
           "page_clase_name":"com.ny.jiuyi160_doctor.module.consultation.ConsultationOrderActivity",
-          "parameters":  {
-            "order_id": orderId
-            }
+          "parameters":  [
+            {"name":"order_id",
+            "value": orderId,
+            "type":"String"}
+          ]
         },
-        ios: {
+        "ios": {
           "storyboard_name": "ReferralConsultation_cqw",
           "page_clase_name": "NYRefreralConsultationOrderDetailVC",
           "parameters": [

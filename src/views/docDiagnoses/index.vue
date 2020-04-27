@@ -17,11 +17,11 @@
           <img src="./image/top_icon_2.png" alt="" class="mb20">
           <div class="fs14 typo_white">会诊数据</div>
         </div>
-        <div class="textc flex1">
+        <div class="textc flex1" @click="goConfig">
           <img src="./image/top_icon_3.png" alt="" class="mb20">
           <div class="fs14 typo_white">服务配置</div>
         </div>
-        <div class="textc flex1">
+        <div class="textc flex1" @click="instructions">
           <img src="./image/top_icon_4.png" alt="" class="mb20">
           <div class="fs14 typo_white">操作指南</div>
         </div>
@@ -43,8 +43,7 @@
   </div>
 </template>
 <script>
-  import service from '_services/'
-  import { mapMutations, mapGetters } from 'vuex'
+import { pullServiceConf } from '@/mixins/pullNativeFunc'
   // const Tab = () => import('./components/tab')
   import Tab from './components/tab'
   const CommonBanner = () => import('@/components/commonBanner')
@@ -71,18 +70,10 @@
         ],
       }
     },
+    mixins: [pullServiceConf],
     components: { Tab, ServiceHall, ApplyOrder, ReceivedOrder },
-    computed: {
-      ...mapGetters(['user_info'])
-    },
+    
     async created() {
-      if (this.$route.query.jstoken) {
-        let info = await service.common.loginByAppToken({
-          jstoken: this.$route.query.jstoken
-        })
-        this.SETUSERINFO(info)
-      }
-      
     },
     mounted() {
       this.$nextTick(()=>{
@@ -97,7 +88,12 @@
       })
     },
     methods: {
-      ...mapMutations(['SETUSERINFO']),
+      instructions(){
+        document.location.href='http://www.baidu.com'
+      },
+      goConfig(){
+        this.pullServiceConf()
+      },
       goMyCollect(){
         this.$router.push('./collectIndex')
       },

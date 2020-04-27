@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="hallDocItem bt_gray">
+    <div class="hallDocItem bt_gray" @click="goNativeDoc">
       <div class="backgroundimg doc_img mr16" :style="generateImageUrl('','/wechat/img/common/default.png')"></div>
       <div class="relative flex1">
         <div class="mb8">
@@ -15,7 +15,7 @@
         </div>
         <div>
           <span class="price typo_bold">￥{{docItem.price}}</span>
-          <span class="c_ccc">
+          <span class="c_ccc" v-if='docItem.city_area'>
             <i class="iconfont">&#xe697;</i>
             {{docItem.city_area}}</span>
         </div>
@@ -33,6 +33,7 @@
   </div>
 </template>
 <script>
+import { pullDocIndex } from '@/mixins/pullNativeFunc'
 import service from "_services/"
 export default {
   data() {
@@ -40,6 +41,7 @@ export default {
 
     }
   },
+  mixins: [pullDocIndex],
   props: {
     isHall: {
       type: [Boolean],
@@ -51,6 +53,9 @@ export default {
     }
   },
   methods: {
+    goNativeDoc(){
+      this.pullDocIndex(this.docItem.doctor_id)
+    },
     collect(id){
       service.docDiagnoses.collect_doctor({
         doctor_id: id

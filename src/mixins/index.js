@@ -5,8 +5,13 @@ export const buildImage = {
   data(){
     return {
       STATICDOMAIN: `${protocol}//wximg.91160.com`,
-      IMAGESDOMAIN: `${protocol}//images.91160.com/`,
+      IMAGESDOMAIN: `${protocol}//images.91160.com/`
     }
+  },
+  created() {
+    const isAnd = navigator.userAgent.includes('cid=100000001')
+    const isIos = navigator.userAgent.includes('cid=100000002')
+    const cid = isAnd ? '100000001' : '100000002'
   },
   methods: {
     fixImageUrl(url) {
@@ -55,3 +60,4 @@ export const buildImage = {
     }
   }
 }
+

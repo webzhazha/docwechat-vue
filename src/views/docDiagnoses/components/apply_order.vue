@@ -13,9 +13,11 @@
           class="bg_white mb15"
           v-for="(item, index) in orderList"
           :key="index"
+          @click="goOrder(item.order_id)"
         >
           <div class="top">
-            <span class="status ">{{ item.order_state_title }}</span>
+            <span class="status" :style="'color:' +colorList[item.order_state]">
+              <i class="iconfont">&#xea53;</i>{{ item.order_state_title }}</span>
             <span class="c999 fs14 fr lh40" v-if="(item.order_state == 1 && item.pay_state == 1)">还剩{{item.end_time | filterTime}}关闭服务</span>
             <span class="c999 fs14 fr lh40" v-else
               >{{ item.add_time}}发起</span
@@ -60,7 +62,7 @@
 </template>
 <script>
 import $ from "jquery";
-
+import { pullDiagOrder } from '@/mixins/pullNativeFunc'
 import service from "_services/";
 const NoData = () => import("@/components/noData");
 export default {
@@ -71,8 +73,18 @@ export default {
       loading: false,
       finished: false,
       height: "",
+      colorList: [
+        '#FF9F4F',
+        '#FF9F4F',
+        '#009EE6',
+        '#00D3C2',
+        '#999999',
+        '#999999',
+        '#999999'
+      ]
     };
   },
+  mixins: [pullDiagOrder],
   components: { NoData },
   computed: {
     getNoDataTip() {
@@ -103,6 +115,9 @@ export default {
     });
   },
   methods: {
+    goOrder(order_id){
+      this.pullDiagOrder(order_id)
+    },
     _get_apply_order() {
       service.docDiagnoses
         .get_apply_order({

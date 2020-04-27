@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="hallDocItem bt_gray">
+    <div class="hallDocItem bt_gray" @click="goNativeDoc">
       <div class="backgroundimg doc_img mr16" :style="generateImageUrl(docItem.avatar,'/wechat/img/common/default.png')"></div>
       <div class="relative flex1">
         <div class="mb8">
@@ -10,12 +10,12 @@
         <div class="fs14 c999 mb15">
           {{docItem.unit_name}} | {{docItem.dep_name}}
         </div>
-        <div class="illness" v-if="docItem.ill_names">
-          <span v-for="item in docItem.ill_names" :key="item">{{item}}</span>
+        <div class="illness" v-if="docItem.ill_tags">
+          <span v-for="item in docItem.ill_tags" :key="item">{{item}}</span>
         </div>
         <div>
-          <span class="price typo_bold">￥{{docItem.price}}</span>
-          <span class="c_ccc">
+          <span class="price typo_bold">￥{{docItem.min_price}}</span>
+          <span class="c_ccc" v-if="docItem.city_area">
             <i class="iconfont">&#xe697;</i>
             {{docItem.city_area}}</span>
         </div>
@@ -24,18 +24,25 @@
   </div>
 </template>
 <script>
+import { pullDocIndex } from '@/mixins/pullNativeFunc'
 export default {
   data() {
     return {
 
     }
   },
+  mixins: [pullDocIndex],
   props: {
     docItem: {
       type: [Object],
       defalut: () => {}
     }
-  }
+  },
+  methods: {
+    goNativeDoc(){
+      this.pullDocIndex(this.docItem.doctor_id)
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>

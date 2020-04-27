@@ -107,9 +107,18 @@ export default {
 </script>
 <style lang="scss">
   .diagFilterBar {
+    .van-dropdown-menu {
+      .van-dropdown-menu__title--active {
+        color: #009EE6;
+      }
+      
+    }
     .van-tree-select {
       .van-icon {
         display: none;
+      }
+      .van-sidebar-item--select {
+        color: #009EE6;
       }
       .van-tree-select__item--active {
         color: #009EE6;

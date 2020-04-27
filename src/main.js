@@ -8,7 +8,6 @@ import './config/rem'
 // 引入vant
 import './config/vant'
 
-
 Vue.config.productionTip = false;
 
 Vue.mixin(buildImage)

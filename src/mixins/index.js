@@ -11,8 +11,6 @@ export const buildImage = {
       cid: process.env.NODE_ENV == 'production'? this.$route.query.cid :'100000001'
     }
   },
-  created() {
-  },
   methods: {
     fixImageUrl(url) {
       const RegExps = {

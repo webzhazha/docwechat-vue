@@ -69,7 +69,7 @@ export const pullDocIndex = {
           "parameters": [
             {
             "name": "doctor_cid",
-            "value": docId,
+            "value": docId.toString(),
             "type": "string"
             },
             {
@@ -103,7 +103,7 @@ export const pullDiagOrder = {
           "parameters": [
             {
             "name": "order_id",
-            "value": orderId,
+            "value": orderId.toString(),
             "type": "string"
             }
             ],

@@ -73,7 +73,8 @@ export default {
       service.docDiagnoses.get_search({
         keywords: val,
         page: 1,
-        size: 10
+        size: 10,
+        account_user_id: this.account_user_id
       }).then(res=>{
         console.log(res);
         this.docList = this.docList.concat(res.data)

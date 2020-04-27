@@ -39,7 +39,8 @@
         loading: false,
         finished: false,
         page: 1,
-        height: '100vh'
+        height: '100vh',
+        
       }
     },
     components: { CommonBanner, DiagFilterBar, HallDocItem, NoData },
@@ -70,6 +71,7 @@
         service.docDiagnoses.getHalldoctor({
           page: this.page,
           size: 5,
+          account_user_id: this.account_user_id,
           ...params
         }).then(res => {
           console.log(res);

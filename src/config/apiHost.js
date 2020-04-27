@@ -1,4 +1,4 @@
-const gate = '//wechatgate.91160.com'
+const gate = '//doctorgate.91160.com'
 
 let cube = ''
 let doctorBus = ''

@@ -5,13 +5,12 @@ export const buildImage = {
   data(){
     return {
       STATICDOMAIN: `${protocol}//wximg.91160.com`,
-      IMAGESDOMAIN: `${protocol}//images.91160.com/`
+      IMAGESDOMAIN: `${protocol}//images.91160.com/`,
+      account_user_id : process.env.NODE_ENV == 'production'?  window.TokenNativeActionProxy.getAccountUserId():'123',
+      cid: process.env.NODE_ENV == 'production'? this.$route.query.cid :'100000001'
     }
   },
   created() {
-    const isAnd = navigator.userAgent.includes('cid=100000001')
-    const isIos = navigator.userAgent.includes('cid=100000002')
-    const cid = isAnd ? '100000001' : '100000002'
   },
   methods: {
     fixImageUrl(url) {

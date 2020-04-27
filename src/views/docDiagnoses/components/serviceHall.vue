@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <div class="search" @click="goSearch">
       <i class="iconfont mr10">&#xe725;</i>
       <span>搜索医生以及诊疗服务</span>
@@ -16,12 +16,14 @@
       </div>
 
     </van-sticky>
-
-    <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" v-if="docList.length>0" offset='100'>
+    <div :style="'height:' + height">
+      <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" v-if="docList.length>0" offset='100'>
       <div v-for="(item,index) in docList" :key="index">
         <HallDocItem :docItem="item" />
       </div>
     </van-list>
+    </div>
+    
     <NoData v-if="!loading && docList.length==0" :height="height" />
   </div>
 </template>
@@ -84,6 +86,7 @@
       },
       changeFilterData(params){
         this.page = 1
+        this.docList = []
         this.finished = false
         this._getHalldoctor(params)
       },

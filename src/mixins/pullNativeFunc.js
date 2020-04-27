@@ -30,17 +30,19 @@ export const pullServiceConf = {
       }
       const jsons = JSON.stringify(obj)
       window.NativeActionProxy.callbackNativeFunc(jsons)
-      // window.NativeActionProxy.callbackNative({
-        // "android": {
-        //   "page_clase_name":"com.ny.jiuyi160_doctor.module.consultation.ConsultationServiceSettingListActivity",
-        //   "parameters": []
-        // },
-      //   "ios": {
-      //     "page_clase_name": "NYConsultationServeListViewController",
-      //     "parameters": [],
-      //     "show_type": "push"
-      //   }
-      // })
+      console.log(456456);
+      
+      window.NativeActionProxy.callbackNative({
+        "android": {
+          "page_clase_name":"com.ny.jiuyi160_doctor.module.consultation.ConsultationServiceSettingListActivity",
+          "parameters": []
+        },
+        "ios": {
+          "page_clase_name": "NYConsultationServeListViewController",
+          "parameters": [],
+          "show_type": "push"
+        }
+      })
     }
   }
 }
@@ -87,14 +89,14 @@ export const pullDiagOrder = {
   methods: {
     pullDiagOrder(orderId){
       window.NativeActionProxy.callbackNative({
-        "android": {
-          "page_clase_name":"com.ny.jiuyi160_doctor.module.consultation.ConsultationOrderActivity",
-          "parameters":  [
-            {"name":"order_id",
-            "value": orderId,
-            "type":"String"}
-          ]
-        },
+        // "android": {
+        //   "page_clase_name":"com.ny.jiuyi160_doctor.module.consultation.ConsultationOrderActivity",
+        //   "parameters":  [
+        //     {"name":"order_id",
+        //     "value": orderId,
+        //     "type":"String"}
+        //   ]
+        // },
         "ios": {
           "storyboard_name": "ReferralConsultation_cqw",
           "page_clase_name": "NYRefreralConsultationOrderDetailVC",

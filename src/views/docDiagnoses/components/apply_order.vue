@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="diagnoses_doc" v-if='orderList.length>0'>
+    <div class="diagnoses_doc" v-if='orderList.length>0' :style="'height:' + height">
       <van-list
         v-model="loading"
         :finished="finished"

@@ -2,7 +2,7 @@
   <div class="docDiagnoses">
     <!-- 顶部 -->
     <div class="nav textc typo_white">
-      <span class="absolute left10">
+      <span class="absolute left10" @click="closeWebView">
         <i class="iconfont fs18 lh44">&#xe688;</i>
       </span>
       <span class="fs18 typo_bold lh44">转诊/会诊</span>
@@ -43,7 +43,7 @@
   </div>
 </template>
 <script>
-import { pullServiceConf } from '@/mixins/pullNativeFunc'
+import { pullServiceConf, closeWebView, titleLucency } from '@/mixins/pullNativeFunc'
   // const Tab = () => import('./components/tab')
   import Tab from './components/tab'
   const CommonBanner = () => import('@/components/commonBanner')
@@ -70,12 +70,13 @@ import { pullServiceConf } from '@/mixins/pullNativeFunc'
         ],
       }
     },
-    mixins: [pullServiceConf],
+    mixins: [pullServiceConf, closeWebView, titleLucency],
     components: { Tab, ServiceHall, ApplyOrder, ReceivedOrder },
     
     async created() {
     },
     mounted() {
+      this.titleLucency()
       this.$nextTick(()=>{
         if(this.$route.query.curtab=='apply'){
           this.curtab = 'apply'
@@ -88,6 +89,9 @@ import { pullServiceConf } from '@/mixins/pullNativeFunc'
       })
     },
     methods: {
+      closeWebView(){
+        this.closeWebView()
+      },
       instructions(){
         document.location.href='http://www.baidu.com'
       },

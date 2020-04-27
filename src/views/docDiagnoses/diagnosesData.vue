@@ -65,6 +65,7 @@
   </div>
 </template>
 <script>
+import { titleLucency } from '@/mixins/pullNativeFunc'
 import service from '_services/'
 export default {
   data(){
@@ -72,8 +73,9 @@ export default {
       data: {}
     }
   },
+  mixins: [titleLucency],
   mounted() {
-    
+    this.titleLucency()
     service.docDiagnoses.get_order_data().then(res=>{
       console.log(res);
       this.data = res.data

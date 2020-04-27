@@ -1,7 +1,7 @@
 // h5设置导航栏透明化
-export const doJSAction = {
+export const titleLucency = {
   methods: {
-    doJSAction(){
+    titleLucency(){
       window.NativeActionProxy.doJSAction({"action":"setNavigationBarTransparent","params":{}});
     }
   }

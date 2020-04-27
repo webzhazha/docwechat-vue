@@ -33,6 +33,7 @@
   </div>
 </template>
 <script>
+import { titleLucency } from '@/mixins/pullNativeFunc'
 import service from '_services/'
   const CollectDocItem = () => import('./components/collectDocItem')
   export default {
@@ -48,8 +49,10 @@ import service from '_services/'
         ],
       }
     },
+    mixins: [titleLucency],
     components: { CollectDocItem },
     mounted() {
+      this.titleLucency()
       this._get_collect_list()
     },
     methods: {

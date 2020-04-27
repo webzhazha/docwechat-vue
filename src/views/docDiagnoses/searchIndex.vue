@@ -26,6 +26,7 @@
   </div>
 </template>
 <script>
+import { titleLucency } from '@/mixins/pullNativeFunc'
 import service from '_services/'
 const HallDocItem = () => import('./components/hallDocItem')
 export default {
@@ -38,9 +39,10 @@ export default {
       finished: false,
     };
   },
+  mixins: [titleLucency],
   components: {HallDocItem},
   mounted() {
-    
+    this.titleLucency()
   },
   methods: {
     onLoad(){

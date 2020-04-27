@@ -6,7 +6,8 @@ export const buildImage = {
     return {
       STATICDOMAIN: `${protocol}//wximg.91160.com`,
       IMAGESDOMAIN: `${protocol}//images.91160.com/`,
-      account_user_id : process.env.NODE_ENV == 'production'?  window.TokenNativeActionProxy.getAccountUserId():'123',
+      account_user_id: '',
+      // account_user_id : process.env.NODE_ENV == 'production'?  window.TokenNativeActionProxy.getAccountUserId():'123',
       cid: process.env.NODE_ENV == 'production'? this.$route.query.cid :'100000001'
     }
   },

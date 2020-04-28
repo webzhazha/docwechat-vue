@@ -76,7 +76,7 @@ import { pullServiceConf, closeWebView, titleLucency } from '@/mixins/pullNative
     async created() {
     },
     mounted() {
-      this.titleLucency()
+      this.titleLucency() // 隐藏导航栏
       this.$nextTick(()=>{
         if(this.$route.query.curtab=='apply'){
           this.curtab = 'apply'

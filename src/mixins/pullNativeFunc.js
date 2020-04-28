@@ -1,16 +1,19 @@
 import { getUrlParam } from '../config/util.js'
 
-const isAnd = getUrlParam('cid') == '100000001'
-const isIos = getUrlParam('cid') == '100000002'
+const isAnd = navigator.userAgent.includes('Android')
+const isIos = navigator.userAgent.includes('iPhone')
 
 // h5设置导航栏透明化
 export const titleLucency = {
   methods: {
     titleLucency() {
+      if (process.env.NODE_ENV == 'development') {
+        return
+      }
       if (isIos) {
-        window.NativeActionProxy.doJSAction({ "action": "setNavigationBarTransparent", "params": {} })
+        window.NativeActionProxy.doJSAction({ "action": "setNavigationBarHidden", "params": {} })
       } else {
-        const jsons = JSON.stringify({ "action": "setNavigationBarTransparent", "params": {} })
+        const jsons = JSON.stringify({ "action": "setNavigationBarHidden", "params": {} })
         window.NativeActionProxy.doJSAction(jsons)
       }
     }
@@ -21,6 +24,9 @@ export const titleLucency = {
 export const closeWebView = {
   methods: {
     closeWebView() {
+      if (process.env.NODE_ENV == 'development') {
+        return
+      }
       if (isIos) {
         window.NativeActionProxy.doJSAction({ "action": "close", "params": {} });
       } else {
@@ -35,6 +41,9 @@ export const closeWebView = {
 export const pullServiceConf = {
   methods: {
     pullServiceConf() {
+      if (process.env.NODE_ENV == 'development') {
+        return
+      }
       if (isIos) {
         window.NativeActionProxy.callbackNative({
           "ios": {
@@ -61,6 +70,9 @@ export const pullServiceConf = {
 export const pullDocIndex = {
   methods: {
     pullDocIndex(docId) {
+      if (process.env.NODE_ENV == 'development') {
+        return
+      }
       if (isIos) {
         window.NativeActionProxy.callbackNative({
           "ios": {
@@ -108,6 +120,9 @@ export const pullDocIndex = {
 export const pullDiagOrder = {
   methods: {
     pullDiagOrder(orderId) {
+      if (process.env.NODE_ENV == 'development') {
+        return
+      }
       if (isIos) {
         window.NativeActionProxy.callbackNative({
           "ios": {

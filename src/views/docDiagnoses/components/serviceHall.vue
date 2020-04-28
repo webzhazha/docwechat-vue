@@ -16,7 +16,7 @@
       </div>
 
     </van-sticky>
-    <div :style="'height:' + height">
+    <div :style="'min-height:' + height">
       <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" v-if="docList.length>0" offset='100'>
       <div v-for="(item,index) in docList" :key="index">
         <HallDocItem :docItem="item" />

@@ -1,11 +1,7 @@
 
 import { get, post } from '@/config/request'
 import { doctorBus } from '@/config/apiHost'
-if(window.TokenNativeActionProxy){
-  var user_key = window.TokenNativeActionProxy.getAccessToken()
-}else {
-  var user_key = '6c00fca0c721512ac10f24cd7060c37bHOqp1gYI20200518143138'
-}
+
 
 // 获取过滤器数据
 const getFilterData = (params) => {

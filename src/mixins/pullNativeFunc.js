@@ -1,7 +1,3 @@
-import { getUrlParam } from '../config/util.js'
-
-const isAnd = navigator.userAgent.includes('Android')
-const isIos = navigator.userAgent.includes('iPhone')
 
 // h5设置导航栏透明化
 export const titleLucency = {

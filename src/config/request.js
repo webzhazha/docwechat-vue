@@ -11,7 +11,7 @@ axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 Vue.prototype.$http = axios
 
 export const get = (url, params) => {
-    return axios.get(url, { params }).then((response) => {
+    return axios.get(url, {params}).then((response) => {
         if (response.status === 200) {
             return Promise.resolve(response.data || {})
         }
@@ -19,7 +19,7 @@ export const get = (url, params) => {
         return Promise.reject(error)
     })
 }
-// 商户app渠道
+
 export const post = (url, params) => {
     return axios({
         url: url,

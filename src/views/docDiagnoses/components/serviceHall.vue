@@ -68,8 +68,8 @@ export default {
       this.page++;
       this._getHalldoctor({
         city_id: "",
-        cat_id1: "",
-        cat_id2: "",
+        cat_no1: "",
+        cat_no2: "",
         sort_type: 0,
       });
     },
@@ -78,7 +78,7 @@ export default {
         .getHalldoctor({
           page: this.page,
           size: 5,
-          account_user_id: this.account_user_id,
+          user_id: this.account_user_id,
           ...params,
         })
         .then((res) => {

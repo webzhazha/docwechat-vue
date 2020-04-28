@@ -5,6 +5,9 @@ import store from "./store";
 import { buildImage } from "./mixins/index"
 // 移动端自适应
 import './config/rem'
+// 全局公共变量
+import { global } from './config/util'
+global()
 // 引入vant
 import './config/vant'
 

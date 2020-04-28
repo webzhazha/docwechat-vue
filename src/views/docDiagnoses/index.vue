@@ -79,7 +79,8 @@ export default {
   mixins: [pullServiceConf, closeWebView, titleLucency],
   components: { Tab, ServiceHall, ApplyOrder, ReceivedOrder },
 
-  async created() {},
+  async created() {
+  },
   mounted() {
     this.titleLucency(); // 隐藏导航栏
     this.$nextTick(() => {

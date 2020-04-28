@@ -7,6 +7,7 @@
       <span class="c333 fs18 typo_bold lh44">我的收藏</span>
       <span class="fs16 typo_blue lh44" @click="editEvent">{{edit?'取消':'编辑'}}</span>
     </div>
+    <div class="h45px"></div>
     <div v-if="!edit">
       <div v-for="(item,index) in docList" :key="index">
         <CollectDocItem :docItem="item" />
@@ -128,12 +129,17 @@ import service from '_services/'
       }
     }
     .nav {
-      height: 1.173333rem;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 45px;
       display: flex;
       padding: 0 .4rem;
       justify-content: space-between;
     }
-
+    .h45px {
+      height: 45px;
+    }
     .hallDocItem {
       display: flex;
       padding: 0.533333rem 0.4rem;

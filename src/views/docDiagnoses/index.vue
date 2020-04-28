@@ -7,6 +7,7 @@
       </span>
       <span class="fs18 typo_bold lh44">转诊/会诊</span>
     </div>
+    <div class="h45px"></div>
     <div class="top_icon">
       <div class="top_icon_inner">
         <div class="textc flex1" @click="goMyCollect">
@@ -28,7 +29,7 @@
       </div>
       <div class="round_bot"></div>
     </div>
-    <van-sticky z-index='100'>
+    <van-sticky z-index='100' :offset-top="45">
       <Tab ref="tab" :tabs="tabs" @tabChange="tabChange" />
     </van-sticky>
     <template v-if="curtab=='hall'">
@@ -115,12 +116,17 @@ import { pullServiceConf, closeWebView, titleLucency } from '@/mixins/pullNative
     background-color: #fff;
     min-height: 100vh;
     .nav {
-      position: relative;
-      height: 1.173333rem;
+      position: fixed;
+      top: 0;
+      z-index: 9999;
+      height: 45px;
+      width: 100%;
       background-color: #009EE6;
 
     }
-
+    .h45px {
+      height: 45px;
+    }
     .top_icon {
       position: relative;
       background-color: #009EE6;

@@ -1,6 +1,14 @@
 # docwechat-vue
-
 ## 医生app内嵌h5页面功能
+
+## 开发技术栈
+
+- vue 2.x
+- vue-router 3.x
+- webpack 4.x
+- vuex 3.x
+- axios
+- vant
 
 ## Project setup
 ```

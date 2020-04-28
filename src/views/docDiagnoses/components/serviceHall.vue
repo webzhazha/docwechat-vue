@@ -7,7 +7,7 @@
     <div class="mb25">
       <CommonBanner id="25" />
     </div>
-    <van-sticky :offset-top="45">
+    <van-sticky :offset-top="90">
       <div id="bar">
         <div class="hall_tab pl15 bg_white">
           <div class="typo_black fs16 typo_bold">医生会诊</div>
@@ -17,7 +17,7 @@
 
     </van-sticky>
     <div :style="'min-height:' + height">
-      <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" v-if="docList.length>0" offset='100'>
+      <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" v-if="docList.length>0" offset='50'>
       <div v-for="(item,index) in docList" :key="index">
         <HallDocItem :docItem="item" />
       </div>
@@ -51,7 +51,7 @@
       this.$nextTick(()=>{
         setTimeout(()=>{
           console.log($('#bar').height());
-          this.height = $('body').height()-$('#bar').height()-40+'px'
+          this.height = $('body').height()-$('#bar').height()-80+'px'
         },500)
         
       })
@@ -91,7 +91,7 @@
         this._getHalldoctor(params)
       },
       scrollToTop() {
-        const offsetTop = parseInt($('#bar').parent().parent().offset().top) - 45
+        const offsetTop = parseInt($('#bar').parent().parent().offset().top) - 90
         $('html,body').animate({ scrollTop: offsetTop }, 300)
       },
     },

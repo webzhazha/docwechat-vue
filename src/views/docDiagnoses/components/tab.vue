@@ -61,7 +61,7 @@ $active-color: #009ee6;
 .tabs {
   display: inline-block;
   min-width: 10rem;
-  height: 1.2rem;
+  height: 45px;
   padding: 0 0.4rem 0 0.586667rem;
   border-bottom: 1px solid #f5f5f5;
   font-size: 0.373333rem;
@@ -72,9 +72,9 @@ $active-color: #009ee6;
   .tab-item {
     display: inline-block;
     position: relative;
-    height: 1.2rem;
+    height: 45px;
     margin-right: 0.8rem;
-    line-height: 1.2rem;
+    line-height: 45px;
     text-align: center;
     &.active {
       // font-size: .533333rem;

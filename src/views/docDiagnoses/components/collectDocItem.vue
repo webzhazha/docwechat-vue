@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="hallDocItem bt_gray" @click="goNativeDoc">
-      <div class="backgroundimg doc_img mr16" :style="generateImageUrl(docItem.avatar,'/wechat/img/common/default.png')"></div>
+    <div class="collectDocItem bt_gray" @click="goNativeDoc">
+      <div class="backgroundimg doc_img mr16" :style="generateImageUrl(docItem.image,'/wechat/img/common/default.png')"></div>
       <div class="relative flex1">
         <div class="mb8">
-          <span class="fs18 c333 typo_bold mr5">{{docItem.doctor_name}}</span>
-          <span class="fs14 c666 typo_bold">{{docItem.zc_name}}</span>
+          <span class="fs18 c333 typo_bold mr5 inBlo elli w100">{{docItem.doctor_name}}</span>
+          <span class="fs14 c666 typo_bold inBlo elli w90">{{docItem.zc_name}}</span>
         </div>
         <div class="fs14 c999 mb15">
           {{docItem.unit_name}} | {{docItem.dep_name}}
@@ -46,19 +46,8 @@
   }
 </script>
 <style lang="scss" scoped>
-  .flex1 {
-    flex: 1;
-  }
 
-  .c_ccc {
-    color: #ccc;
-  }
-
-  .mb8 {
-    margin-bottom: 0.213333rem;
-  }
-
-  .hallDocItem {
+  .collectDocItem {
     display: flex;
     padding: 0.533333rem 0.4rem;
 
@@ -81,7 +70,7 @@
 
       span {
         float: left;
-        width: 0.96rem;
+        // width: 0.96rem;
         height: 0.48rem;
         border-radius: 0.053333rem;
         text-align: center;
@@ -89,6 +78,8 @@
         color: #ffb937;
         border: 1px solid #ffb937;
         margin-right: 0.133333rem;
+        padding: 0 .16rem;
+        margin-bottom: .133333rem;
       }
     }
 

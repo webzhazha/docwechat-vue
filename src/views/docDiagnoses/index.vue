@@ -3,9 +3,9 @@
     <!-- 顶部 -->
     <div class="nav textc typo_white">
       <span class="absolute left10" @click="closePage">
-        <i class="iconfont fs18 lh44">&#xe688;</i>
+        <i class="iconfont fs18 lh45px">&#xe688;</i>
       </span>
-      <span class="fs18 typo_bold lh44">转诊/会诊</span>
+      <span class="fs18 typo_bold lh45px">转诊/会诊</span>
     </div>
     <div class="h45px"></div>
     <div class="top_icon">
@@ -130,6 +130,9 @@ export default {
   }
   .h45px {
     height: 45px;
+  }
+  .lh45px {
+    line-height: 45px;
   }
   .top_icon {
     position: relative;

@@ -7,7 +7,7 @@
           <div class="top">
             <span class="status " :style="'color:' + colorList[item.order_state]">{{ item.order_state_title }}</span>
             <span class="c999 fs14 fr lh40" v-if="item.order_state == 1 && item.pay_state == 1">还剩{{ item.end_time | filterTime }}关闭服务</span>
-            <span class="c999 fs14 fr lh40" v-else>{{ item.add_time }}发起</span>
+            <span class="c999 fs14 fr lh40" v-else>{{ item.add_time | formatTime }}发起</span>
           </div>
           <div class="content">
             <div class="left">
@@ -44,6 +44,7 @@
 </template>
 <script>
   import $ from "jquery";
+  import dayjs from 'dayjs'
   import { pullDiagOrder } from "@/mixins/pullNativeFunc";
   import service from "_services/";
   const NoData = () => import("@/components/noData");
@@ -89,6 +90,9 @@
 
         return hours + ":" + minutes + ":" + seconds;
       },
+      formatTime(time){
+        return dayjs(time).format("YYYY-MM-DD")
+      }
     },
     mounted() {
       this._get_received_order();

@@ -149,11 +149,18 @@ textarea {
 .fullheight {
   height: 100%;
 }
-
+.w16 {
+  width: .426667rem;
+}
 .w30 {
   width: 0.8rem;
 }
-
+.w90 {
+  width: 2.4rem;
+}
+.w100 {
+  width: 2.666667rem;
+}
 .w150 {
   width: 4rem;
 }
@@ -161,7 +168,9 @@ textarea {
 .w345 {
   width: 9.2rem;
 }
-
+.h16 {
+  height: .426667rem;
+}
 .h30 {
   height: 0.8rem;
 }
@@ -214,7 +223,6 @@ textarea {
 .pr20 {
   padding-right: 0.533333rem;
 }
-
 .ml5 {
   margin-left: 0.133333rem;
 }

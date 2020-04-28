@@ -6,9 +6,10 @@
         <div class="bg_white mb15" v-for="(item, index) in orderList" :key="index" @click="goOrder(item.order_id)">
           <div class="top">
             <span class="status" :style="'color:' +colorList[item.order_state]">
-              <i class="iconfont">&#xea53;</i>{{ item.order_state_title }}</span>
+              <img :src="imgList[item.order_state]" alt="" class="w16 h16 mr5">
+              {{ item.order_state_title }}</span>
             <span class="c999 fs14 fr lh40" v-if="(item.order_state == 1 && item.pay_state == 1)">还剩{{item.end_time | filterTime}}关闭服务</span>
-            <span class="c999 fs14 fr lh40" v-else>{{ item.add_time}}发起</span>
+            <span class="c999 fs14 fr lh40" v-else>{{ item.add_time | formatTime}}发起</span>
           </div>
           <div class="content">
             <div class="left">
@@ -45,6 +46,7 @@
 </template>
 <script>
   import $ from "jquery";
+  import dayjs from 'dayjs'
   import { pullDiagOrder } from '@/mixins/pullNativeFunc'
   import service from "_services/";
   const NoData = () => import("@/components/noData");
@@ -64,6 +66,15 @@
           '#999999',
           '#999999',
           '#999999'
+        ],
+        imgList: [
+          '../image/order_status_1.png',
+          '../image/order_status_2.png',
+          '../image/order_status_3.png',
+          '../image/order_status_4.png',
+          '../image/order_status_5.png',
+          '../image/order_status_6.png',
+          '../image/order_status_5.png',
         ]
       };
     },
@@ -90,6 +101,9 @@
 
         return hours + ":" + minutes + ":" + seconds;
       },
+      formatTime(time){
+        return dayjs(time).format("YYYY-MM-DD")
+      }
     },
     mounted() {
       this._get_apply_order();

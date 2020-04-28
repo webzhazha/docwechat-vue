@@ -15,7 +15,7 @@
         <CollectDocItem :docItem="item" />
       </div>
     </div>
-    <div v-else class="pl25">
+    <div v-else class="pl25 mb88">
       <van-checkbox-group v-model="select">
         <van-checkbox
           :name="item.account_user_id"
@@ -67,7 +67,7 @@ export default {
       service.docDiagnoses
         .get_collect_list({
           page: this.page,
-          size: 10,
+          size: 100,
         })
         .then((res) => {
           console.log(res);
@@ -108,6 +108,9 @@ export default {
 <style lang="scss">
 .collectIndex {
   background-color: #fff;
+  .mb88 {
+    margin-bottom: 2.346667rem;
+  }
   .cancel {
     position: fixed;
     left: 0.666667rem;
@@ -136,11 +139,13 @@ export default {
   .nav {
     position: fixed;
     top: 0;
+    z-index: 9999;
     width: 100%;
     height: 45px;
     display: flex;
     padding: 0 0.4rem;
     justify-content: space-between;
+    background-color: #fff;
   }
   .h45px {
     height: 45px;

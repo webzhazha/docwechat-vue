@@ -4,8 +4,8 @@
       <div class="backgroundimg doc_img mr16" :style="generateImageUrl(docItem.image,'/wechat/img/common/default.png')"></div>
       <div class="relative flex1">
         <div class="mb8">
-          <span class="fs18 c333 typo_bold mr5">{{docItem.doctor_name}}</span>
-          <span class="fs14 c666 typo_bold">{{docItem.zc_name}}</span>
+          <span class="fs18 c333 typo_bold mr5 inBlo elli w100">{{docItem.doctor_name}}</span>
+          <span class="fs14 c666 typo_bold inBlo elli w90">{{docItem.zc_name}}</span>
         </div>
         <div class="fs14 c999 typo_bold mb15">
           {{docItem.unit_name}}
@@ -17,7 +17,7 @@
           <span class="price typo_bold">￥{{docItem.price}}</span>
           <span class="c_ccc" v-if='docItem.city_area'>
             <i class="iconfont">&#xe697;</i>
-            {{docItem.city_area}}</span>
+            {{docItem.city_area }}</span>
         </div>
         <template v-if="isHall">
           <div class="collect" v-if="docItem.is_followed==0" @click.stop='collect(docItem.doctor_id)'>
@@ -27,7 +27,6 @@
             已收藏
           </div>
         </template>
-
       </div>
     </div>
   </div>
@@ -38,7 +37,6 @@
   export default {
     data() {
       return {
-
       }
     },
     mixins: [pullDocIndex],
@@ -94,8 +92,8 @@
       margin-bottom: 0.426667rem;
 
       span {
-        float: left;
-        width: 0.96rem;
+         float: left;
+        // width: 0.96rem;
         height: 0.48rem;
         border-radius: 0.053333rem;
         text-align: center;
@@ -103,6 +101,8 @@
         color: #ffb937;
         border: 1px solid #ffb937;
         margin-right: 0.133333rem;
+        padding: 0 .16rem;
+        margin-bottom: .133333rem;
       }
     }
 

@@ -24,26 +24,26 @@
   </div>
 </template>
 <script>
-import { pullDocIndex } from '@/mixins/pullNativeFunc'
-export default {
-  data() {
-    return {
+  import { pullDocIndex } from '@/mixins/pullNativeFunc'
+  export default {
+    data() {
+      return {
 
-    }
-  },
-  mixins: [pullDocIndex],
-  props: {
-    docItem: {
-      type: [Object],
-      defalut: () => {}
-    }
-  },
-  methods: {
-    goNativeDoc(){
-      this.pullDocIndex(this.docItem.doctor_id)
+      }
     },
-  },
-}
+    mixins: [pullDocIndex],
+    props: {
+      docItem: {
+        type: [Object],
+        defalut: () => {}
+      }
+    },
+    methods: {
+      goNativeDoc() {
+        this.pullDocIndex(this.docItem.doctor_id)
+      },
+    },
+  }
 </script>
 <style lang="scss" scoped>
   .flex1 {

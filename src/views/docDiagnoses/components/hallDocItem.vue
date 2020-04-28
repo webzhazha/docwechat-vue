@@ -19,7 +19,7 @@
             <i class="iconfont">&#xe697;</i>
             {{docItem.city_area}}</span>
         </div>
-        <template v-if="isHall" >
+        <template v-if="isHall">
           <div class="collect" v-if="docItem.is_followed==0" @click.stop='collect(docItem.doctor_id)'>
             <i class="iconfont">&#xe736;</i> 收藏
           </div>
@@ -27,49 +27,49 @@
             已收藏
           </div>
         </template>
-        
+
       </div>
     </div>
   </div>
 </template>
 <script>
-import { pullDocIndex } from '@/mixins/pullNativeFunc'
-import service from "_services/"
-export default {
-  data() {
-    return {
+  import { pullDocIndex } from '@/mixins/pullNativeFunc'
+  import service from "_services/"
+  export default {
+    data() {
+      return {
 
-    }
-  },
-  mixins: [pullDocIndex],
-  props: {
-    isHall: {
-      type: [Boolean],
-      default: true
+      }
     },
-    docItem: {
-      type: [Object],
-      defalut: () => {}
-    }
-  },
-  methods: {
-    goNativeDoc(){
-      this.pullDocIndex(this.docItem.doctor_id)
+    mixins: [pullDocIndex],
+    props: {
+      isHall: {
+        type: [Boolean],
+        default: true
+      },
+      docItem: {
+        type: [Object],
+        defalut: () => {}
+      }
     },
-    collect(id){
-      service.docDiagnoses.collect_doctor({
-        doctor_id: id
-      }).then(res=>{
-        console.log(res);
-        if(res.result_code==1){
-          this.docItem.is_followed = 1
-        }else {
-          this.$toast('收藏失败')
-        }
-      })
-    }
-  },
-}
+    methods: {
+      goNativeDoc() {
+        this.pullDocIndex(this.docItem.doctor_id)
+      },
+      collect(id) {
+        service.docDiagnoses.collect_doctor({
+          doctor_id: id
+        }).then(res => {
+          console.log(res);
+          if (res.result_code == 1) {
+            this.docItem.is_followed = 1
+          } else {
+            this.$toast('收藏失败')
+          }
+        })
+      }
+    },
+  }
 </script>
 <style lang="scss" scoped>
   .hallDocItem {
@@ -117,6 +117,7 @@ export default {
       text-align: center;
       line-height: 0.8rem;
       border-radius: 0.853333rem;
+
       &.yet {
         color: #999;
         background-color: #F7F7F7;

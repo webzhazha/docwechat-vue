@@ -45,11 +45,6 @@
                   id: i.areaId
                 })
               })
-            } else {
-              childArr = [{
-                text: '全国',
-                id: 0
-              }]
             }
             this.areaList.push({
               text: item.areaName,

@@ -72,19 +72,13 @@ export const pullDocIndex = {
       if (isIos) {
         window.NativeActionProxy.callbackNative({
           "ios": {
-            "storyboard_name": "TransferTreatment",
-            "page_clase_name": "DoctorIndexViewController",
+            "storyboard_name": "ReferralConsultation_cqw",
+            "page_clase_name": "NYRefreralConsultationDoctorDetailVC",
             "parameters": [{
-                "name": "doctor_cid",
+                "name": "select_account_user_id",
                 "value": docId.toString(),
                 "type": "string"
-              },
-              {
-                "name": "type",
-                "value": 2,
-                "type": "number"
-              }
-            ],
+              }],
             "show_type": "push"
           }
         })

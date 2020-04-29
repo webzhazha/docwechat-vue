@@ -85,15 +85,10 @@ export const pullDocIndex = {
       } else {
         const obj = {
           "android": {
-            "page_clase_name": "com.ny.jiuyi160_doctor.activity.tab.circle.DocProfileDetailActivity",
+            "page_clase_name": "com.ny.jiuyi160_doctor.module.consultation.ConsultationServiceExplainActivity",
             "parameters": [{
-                "name": "doctor_cid",
+                "name": "select_account_user_id",
                 "value": docId.toString(),
-                "type": "String"
-              },
-              {
-                "name": "mode",
-                "value": 3,
                 "type": "String"
               }
             ]

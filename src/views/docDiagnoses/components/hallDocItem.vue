@@ -52,7 +52,7 @@
     },
     methods: {
       goNativeDoc() {
-        this.pullDocIndex(this.docItem.doctor_id)
+        this.pullDocIndex(this.docItem.account_user_id)
       },
       collect(id) {
         service.docDiagnoses.collect_doctor({

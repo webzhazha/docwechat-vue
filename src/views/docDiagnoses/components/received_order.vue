@@ -28,7 +28,7 @@
                 </div>
               </div>
               <div class="c999 fs14">
-                向 {{ item.send_name }} {{ item.send_zc_name }}发起
+                由 {{ item.send_name }} {{ item.send_zc_name }}发起
               </div>
             </div>
             <div class="right">

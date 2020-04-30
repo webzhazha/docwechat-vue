@@ -83,7 +83,7 @@ export default {
         })
         .then((res) => {
           console.log(res);
-          if (!res.data.list) {
+          if (!res.data) {
             this.loading = false;
             this.finished = true;
             return;

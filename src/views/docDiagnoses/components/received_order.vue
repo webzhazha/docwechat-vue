@@ -1,11 +1,17 @@
 <template>
   <div>
-    <div class="diagnoses_doc" v-if="orderList.length > 0" :style="'min-height:' + height">
+    <div class="diagnoses_doc" :style="'min-height:' + height">
       <van-list v-model="loading" :finished="finished" :finished-text="getNoDataTip" @load="onLoad" offset="100">
         <!-- 会诊中 -->
         <div class="bg_white mb15" v-for="(item, index) in orderList" :key="index" @click="goOrder(item.order_id)">
           <div class="top">
-            <span class="status " :style="'color:' + colorList[item.order_state]">{{ item.order_state_title }}</span>
+            <img src="../image/order_status_1.png" alt="" class="w16 h16 mr5 fl mt12" v-if="item.order_state_other==1">
+            <img src="../image/order_status_2.png" alt="" class="w16 h16 mr5 fl mt12" v-if="item.order_state_other==2">
+            <img src="../image/order_status_3.png" alt="" class="w16 h16 mr5 fl mt12" v-if="item.order_state_other==3">
+            <img src="../image/order_status_4.png" alt="" class="w16 h16 mr5 fl mt12" v-if="item.order_state_other==4">
+            <img src="../image/order_status_5.png" alt="" class="w16 h16 mr5 fl mt12" v-if="item.order_state_other==5 || item.order_state_other==7">
+            <img src="../image/order_status_6.png" alt="" class="w16 h16 mr5 fl mt12" v-if="item.order_state_other==6">
+            <span class="status " :style="'color:' + colorList[item.order_state_other]">{{ item.order_state_title }}</span>
             <span class="c999 fs14 fr lh40" v-if="item.order_state == 1 && item.pay_state == 1">还剩{{ item.end_time | filterTime }}关闭服务</span>
             <span class="c999 fs14 fr lh40" v-else>{{ item.add_time | formatTime }}发起</span>
           </div>
@@ -38,8 +44,9 @@
           </div>
         </div>
       </van-list>
+      <NoData v-if="!loading && orderList.length == 0" :height="height" />
     </div>
-    <NoData v-if="!loading && orderList.length == 0" :height="height" />
+    
   </div>
 </template>
 <script>

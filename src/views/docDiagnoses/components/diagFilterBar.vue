@@ -86,8 +86,8 @@
       closeDrop() {
         let params = {
           city_id: this.areaId,
-          cat_no1: this.depId,
-          cat_no2: this.maindepId,
+          cat_no1: this.maindepId,
+          cat_no2: this.depId,
           sort_type: this.priceId
         }
         this.$emit('update', params)

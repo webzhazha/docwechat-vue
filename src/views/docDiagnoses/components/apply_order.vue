@@ -1,16 +1,16 @@
 <template>
   <div>
-    <div class="diagnoses_doc" v-if='orderList.length>0' :style="'min-height:' + height">
+    <div class="diagnoses_doc" :style="'min-height:' + height">
       <van-list v-model="loading" :finished="finished" :finished-text="getNoDataTip" @load="onLoad" offset="100">
         <!-- 会诊中 -->
         <div class="bg_white mb15" v-for="(item, index) in orderList" :key="index" @click="goOrder(item.order_id)">
           <div class="top">
-            <img src="../image/order_status_1.png" alt="" class="w16 h16 mr5 fl mt10" v-if="item.order_state_other==1">
-            <img src="../image/order_status_2.png" alt="" class="w16 h16 mr5 fl mt10" v-if="item.order_state_other==2">
-            <img src="../image/order_status_3.png" alt="" class="w16 h16 mr5 fl mt10" v-if="item.order_state_other==3">
-            <img src="../image/order_status_4.png" alt="" class="w16 h16 mr5 fl mt10" v-if="item.order_state_other==4">
-            <img src="../image/order_status_5.png" alt="" class="w16 h16 mr5 fl mt10" v-if="item.order_state_other==5 || item.order_state_other==7">
-            <img src="../image/order_status_6.png" alt="" class="w16 h16 mr5" v-if="item.order_state_other==6">
+            <img src="../image/order_status_1.png" alt="" class="w16 h16 mr5 fl mt12" v-if="item.order_state_other==1">
+            <img src="../image/order_status_2.png" alt="" class="w16 h16 mr5 fl mt12" v-if="item.order_state_other==2">
+            <img src="../image/order_status_3.png" alt="" class="w16 h16 mr5 fl mt12" v-if="item.order_state_other==3">
+            <img src="../image/order_status_4.png" alt="" class="w16 h16 mr5 fl mt12" v-if="item.order_state_other==4">
+            <img src="../image/order_status_5.png" alt="" class="w16 h16 mr5 fl mt12" v-if="item.order_state_other==5 || item.order_state_other==7">
+            <img src="../image/order_status_6.png" alt="" class="w16 h16 mr5 fl mt12" v-if="item.order_state_other==6">
             <span class="status" :style="'color:' +colorList[item.order_state_other]">
               {{ item.order_state_title }}</span>
             <span class="c999 fs14 fr lh40" v-if="(item.order_state == 1 && item.pay_state == 1)">还剩{{item.end_time | filterTime}}关闭服务</span>
@@ -45,8 +45,8 @@
           </div>
         </div>
       </van-list>
-    </div>
-    <NoData v-if="!loading && orderList.length == 0" :height="height" />
+      <NoData v-if="!loading && orderList.length == 0" :height="height" />
+    </div> 
   </div>
 </template>
 <script>
@@ -72,15 +72,6 @@
           '#999999',
           '#999999',
           '#999999'
-        ],
-        imgList: [
-          '../image/order_status_1.png',
-          '../image/order_status_2.png',
-          '../image/order_status_3.png',
-          '../image/order_status_4.png',
-          '../image/order_status_5.png',
-          '../image/order_status_6.png',
-          '../image/order_status_5.png',
         ]
       };
     },
@@ -104,7 +95,6 @@
         //计算相差秒数
         const leave3 = leave2 % (60 * 1000); //计算分钟数后剩余的毫秒数
         const seconds = Math.round(leave3 / 1000);
-
         return hours + ":" + minutes + ":" + seconds;
       },
       formatTime(time){
@@ -138,9 +128,7 @@
               this.orderList = this.orderList.concat(res.data.list);
             }
             this.loading = false;
-            if (res.data.list && res.data.list.length < 3) {
-              console.log('没有');
-
+            if (res.data.list && res.data.list.length < 10) {
               this.finished = true;
             }
           });

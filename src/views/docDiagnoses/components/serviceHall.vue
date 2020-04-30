@@ -20,6 +20,7 @@
         v-model="loading"
         :finished="finished"
         finished-text="没有更多了"
+        loading-text="努力加载中..."
         @load="onLoad"
         v-if="docList.length > 0"
         offset="50"
@@ -28,9 +29,8 @@
           <HallDocItem :docItem="item" />
         </div>
       </van-list>
+      <NoData v-if="finished && docList.length == 0" :height="height" />
     </div>
-
-    <NoData v-if="!loading && docList.length == 0" :height="height" />
   </div>
 </template>
 <script>
@@ -83,6 +83,11 @@ export default {
         })
         .then((res) => {
           console.log(res);
+          if (!res.data.list) {
+            this.loading = false;
+            this.finished = true;
+            return;
+          }
           this.docList = this.docList.concat(res.data);
           this.loading = false;
           if (res.data.length < 3) {
@@ -117,10 +122,11 @@ export default {
 
 .search {
   height: 0.906667rem;
-  width: 9.2rem;
+  // width: 9.2rem;
   background-color: #eee;
   border-radius: 0.906667rem;
   margin-left: 0.4rem;
+  margin-right: .4rem;
   line-height: 0.906667rem;
   margin-top: 0.373333rem;
   margin-bottom: 0.32rem;

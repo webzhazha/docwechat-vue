@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="diagnoses_doc" :style="'min-height:' + height">
-      <van-list v-model="loading" :finished="finished" :finished-text="getNoDataTip" @load="onLoad" offset="100">
+      <van-list v-model="loading" :finished="finished" :finished-text="getNoDataTip" @load="onLoad" offset="50">
         <!-- 会诊中 -->
         <div class="bg_white mb15" v-for="(item, index) in orderList" :key="index" @click="goOrder(item.order_id)">
           <div class="top">
@@ -58,7 +58,7 @@
   export default {
     data() {
       return {
-        page: 1,
+        page: 0,
         orderList: [],
         loading: false,
         finished: false,
@@ -102,7 +102,7 @@
       }
     },
     mounted() {
-      this._get_apply_order();
+      // this._get_apply_order();
       this.$nextTick(() => {
         this.height = $("body").height() - 40 + "px";
       });

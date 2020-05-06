@@ -58,7 +58,7 @@
   export default {
     data() {
       return {
-        page: 1,
+        page: 0,
         orderList: [],
         loading: false,
         finished: false,
@@ -102,7 +102,7 @@
       }
     },
     mounted() {
-      this._get_received_order();
+      // this._get_received_order();
       this.$nextTick(() => {
         this.height = $("body").height() - 40 + "px";
       });

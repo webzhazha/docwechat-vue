@@ -95,7 +95,7 @@
         const leave3 = leave2 % (60 * 1000); //计算分钟数后剩余的毫秒数
         const seconds = Math.round(leave3 / 1000);
 
-        return hours + ":" + minutes + ":" + seconds;
+        return hours + ":" + (minutes>9?minutes:'0'+ minutes) + ":" + (seconds>9?seconds:'0'+seconds);
       },
       formatTime(time){
         return dayjs(time).format("YYYY-MM-DD")

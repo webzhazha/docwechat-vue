@@ -10,8 +10,8 @@
         <div class="fs14 c999 typo_bold mb15">
           {{docItem.unit_name}}
         </div>
-        <div class="illness" v-if="docItem.ill_name">
-          <span v-for="item in docItem.ill_name" :key="item">{{item}}</span>
+        <div class="illness" v-if="docItem.ill_names">
+          <span v-for="item in docItem.ill_names" :key="item">{{item}}</span>
         </div>
         <div>
           <span class="price typo_bold">￥{{docItem.price}}</span>

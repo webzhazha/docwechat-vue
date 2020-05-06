@@ -10,7 +10,7 @@
         <div class="fs14 c999 mb15">
           {{docItem.unit_name}} | {{docItem.dep_name}}
         </div>
-        <div class="illness" v-if="docItem.ill_tags">
+        <div class="illness" v-if="docItem.ill_tags && docItem.ill_tags.length>0">
           <span v-for="item in docItem.ill_tags" :key="item">{{item}}</span>
         </div>
         <div>
@@ -40,7 +40,7 @@
     },
     methods: {
       goNativeDoc() {
-        this.pullDocIndex(this.docItem.doctor_id)
+        this.pullDocIndex(this.docItem.account_user_id)
       },
     },
   }

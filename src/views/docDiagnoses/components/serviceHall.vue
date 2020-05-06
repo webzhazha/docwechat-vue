@@ -78,7 +78,7 @@ export default {
         .getHalldoctor({
           page: this.page,
           size: 5,
-          user_id: this.account_user_id,
+          account_user_id: this.account_user_id,
           ...params,
         })
         .then((res) => {

@@ -14,7 +14,7 @@ module.exports = {
           secure: false
         },
         '/doctor_business/*': {
-          target: 'http://wechatgate.91160.com',
+          target: 'http://doctorgate.91160.com',
           changeOrigin: true,
           secure: false
         }

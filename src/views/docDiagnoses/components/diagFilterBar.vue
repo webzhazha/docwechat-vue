@@ -58,13 +58,13 @@
               item.childList.forEach(i => {
                 childArr.push({
                   text: i.catname,
-                  id: i.catid
+                  id: i.catNo
                 })
               })
             }
             this.depList.push({
               text: item.catname,
-              id: item.catid,
+              id: item.catNo,
               children: childArr
             })
           })

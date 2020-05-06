@@ -53,32 +53,31 @@ export default {
       }
     },
     onSearch(val) {
-      console.log(val);
-      console.log(this.value);
       this.docList = [];
       this.get_result(val);
     },
     onCancel() {
-      console.log("取消");
       this.$router.push("./index");
     },
     onClear() {
-      console.log("清除");
       this.docList = [];
+      this.finished = false
       this.page = 1;
     },
     get_result(val) {
       service.docDiagnoses
         .get_search({
           keywords: val,
-          page: 1,
+          page: this.page,
           size: 10,
           account_user_id: this.account_user_id,
         })
         .then((res) => {
-          console.log(res);
           this.docList = this.docList.concat(res.data);
           this.loading = false;
+          if(res.data.length==0 || res.data.length<10){
+            this.finished = true
+          }
         });
     },
   },

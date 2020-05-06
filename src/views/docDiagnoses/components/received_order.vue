@@ -84,7 +84,7 @@
     filters: {
       filterTime(time) {
         const new_date = new Date();
-        const end_date = new Date(time);
+        const end_date = new Date(time.replace(/-/g, "/"));
         const remain_date = end_date - new_date;
         //计算出小时数
         const hours = Math.floor(remain_date / (3600 * 1000));

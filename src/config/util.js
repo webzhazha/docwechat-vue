@@ -9,7 +9,7 @@ export const global = ()=>{
 
   window.cid = isAnd ? '100000001' : '100000002'
 
-  window.user_key = process.env.NODE_ENV == 'production' ? window.TokenNativeActionProxy.getAccessToken() : '6ecee7ff96a249cd8d8f4aed36f41a63QVsfAFWB20200519170327'
+  window.user_key = process.env.NODE_ENV == 'production' ? window.TokenNativeActionProxy.getAccessToken() : '16806861fb2beb1db4d1a7e0770b75fdpIG03HXe20200525205555'
 }
 
 export const getUrlParam = pname => {

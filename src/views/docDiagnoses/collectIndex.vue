@@ -15,7 +15,7 @@
         <CollectDocItem :docItem="item" />
       </div>
     </div>
-    <div v-else class="pl25 mb88">
+    <div v-else class="pl25">
       <van-checkbox-group v-model="select">
         <van-checkbox
           :name="item.account_user_id"
@@ -25,6 +25,7 @@
           <CollectDocItem :docItem="item" />
         </van-checkbox>
       </van-checkbox-group>
+      <div class="h88"></div>
     </div>
     <div class="cancel" @click="cancelCollect" v-if="edit">
       取消收藏({{ select.length }})
@@ -110,6 +111,9 @@ export default {
   background-color: #fff;
   .mb88 {
     margin-bottom: 2.346667rem;
+  }
+  .h88 {
+    height: 2.346667rem;
   }
   .cancel {
     position: fixed;

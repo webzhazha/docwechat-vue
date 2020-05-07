@@ -41,6 +41,9 @@
     <template v-if="curtab == 'received'">
       <ReceivedOrder />
     </template>
+    <template v-if="curtab == 'checkout'">
+      <ReceivedOrder />
+    </template>
   </div>
 </template>
 <script>
@@ -73,6 +76,10 @@ export default {
           id: "received",
           name: "我接收的",
         },
+        {
+          id: "checkout",
+          name: "检验检查",
+        }
       ],
     };
   },
@@ -122,9 +129,9 @@ export default {
   min-height: 100vh;
   .nav {
     position: fixed;
-    top: 0;
+    top: -20px;
     z-index: 9999;
-    height: 45px;
+    height: 65px;
     width: 100%;
     background-color: #009ee6;
   }

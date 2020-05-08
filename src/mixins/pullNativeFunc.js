@@ -90,7 +90,11 @@ export const pullDocIndex = {
                 "name": "select_account_user_id",
                 "value": docId.toString(),
                 "type": "String"
-              }
+              }, {
+                "name": "req_js_to_native",
+                "value": "1",
+                "type": "String"
+                }
             ]
           }
         }

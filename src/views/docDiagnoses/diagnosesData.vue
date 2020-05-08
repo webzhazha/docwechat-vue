@@ -69,44 +69,44 @@
   </div>
 </template>
 <script>
-import { titleLucency } from "@/mixins/pullNativeFunc";
-import service from "_services/";
+import { titleLucency } from '@/mixins/pullNativeFunc'
+import service from '_services/'
 export default {
+  mixins: [titleLucency],
   data() {
     return {
-      data: {},
-    };
+      data: {}
+    }
   },
-  mixins: [titleLucency],
   mounted() {
-    this.titleLucency();
+    this.titleLucency()
     service.docDiagnoses.get_order_data().then((res) => {
-      console.log(res);
-      this.data = res.data;
-    });
+      console.log(res)
+      this.data = res.data
+    })
   },
   methods: {
     goIndexReceived() {
       this.$router.push({
-        path: "./index",
+        path: './index',
         query: {
-          curtab: "apply",
-        },
-      });
+          curtab: 'apply'
+        }
+      })
     },
     goIndexApply() {
       this.$router.push({
-        path: "./index",
+        path: './index',
         query: {
-          curtab: "received",
-        },
-      });
+          curtab: 'received'
+        }
+      })
     },
     returns() {
-      this.$router.go(-1);
-    },
-  },
-};
+      this.$router.go(-1)
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 .cFF8100 {

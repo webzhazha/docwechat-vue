@@ -50,78 +50,77 @@
 import {
   pullServiceConf,
   closeWebView,
-  titleLucency,
-} from "@/mixins/pullNativeFunc";
+  titleLucency
+} from '@/mixins/pullNativeFunc'
 // const Tab = () => import('./components/tab')
-import Tab from "./components/tab";
-const CommonBanner = () => import("@/components/commonBanner");
+import Tab from './components/tab'
 // 功能组件
-const ServiceHall = () => import("./components/serviceHall");
-const ApplyOrder = () => import("./components/apply_order");
-const ReceivedOrder = () => import("./components/received_order");
+const ServiceHall = () => import('./components/serviceHall')
+const ApplyOrder = () => import('./components/apply_order')
+const ReceivedOrder = () => import('./components/received_order')
 export default {
-  data() {
-    return {
-      curtab: "hall",
-      tabs: [
-        {
-          id: "hall",
-          name: "服务大厅",
-        },
-        {
-          id: "apply",
-          name: "我发起的",
-        },
-        {
-          id: "received",
-          name: "我接收的",
-        },
-        {
-          id: "checkout",
-          name: "检验检查",
-        }
-      ],
-    };
-  },
   mixins: [pullServiceConf, closeWebView, titleLucency],
   components: { Tab, ServiceHall, ApplyOrder, ReceivedOrder },
+  data() {
+    return {
+      curtab: 'hall',
+      tabs: [
+        {
+          id: 'hall',
+          name: '服务大厅'
+        },
+        {
+          id: 'apply',
+          name: '我发起的'
+        },
+        {
+          id: 'received',
+          name: '我接收的'
+        },
+        {
+          id: 'checkout',
+          name: '检验检查'
+        }
+      ]
+    }
+  },
 
   async created() {
   },
   mounted() {
-    this.titleLucency(); // 隐藏导航栏
+    this.titleLucency() // 隐藏导航栏
     this.$nextTick(() => {
-      if (this.$route.query.curtab == "apply") {
-        this.curtab = "apply";
-        this.$refs.tab.changeTab(2);
+      if (this.$route.query.curtab == 'apply') {
+        this.curtab = 'apply'
+        this.$refs.tab.changeTab(2)
       }
-      if (this.$route.query.curtab == "received") {
-        this.curtab = "received";
-        this.$refs.tab.changeTab(3);
+      if (this.$route.query.curtab == 'received') {
+        this.curtab = 'received'
+        this.$refs.tab.changeTab(3)
       }
-    });
+    })
   },
   methods: {
     closePage() {
-      this.closeWebView();
+      this.closeWebView()
     },
     instructions() {
-      document.location.href = "http://www.baidu.com";
+      document.location.href = 'http://www.baidu.com'
     },
     goConfig() {
-      this.pullServiceConf();
+      this.pullServiceConf()
     },
     goMyCollect() {
-      this.$router.push("./collectIndex");
+      this.$router.push('./collectIndex')
     },
     goDiagData() {
-      this.$router.push("./diagnosesData");
+      this.$router.push('./diagnosesData')
     },
     tabChange(index) {
-      this.curtab = this.tabs[index].id;
-    },
-  },
-};
+      this.curtab = this.tabs[index].id
+    }
+  }
+}
 </script>
 <style scoped lang="scss">
 .docDiagnoses {
@@ -129,9 +128,9 @@ export default {
   min-height: 100vh;
   .nav {
     position: fixed;
-    top: -20px;
+    top: 0;
     z-index: 9999;
-    height: 65px;
+    height: 45px;
     width: 100%;
     background-color: #009ee6;
   }

@@ -10,12 +10,12 @@
         <div class="fs14 c999 mb15">
           {{docItem.unit_name}} | {{docItem.dep_name}}
         </div>
-        <div class="illness" v-if="docItem.ill_tags && docItem.ill_tags.length>0">
+        <div v-if="docItem.ill_tags && docItem.ill_tags.length>0" class="illness">
           <span v-for="item in docItem.ill_tags" :key="item">{{item}}</span>
         </div>
         <div>
           <span class="price typo_bold">￥{{docItem.min_price}}</span>
-          <span class="c_ccc" v-if="docItem.city_area">
+          <span v-if="docItem.city_area" class="c_ccc">
             <i class="iconfont">&#xe697;</i>
             {{docItem.city_area}}</span>
         </div>
@@ -24,26 +24,26 @@
   </div>
 </template>
 <script>
-  import { pullDocIndex } from '@/mixins/pullNativeFunc'
-  export default {
-    data() {
-      return {
+import { pullDocIndex } from '@/mixins/pullNativeFunc'
+export default {
+  mixins: [pullDocIndex],
+  props: {
+    docItem: {
+      type: Object,
+      default: () => {}
+    }
+  },
+  data() {
+    return {
 
-      }
-    },
-    mixins: [pullDocIndex],
-    props: {
-      docItem: {
-        type: [Object],
-        defalut: () => {}
-      }
-    },
-    methods: {
-      goNativeDoc() {
-        this.pullDocIndex(this.docItem.account_user_id)
-      },
-    },
+    }
+  },
+  methods: {
+    goNativeDoc() {
+      this.pullDocIndex(this.docItem.account_user_id)
+    }
   }
+}
 </script>
 <style lang="scss" scoped>
 

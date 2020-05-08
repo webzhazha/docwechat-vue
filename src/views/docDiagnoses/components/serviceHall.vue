@@ -9,21 +9,24 @@
     </div>
     <van-sticky :offset-top="90">
       <div id="bar">
-        <div class="hall_tab pl15 bg_white">
-          <div class="typo_black fs16 typo_bold">医生会诊</div>
+        <div class="hall_tab pl15 bg_white ">
+          <div class=" fs16 typo_bold fl mr24" :class="{'typo_black':checkTab=='doc'}" @click="checkTab='doc'">医生会诊</div>
+          <div class=" fs16 typo_bold fl" :class="{'typo_black':checkTab=='check'}" @click="checkTab='check'">检验检查</div>
         </div>
-        <DiagFilterBar @scrollToTop="scrollToTop" @update="changeFilterData" />
+        <DiagFilterBar @scrollToTop="scrollToTop" @update="changeFilterDiag" v-if="checkTab=='doc'" />
+        <CheckFilterBar @scrollToTop="scrollToTop" @update="changeFilterCheck" v-if="checkTab=='check'" />
       </div>
     </van-sticky>
     <div :style="'min-height:' + height">
       <van-list
+        v-if="docList.length > 0"
         v-model="loading"
         :finished="finished"
         finished-text="没有更多了"
         loading-text="努力加载中..."
-        @load="onLoad"
-        v-if="docList.length > 0"
         offset="50"
+        @load="onLoad"
+        :immediate-check="false"
       >
         <div v-for="(item, index) in docList" :key="index">
           <HallDocItem :docItem="item" />
@@ -34,85 +37,98 @@
   </div>
 </template>
 <script>
-import $ from "jquery";
-import service from "_services/";
-const CommonBanner = () => import("@/components/commonBanner");
-const DiagFilterBar = () => import("../components/diagFilterBar");
-const HallDocItem = () => import("../components/hallDocItem");
-const NoData = () => import("@/components/noData");
+import $ from 'jquery'
+import service from '_services/'
+const CommonBanner = () => import('@/components/commonBanner')
+const DiagFilterBar = () => import('../components/diagFilterBar')
+const CheckFilterBar = () => import('../components/checkFilterBar')
+const HallDocItem = () => import('../components/hallDocItem')
+const NoData = () => import('@/components/noData')
 export default {
+  components: { CommonBanner, DiagFilterBar, CheckFilterBar, HallDocItem, NoData },
   data() {
     return {
       docList: [],
       loading: false,
       finished: false,
-      page: 1,
-      height: "100vh",
-    };
+      diagPage: 1,
+      checkTab: "doc",
+      // 筛选器参数
+      diagExtraParams: {
+        city_id: '',
+        cat_no1: '',
+        cat_no2: '',
+        sort_type: 0
+      },
+      checkExtraParams: {
+        city_id: '',
+        sort_type: 0
+      },
+      height: '100vh',
+    }
   },
-  components: { CommonBanner, DiagFilterBar, HallDocItem, NoData },
   mounted() {
-    this._getHalldoctor();
+    this._getHalldoctor(this.diagExtraParams)
     this.$nextTick(() => {
       setTimeout(() => {
-        console.log($("#bar").height());
-        this.height = $("body").height() - $("#bar").height() - 80 + "px";
-      }, 500);
-    });
+        console.log($('#bar').height())
+        this.height = $('body').height() - $('#bar').height() - 80 + 'px'
+      }, 500)
+    })
   },
   methods: {
     goSearch() {
-      this.$router.push("../docDiagnoses/searchIndex");
+      this.$router.push('../docDiagnoses/searchIndex')
     },
     onLoad() {
-      this.page++;
-      this._getHalldoctor({
-        city_id: "",
-        cat_no1: "",
-        cat_no2: "",
-        sort_type: 0,
-      });
+      this.page++
+      this._getHalldoctor()
     },
-    _getHalldoctor(params) {
+    _getHalldoctor() {
       service.docDiagnoses
         .getHalldoctor({
-          page: this.page,
-          size: 5,
+          page: this.diagPage,
+          size: 10,
           account_user_id: this.account_user_id,
-          ...params,
+          ...this.diagExtraParams
         })
         .then((res) => {
-          console.log(res);
+          console.log(res)
+          this.loading = false
           if (!res.data) {
-            this.loading = false;
-            this.finished = true;
-            return;
+            this.finished = true
+            return
           }
-          this.docList = this.docList.concat(res.data);
-          this.loading = false;
-          if (res.data.length < 3) {
-            this.finished = true;
+          this.docList = this.docList.concat(res.data)
+          if (res.data.length == 0) {
+            this.finished = true
           }
-        });
+        })
     },
-    changeFilterData(params) {
-      this.page = 1;
-      this.docList = [];
-      this.finished = false;
-      this._getHalldoctor(params);
+    // 检验检查
+    changeFilterCheck(){
+
+    },
+    // 医生会诊
+    changeFilterDiag(params) {
+      this.diagPage = 1
+      this.docList = []
+      this.finished = false
+      this.diagExtraParams = params
+      this._getHalldoctor()
     },
     scrollToTop() {
       const offsetTop =
         parseInt(
-          $("#bar")
+          $('#bar')
             .parent()
             .parent()
             .offset().top
-        ) - 90;
-      $("html,body").animate({ scrollTop: offsetTop }, 300);
-    },
-  },
-};
+        ) - 90
+      $('html,body').animate({ scrollTop: offsetTop }, 300)
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 .hall_tab {

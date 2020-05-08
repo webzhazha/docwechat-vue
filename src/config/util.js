@@ -1,8 +1,6 @@
 
 
 // 全局导入参数
-export const global = ()=>{
-
   window.isAnd = navigator.userAgent.includes('Android')
 
   window.isIos = navigator.userAgent.includes('iPhone')
@@ -10,8 +8,8 @@ export const global = ()=>{
   window.cid = isAnd ? '100000001' : '100000002'
 
   window.user_key = process.env.NODE_ENV == 'production' ? window.TokenNativeActionProxy.getAccessToken() : '467cf5188e5cf1a62e4cfcc9e830daebrNSVWSOb20200527162514'
-}
 
+// 获取url参数
 export const getUrlParam = pname => {
   var index = location.href.indexOf('?')
   var params = location.href.substr(index + 1) // 获取参数 平且去掉？
@@ -23,3 +21,5 @@ export const getUrlParam = pname => {
     }
   }
 }
+
+// 

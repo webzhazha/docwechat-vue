@@ -10,20 +10,20 @@
         <div class="fs14 c999 typo_bold mb15">
           {{docItem.unit_name}}
         </div>
-        <div class="illness" v-if="docItem.ill_names">
+        <div v-if="docItem.ill_names" class="illness">
           <span v-for="item in docItem.ill_names" :key="item">{{item}}</span>
         </div>
         <div>
           <span class="price typo_bold">￥{{docItem.price}}</span>
-          <span class="c_ccc" v-if='docItem.city_area'>
+          <span v-if="docItem.city_area" class="c_ccc">
             <i class="iconfont">&#xe697;</i>
             {{docItem.city_area }}</span>
         </div>
         <template v-if="isHall">
-          <div class="collect" v-if="docItem.is_followed==0" @click.stop='collect(docItem.doctor_id)'>
+          <div v-if="docItem.is_followed==0" class="collect" @click.stop="collect(docItem.doctor_id)">
             <i class="iconfont">&#xe736;</i> 收藏
           </div>
-          <div class="collect yet" v-if="docItem.is_followed==1">
+          <div v-if="docItem.is_followed==1" class="collect yet">
             已收藏
           </div>
         </template>
@@ -32,42 +32,42 @@
   </div>
 </template>
 <script>
-  import { pullDocIndex } from '@/mixins/pullNativeFunc'
-  import service from "_services/"
-  export default {
-    data() {
-      return {
-      }
+import { pullDocIndex } from '@/mixins/pullNativeFunc'
+import service from '_services/'
+export default {
+  mixins: [pullDocIndex],
+  props: {
+    isHall: {
+      type: [Boolean],
+      default: true
     },
-    mixins: [pullDocIndex],
-    props: {
-      isHall: {
-        type: [Boolean],
-        default: true
-      },
-      docItem: {
-        type: [Object],
-        defalut: () => {}
-      }
+    docItem: {
+      type: [Object],
+      default: () => {}
+    }
+  },
+  data() {
+    return {
+    }
+  },
+  methods: {
+    goNativeDoc() {
+      this.pullDocIndex(this.docItem.account_user_id)
     },
-    methods: {
-      goNativeDoc() {
-        this.pullDocIndex(this.docItem.account_user_id)
-      },
-      collect(id) {
-        service.docDiagnoses.collect_doctor({
-          doctor_id: id
-        }).then(res => {
-          console.log(res);
-          if (res.result_code == 1) {
-            this.docItem.is_followed = 1
-          } else {
-            this.$toast('收藏失败')
-          }
-        })
-      }
-    },
+    collect(id) {
+      service.docDiagnoses.collect_doctor({
+        doctor_id: id
+      }).then(res => {
+        console.log(res)
+        if (res.result_code == 1) {
+          this.docItem.is_followed = 1
+        } else {
+          this.$toast('收藏失败')
+        }
+      })
+    }
   }
+}
 </script>
 <style lang="scss" scoped>
   .hallDocItem {

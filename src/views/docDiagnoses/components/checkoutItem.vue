@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="checkoutItem bt_gray" >
+    <div class="checkoutItem bt_gray">
       <div class="backgroundimg doc_img mr16" :style="generateImageUrl('','/wechat/img/common/default.png')"></div>
       <div class="relative flex1">
         <div class="mb8 c333 typo_bold fs18">
@@ -20,22 +20,21 @@
   </div>
 </template>
 <script>
-  import { pullDocIndex } from '@/mixins/pullNativeFunc'
-  export default {
-    data() {
-      return {
+export default {
+  props: {
+    docItem: {
+      type: Object,
+      default: () => {}
+    }
+  },
+  data() {
+    return {
 
-      }
-    },
-    props: {
-      docItem: {
-        type: [Object],
-        defalut: () => {}
-      }
-    },
-    methods: {
-    },
+    }
+  },
+  methods: {
   }
+}
 </script>
 <style lang="scss" scoped>
 

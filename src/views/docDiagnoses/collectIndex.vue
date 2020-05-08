@@ -7,8 +7,8 @@
         </span>
         <span class="c333 fs18 typo_bold lh44">我的收藏</span>
         <span class="fs16 typo_blue lh44" @click="editEvent">{{
-        edit ? "取消" : "编辑"
-      }}</span>
+          edit ? "取消" : "编辑"
+        }}</span>
       </div>
     </div>
     <van-sticky z-index="100" :offset-top="45">
@@ -25,7 +25,7 @@
       </div>
       <div v-else class="pl25">
         <van-checkbox-group v-model="select">
-          <van-checkbox :name="item.account_user_id" v-for="(item, index) in docList" :key="index">
+          <van-checkbox v-for="(item, index) in docList" :key="index" :name="item.account_user_id">
             <CollectDocItem :docItem="item" />
           </van-checkbox>
         </van-checkbox-group>
@@ -40,103 +40,108 @@
       </div>
       <div v-else class="pl25">
         <van-checkbox-group v-model="select">
-          <van-checkbox :name="item.account_user_id" v-for="(item, index) in docList" :key="index">
+          <van-checkbox v-for="(item, index) in docList" :key="index" :name="item.account_user_id">
             <CheckoutItem />
           </van-checkbox>
         </van-checkbox-group>
         <div class="h88"></div>
       </div>
     </div>
-    <div class="cancel" @click="cancelCollect" v-if="edit">
+    <div v-if="edit" class="cancel" @click="cancelCollect">
       取消收藏({{ select.length }})
     </div>
-    <van-action-sheet v-model="show" :actions="actions" cancel-text="返回" @cancel="onCancel" @select="selectCancel" />
+    <van-action-sheet
+      v-model="show"
+      :actions="actions"
+      cancel-text="返回"
+      @cancel="onCancel"
+      @select="selectCancel"
+    />
   </div>
 </template>
 <script>
-  import { titleLucency } from "@/mixins/pullNativeFunc";
-  import service from "_services/";
-  import Tab from "./components/tab";
-  const CollectDocItem = () => import("./components/collectDocItem");
-  const CheckoutItem = () => import("./components/checkoutItem")
-  export default {
-    data() {
-      return {
-        cartab: 'consultation',
-        edit: false,
-        docList: [],
-        page: 1,
-        select: [],
-        show: false,
-        actions: [{ name: "确认取消收藏", color: "#FF0000" }],
-        tabs: [{
-            id: "consultation",
-            name: "会诊医生",
-          },
-          {
-            id: "checkout",
-            name: "检验检查",
-          }
-        ],
-      };
+import { titleLucency } from '@/mixins/pullNativeFunc'
+import service from '_services/'
+const CollectDocItem = () => import('./components/collectDocItem')
+const CheckoutItem = () => import('./components/checkoutItem')
+export default {
+  mixins: [titleLucency],
+  components: { CollectDocItem, CheckoutItem },
+  data() {
+    return {
+      cartab: 'consultation',
+      edit: false,
+      docList: [],
+      page: 1,
+      select: [],
+      show: false,
+      actions: [{ name: '确认取消收藏', color: '#FF0000' }],
+      tabs: [{
+        id: 'consultation',
+        name: '会诊医生'
+      },
+      {
+        id: 'checkout',
+        name: '检验检查'
+      }
+      ]
+    }
+  },
+  mounted() {
+    this.titleLucency()
+    this._get_collect_list()
+  },
+  methods: {
+    checkTab(e) {
+      console.log(e)
+      this.cartab = e.target.dataset.id
+      this.select = []
+      this.edit = false
     },
-    mixins: [titleLucency],
-    components: { CollectDocItem, Tab, CheckoutItem },
-    mounted() {
-      this.titleLucency();
-      this._get_collect_list();
+    returns() {
+      this.$router.go(-1)
     },
-    methods: {
-      checkTab(e) {
-        console.log(e);
-        this.cartab = e.target.dataset.id
-        this.select = []
-        this.edit = false
-      },
-      returns() {
-        this.$router.go(-1);
-      },
-      _get_collect_list() {
-        service.docDiagnoses
-          .get_collect_list({
-            page: this.page,
-            size: 100,
-          })
-          .then((res) => {
-            console.log(res);
-            this.docList = res.data.list;
-            console.log(this.docList);
-          });
-      },
-      // 确认取消
-      selectCancel() {
-        service.docDiagnoses
-          .cancel_collect_doctor({
-            collect_account_user_ids: this.select.join(","),
-          })
-          .then((res) => {
-            this.page = 1;
-            this._get_collect_list();
-            this.show = false;
-            this.edit = false;
-          });
-      },
-      cancelCollect() {
-        if (this.select.length == 0) {
-          this.$toast("请选择至少一个医生");
-          return;
-        }
-        this.show = true;
-      },
-      editEvent() {
-        this.edit = !this.edit;
-        this.select = [];
-      },
-      onCancel() {
-        this.show = false;
-      },
+    _get_collect_list() {
+      service.docDiagnoses
+        .get_collect_list({
+          page: this.page,
+          size: 100
+        })
+        .then((res) => {
+          console.log(res)
+          this.docList = res.data.list
+          console.log(this.docList)
+        })
     },
-  };
+    // 确认取消
+    selectCancel() {
+      service.docDiagnoses
+        .cancel_collect_doctor({
+          collect_account_user_ids: this.select.join(',')
+        })
+        .then((res) => {
+          this.page = 1
+          this._get_collect_list()
+          this.show = false
+          this.edit = false
+        })
+    },
+    cancelCollect() {
+      if (this.select.length == 0) {
+        this.$toast('请选择至少一个医生')
+        return
+      }
+      this.show = true
+    },
+    editEvent() {
+      this.edit = !this.edit
+      this.select = []
+    },
+    onCancel() {
+      this.show = false
+    }
+  }
+}
 </script>
 <style lang="scss">
   .collectIndex {

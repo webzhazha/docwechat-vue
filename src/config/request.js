@@ -1,14 +1,5 @@
 import Qs from 'qs'
-import Vue from 'vue'
 import axios from 'axios'
-
-// axios.interceptors.response.use(function(response) { // 配置请求回来的信息
-//     return response
-// }, function(error) {
-//     return Promise.reject(error)
-// })
-axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
-Vue.prototype.$http = axios
 
 export const get = (url, params) => {
     return axios.get(url, {params}).then((response) => {

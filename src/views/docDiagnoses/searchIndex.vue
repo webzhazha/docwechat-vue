@@ -15,8 +15,8 @@
       v-model="loading"
       :finished="finished"
       finished-text=""
-      @load="onLoad"
       offset="50"
+      @load="onLoad"
     >
       <div v-for="(item, index) in docList" :key="index">
         <HallDocItem :isHall="false" :docItem="item" />
@@ -25,44 +25,44 @@
   </div>
 </template>
 <script>
-import { titleLucency } from "@/mixins/pullNativeFunc";
-import service from "_services/";
-const HallDocItem = () => import("./components/hallDocItem");
+import { titleLucency } from '@/mixins/pullNativeFunc'
+import service from '_services/'
+const HallDocItem = () => import('./components/hallDocItem')
 export default {
+  mixins: [titleLucency],
+  components: { HallDocItem },
   data() {
     return {
-      value: "",
+      value: '',
       docList: [],
       page: 1,
       loading: false,
-      finished: false,
-    };
+      finished: false
+    }
   },
-  mixins: [titleLucency],
-  components: { HallDocItem },
   mounted() {
-    this.titleLucency();
+    this.titleLucency()
   },
   methods: {
     onLoad() {
       if (this.value) {
-        this.page++;
-        this.get_result(this.value);
+        this.page++
+        this.get_result(this.value)
       } else {
-        this.loading = false;
+        this.loading = false
       }
     },
     onSearch(val) {
-      this.docList = [];
-      this.get_result(val);
+      this.docList = []
+      this.get_result(val)
     },
     onCancel() {
-      this.$router.push("./index");
+      this.$router.push('./index')
     },
     onClear() {
-      this.docList = [];
+      this.docList = []
       this.finished = false
-      this.page = 1;
+      this.page = 1
     },
     get_result(val) {
       service.docDiagnoses
@@ -70,17 +70,17 @@ export default {
           keywords: val,
           page: this.page,
           size: 10,
-          account_user_id: this.account_user_id,
+          account_user_id: this.account_user_id
         })
         .then((res) => {
-          this.docList = this.docList.concat(res.data);
-          this.loading = false;
-          if(res.data.length==0 || res.data.length<10){
+          this.docList = this.docList.concat(res.data)
+          this.loading = false
+          if (res.data.length == 0 || res.data.length < 10) {
             this.finished = true
           }
-        });
-    },
-  },
-};
+        })
+    }
+  }
+}
 </script>
 <style lang="scss"></style>

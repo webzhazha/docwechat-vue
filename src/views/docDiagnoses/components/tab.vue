@@ -18,30 +18,30 @@ export default {
   props: {
     tabs: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     defaultIndex: {
       type: Number,
-      default: 0,
-    },
+      default: 0
+    }
   },
   data() {
     return {
-      activeIndex: 0,
-    };
+      activeIndex: 0
+    }
   },
   methods: {
     changeTab(index) {
-      this.activeIndex = index;
+      this.activeIndex = index
     },
     selectTab(index) {
       if (this.activeIndex != index) {
-        this.activeIndex = index;
-        this.$emit("tabChange", index);
+        this.activeIndex = index
+        this.$emit('tabChange', index)
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 $active-color: #009ee6;
@@ -59,10 +59,9 @@ $active-color: #009ee6;
   background-color: #f00;
 }
 .tabs {
-  display: inline-block;
+  display: flex;
   min-width: 10rem;
   height: 45px;
-  padding: 0 0.4rem 0 0.586667rem;
   border-bottom: 1px solid #f5f5f5;
   font-size: 0.373333rem;
   white-space: nowrap;
@@ -70,18 +69,15 @@ $active-color: #009ee6;
   background: #fff;
   margin-bottom: 0.026667rem;
   .tab-item {
-    display: inline-block;
+    flex: 1;
     position: relative;
     height: 45px;
-    margin-right: 0.8rem;
     line-height: 45px;
     text-align: center;
     &.active {
-      // font-size: .533333rem;
       color: $active-color;
       &::after {
         position: absolute;
-        // top: 1.28rem;
         bottom: -0.026667rem;
         left: 50%;
         width: 70%;

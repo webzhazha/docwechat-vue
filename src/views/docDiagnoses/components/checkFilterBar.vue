@@ -26,7 +26,7 @@
     },
     methods: {
       _getFilterData() {
-        service.docDiagnoses.getFilterData().then(res => {
+        service.docDiagnoses.getInspectionOptions().then(res => {
           console.log(res)
           res.data.city.forEach(item => {
             const childArr = []

@@ -3,7 +3,7 @@ import { get, post } from '@/config/request'
 import { doctorBus } from '@/config/apiHost'
 
 
-// 获取过滤器数据
+// 获取会诊过滤器数据
 const getFilterData = (params) => {
   return get(`${doctorBus}/v1/consultation/options`,params)
 }
@@ -45,6 +45,26 @@ const cancel_collect_doctor = (params) => {
 const collect_doctor = (params) => {
   return post(`${doctorBus}/v1/consultation/collect_doctor`,params)
 }
+// 获取检验检查过滤器数据
+const getInspectionOptions = (params) => {
+  return get(`${doctorBus}/v1/consultation/inspection_options`,params)
+}
+// 获取检验检查项目列表
+const getInspectionList = (params) => {
+  return get(`${doctorBus}/v1/consultation/inspection`,params)
+}
+// 收藏检验检查商品
+const collect_inspection = (params) => {
+  return post(`${doctorBus}/v1/consultation/collect_inspection`,params)
+}
+// 我的收藏检验检查列表
+const get_collect_inspection_list = (params) => {
+  return get(`${doctorBus}/v1/consultation/collect_inspection_list`,params)
+}
+// 批量取消收藏
+const multi_cancel_inspection = (params) => {
+  return post(`${doctorBus}/v1/consultation/multi_cancel_inspection`,params)
+}
 
 export default {
   getFilterData,
@@ -55,5 +75,10 @@ export default {
   get_order_data,
   get_collect_list,
   cancel_collect_doctor,
-  collect_doctor
+  collect_doctor,
+  getInspectionOptions,
+  getInspectionList,
+  collect_inspection,
+  get_collect_inspection_list,
+  multi_cancel_inspection
 }

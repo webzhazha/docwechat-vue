@@ -44,7 +44,7 @@
           </div>
         </div>
       </van-list>
-      <NoData v-if="!loading && orderList.length == 0" :height="height" />
+      <NoData v-if="finished && orderList.length == 0" :height="height" />
     </div>
   </div>
 </template>
@@ -52,10 +52,11 @@
   import $ from 'jquery'
   import dayjs from 'dayjs'
   import { pullDiagOrder } from '@/mixins/pullNativeFunc'
+  import { filterTime } from '../mixins/index'
   import service from '_services/'
   const NoData = () => import('@/components/noData')
   export default {
-    mixins: [pullDiagOrder],
+    mixins: [pullDiagOrder, filterTime],
     components: { NoData },
     data() {
       return {
@@ -81,21 +82,6 @@
       }
     },
     filters: {
-      filterTime(time) {
-        const new_date = new Date()
-        const end_date = new Date(time.replace(/-/g, '/'))
-        const remain_date = end_date - new_date
-        // 计算出小时数
-        const hours = Math.floor(remain_date / (3600 * 1000))
-        // 计算相差分钟数
-        const leave2 = remain_date % (3600 * 1000) // 计算小时数后剩余的毫秒数
-        const minutes = Math.floor(leave2 / (60 * 1000))
-        // 计算相差秒数
-        const leave3 = leave2 % (60 * 1000) // 计算分钟数后剩余的毫秒数
-        const seconds = Math.round(leave3 / 1000)
-
-        return hours + ':' + (minutes > 9 ? minutes : '0' + minutes) + ':' + (seconds > 9 ? seconds : '0' + seconds)
-      },
       formatTime(time) {
         return dayjs(time).format('YYYY-MM-DD')
       }
@@ -127,7 +113,7 @@
               this.orderList = this.orderList.concat(res.data.list)
             }
             this.loading = false
-            if (res.data.list && res.data.list.length < 3) {
+            if (res.data.list && res.data.list.length == 0) {
               this.finished = true
             }
           })

@@ -1,30 +1,43 @@
 <template>
   <div>
     <div class="checkoutItem bt_gray">
-      <div class="backgroundimg doc_img mr16" :style="generateImageUrl('','/wechat/img/common/default.png')"></div>
+      <div class="backgroundimg doc_img mr16" :style="generateImageUrl(checkItem.image,'/wechat/img/common/default.png')"></div>
       <div class="relative flex1">
         <div class="mb8 c333 typo_bold fs18">
-          女性两癌帅选, 防癌专项普查特惠哒哒哒哒哒哒
+          {{checkItem.name}}
         </div>
         <div class="fs14 c999 mb15">
-          深圳同人妇科医院
+          {{checkItem.unit_name}}
         </div>
         <div>
-          <span class="price typo_bold">￥300</span>
+          <span class="price typo_bold">￥{{checkItem.price}}</span>
           <span class="c_ccc">
             <i class="iconfont">&#xe697;</i>
-            深圳 宝安</span>
+            {{checkItem.area_street}}</span>
         </div>
+        <template v-if="isHall">
+          <div v-if="checkItem.is_followed==0" class="collect" @click.stop="collect(checkItem.id)">
+            <i class="iconfont">&#xe736;</i> 收藏
+          </div>
+          <div v-if="checkItem.is_followed==1" class="collect yet">
+            已收藏
+          </div>
+        </template>
       </div>
     </div>
   </div>
 </template>
 <script>
+import service from '@/services'
 export default {
   props: {
-    docItem: {
+    checkItem: {
       type: Object,
       default: () => {}
+    },
+    isHall: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -33,6 +46,18 @@ export default {
     }
   },
   methods: {
+    collect(id) {
+      service.docDiagnoses.collect_inspection({
+        item_id: id
+      }).then(res => {
+        console.log(res)
+        if (res.result_code == 1) {
+          this.docItem.is_followed = 1
+        } else {
+          this.$toast('收藏失败')
+        }
+      })
+    }
   }
 }
 </script>
@@ -73,6 +98,23 @@ export default {
         margin-bottom: .133333rem;
       }
     }
+    .collect {
+      position: absolute;
+      top: 0;
+      right: 0.266667rem;
+      width: 1.866667rem;
+      height: 0.853333rem;
+      color: #009ee6;
+      border: 1px solid #009ee6;
+      text-align: center;
+      line-height: 0.8rem;
+      border-radius: 0.853333rem;
 
+      &.yet {
+        color: #999;
+        background-color: #F7F7F7;
+        border: none;
+      }
+    }
   }
 </style>

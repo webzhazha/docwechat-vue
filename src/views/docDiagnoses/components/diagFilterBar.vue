@@ -105,7 +105,12 @@ export default {
     },
     onClickDep(data) {
       this.$refs.dep.toggle()
-      this.depName = data.text
+      // 二级全部显示一级名称
+      if(!data.id){
+        this.depName = this.depList[this.maindepIndex].text
+      }else {
+        this.depName = data.text
+      }
       this.maindepId = this.depList[this.maindepIndex].id
     },
     openDrop() {

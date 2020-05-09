@@ -34,14 +34,14 @@
     </div>
     <div v-if="cartab=='checkout'">
       <div v-if="!edit">
-        <div v-for="(item, index) in docList" :key="index">
-          <CheckoutItem :docItem="item" />
+        <div v-for="(item, index) in checkList" :key="index">
+          <CheckoutItem :checkItem="item" />
         </div>
       </div>
       <div v-else class="pl25">
         <van-checkbox-group v-model="select">
-          <van-checkbox v-for="(item, index) in docList" :key="index" :name="item.account_user_id">
-            <CheckoutItem />
+          <van-checkbox v-for="(item, index) in checkList" :key="index" :name="item.id">
+            <CheckoutItem :checkItem="item" />
           </van-checkbox>
         </van-checkbox-group>
         <div class="h88"></div>
@@ -73,6 +73,8 @@ export default {
       edit: false,
       docList: [],
       page: 1,
+      checkList: [],
+      checkPage: 1,
       select: [],
       show: false,
       actions: [{ name: '确认取消收藏', color: '#FF0000' }],
@@ -90,6 +92,7 @@ export default {
   mounted() {
     this.titleLucency()
     this._get_collect_list()
+    this._get_collect_inspection_list()
   },
   methods: {
     checkTab(e) {
@@ -101,21 +104,35 @@ export default {
     returns() {
       this.$router.go(-1)
     },
-    _get_collect_list() {
+    _get_collect_inspection_list(){
       service.docDiagnoses
+        .get_collect_inspection_list({
+          page: this.page,
+          size: 100
+        })
+        .then((res) => {
+          this.checkList = res.data.list
+        })
+    },
+    _get_collect_list() {
+      try {
+        service.docDiagnoses
         .get_collect_list({
           page: this.page,
           size: 100
         })
         .then((res) => {
-          console.log(res)
           this.docList = res.data.list
-          console.log(this.docList)
         })
+      } catch (err){
+        console.log(err)
+      }
+      
     },
     // 确认取消
     selectCancel() {
-      service.docDiagnoses
+      if(this.cartab=='consultation'){
+         service.docDiagnoses
         .cancel_collect_doctor({
           collect_account_user_ids: this.select.join(',')
         })
@@ -124,7 +141,22 @@ export default {
           this._get_collect_list()
           this.show = false
           this.edit = false
+          this.select = []
         })
+      }else {
+         service.docDiagnoses
+        .multi_cancel_inspection({
+          item_ids: this.select.join(',')
+        })
+        .then((res) => {
+          this.page = 1
+          this._get_collect_inspection_list()
+          this.show = false
+          this.edit = false
+          this.select = []
+        })
+      }
+     
     },
     cancelCollect() {
       if (this.select.length == 0) {
@@ -146,7 +178,7 @@ export default {
 <style lang="scss">
   .collectIndex {
     background-color: #fff;
-
+    min-height: 100vh;
     .active {
       color: #009EE6;
       font-weight: bold;

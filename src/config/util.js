@@ -7,7 +7,12 @@
 
   window.cid = isAnd ? '100000001' : '100000002'
 
-  window.user_key = process.env.NODE_ENV == 'production' ? window.TokenNativeActionProxy.getAccessToken() : '467cf5188e5cf1a62e4cfcc9e830daebrNSVWSOb20200527162514'
+  window.user_key = process.env.NODE_ENV == 'production' ? window.TokenNativeActionProxy.getAccessToken() : '9f7203df45e98f9a4994c7de702a7aecARFNLIGq20200529161051'
+
+// 赋值window刷新方法
+window.webViewWillAppear = (params)=>{
+  window.location.reload()
+}
 
 // 获取url参数
 export const getUrlParam = pname => {
@@ -21,5 +26,3 @@ export const getUrlParam = pname => {
     }
   }
 }
-
-// 

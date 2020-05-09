@@ -18,14 +18,15 @@
       </div>
     </van-sticky>
     <div :style="'min-height:' + height">
-      <van-list
+      <div v-if="checkTab=='doc'">
+        <van-list
         v-if="docList.length > 0"
         v-model="loading"
         :finished="finished"
         finished-text="没有更多了"
         loading-text="努力加载中..."
         offset="50"
-        @load="onLoad"
+        @load="onDocLoad"
         :immediate-check="false"
       >
         <div v-for="(item, index) in docList" :key="index">
@@ -33,6 +34,24 @@
         </div>
       </van-list>
       <NoData v-if="finished && docList.length == 0" :height="height" />
+      </div>
+      <div v-if="checkTab=='check'">
+        <van-list
+        v-if="checkList.length > 0"
+        v-model="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        loading-text="努力加载中..."
+        offset="50"
+        @load="onCheckLoad"
+        :immediate-check="false"
+      >
+        <div v-for="(item, index) in checkList" :key="index">
+          <CheckoutItem :checkItem="item" />
+        </div>
+      </van-list>
+      <NoData v-if="finished && checkList.length == 0" :height="height" />
+      </div>
     </div>
   </div>
 </template>
@@ -43,15 +62,18 @@ const CommonBanner = () => import('@/components/commonBanner')
 const DiagFilterBar = () => import('../components/diagFilterBar')
 const CheckFilterBar = () => import('../components/checkFilterBar')
 const HallDocItem = () => import('../components/hallDocItem')
+const CheckoutItem = () => import('../components/checkoutItem')
 const NoData = () => import('@/components/noData')
 export default {
-  components: { CommonBanner, DiagFilterBar, CheckFilterBar, HallDocItem, NoData },
+  components: { CommonBanner, DiagFilterBar, CheckFilterBar, HallDocItem, CheckoutItem, NoData },
   data() {
     return {
       docList: [],
       loading: false,
       finished: false,
       diagPage: 1,
+      checkList: [],
+      checkPage: 1,
       checkTab: "doc",
       // 筛选器参数
       diagExtraParams: {
@@ -69,6 +91,7 @@ export default {
   },
   mounted() {
     this._getHalldoctor(this.diagExtraParams)
+    this._getHallCheck(this.checkExtraParams)
     this.$nextTick(() => {
       setTimeout(() => {
         console.log($('#bar').height())
@@ -80,9 +103,36 @@ export default {
     goSearch() {
       this.$router.push('../docDiagnoses/searchIndex')
     },
-    onLoad() {
-      this.page++
+    onDocLoad() {
+      this.diagPage++
       this._getHalldoctor()
+    },
+    onCheckLoad() {
+      console.log('加载');
+      
+      this.checkPage++
+      this._getHallCheck()
+    },
+    _getHallCheck() {
+      service.docDiagnoses
+        .getInspectionList({
+          page: this.checkPage,
+          size: 10,
+          account_user_id: this.account_user_id,
+          ...this.checkExtraParams
+        })
+        .then((res) => {
+          console.log(res)
+          this.loading = false
+          if (!res.data) {
+            this.finished = true
+            return
+          }
+          this.checkList = this.checkList.concat(res.data.list)
+          if (res.data.length == 0) {
+            this.finished = true
+          }
+        })
     },
     _getHalldoctor() {
       service.docDiagnoses
@@ -107,14 +157,18 @@ export default {
     },
     // 检验检查
     changeFilterCheck(){
-
+      this.checkExtraParams = params
+      this.checkPage = 1
+      this.checkList = []
+      this.finished = false
+      this._getHallCheck()
     },
     // 医生会诊
     changeFilterDiag(params) {
+      this.diagExtraParams = params
       this.diagPage = 1
       this.docList = []
       this.finished = false
-      this.diagExtraParams = params
       this._getHalldoctor()
     },
     scrollToTop() {

@@ -77,10 +77,10 @@ export default {
           id: 'received',
           name: '我接收的'
         },
-        {
-          id: 'checkout',
-          name: '检验检查'
-        }
+        // {
+        //   id: 'checkout',
+        //   name: '检验检查'
+        // }
       ]
     }
   },

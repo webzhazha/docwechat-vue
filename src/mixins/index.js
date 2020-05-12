@@ -6,7 +6,7 @@ export const buildImage = {
     return {
       STATICDOMAIN: `${protocol}//wximg.91160.com`,
       IMAGESDOMAIN: `${protocol}//images.91160.com/`,
-      account_user_id : process.env.NODE_ENV == 'production'?  window.TokenNativeActionProxy.getAccountUserId():'' // 登录医生id
+      account_user_id : process.env.NODE_ENV == 'production'?  window.TokenNativeActionProxy.getAccountUserId():'220115649' // 登录医生id
     }
   },
   methods: {

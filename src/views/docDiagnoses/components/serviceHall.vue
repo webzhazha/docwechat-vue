@@ -11,10 +11,10 @@
       <div id="bar">
         <div class="hall_tab pl15 bg_white ">
           <div class=" fs16 typo_bold fl mr24" :class="{'typo_black':checkTab=='doc'}" @click="checkTab='doc'">医生会诊</div>
-          <div class=" fs16 typo_bold fl" :class="{'typo_black':checkTab=='check'}" @click="checkTab='check'">检验检查</div>
+          <!-- <div class=" fs16 typo_bold fl" :class="{'typo_black':checkTab=='check'}" @click="checkTab='check'">检验检查</div> -->
         </div>
         <DiagFilterBar @scrollToTop="scrollToTop" @update="changeFilterDiag" v-if="checkTab=='doc'" />
-        <CheckFilterBar @scrollToTop="scrollToTop" @update="changeFilterCheck" v-if="checkTab=='check'" />
+        <!-- <CheckFilterBar @scrollToTop="scrollToTop" @update="changeFilterCheck" v-if="checkTab=='check'" /> -->
       </div>
     </van-sticky>
     <div :style="'min-height:' + height">
@@ -91,7 +91,7 @@ export default {
   },
   mounted() {
     this._getHalldoctor(this.diagExtraParams)
-    this._getHallCheck(this.checkExtraParams)
+    // this._getHallCheck(this.checkExtraParams)
     this.$nextTick(() => {
       setTimeout(() => {
         console.log($('#bar').height())
@@ -151,6 +151,8 @@ export default {
           }
           this.docList = this.docList.concat(res.data)
           if (res.data.length == 0) {
+            console.log('哈哈哈');
+            
             this.finished = true
           }
         })

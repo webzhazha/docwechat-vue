@@ -44,8 +44,9 @@
           </div>
         </div>
       </van-list>
-      <NoData v-if="finished && orderList.length == 0" :height="height" />
+        <NoData v-if="finished && orderList.length == 0" :height="height" />
     </div>
+    
   </div>
 </template>
 <script>

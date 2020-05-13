@@ -122,6 +122,7 @@ export default {
 }
 .diagnosesData {
   background-color: #fcfcfc;
+  width: 100%;
   height: 100vh;
   .top {
     display: flex;

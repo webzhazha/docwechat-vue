@@ -133,7 +133,11 @@ export const pullDiagOrder = {
               "name": "order_id",
               "value": orderId.toString(),
               "type": "String"
-            }]
+            }, {
+              "name": "req_js_to_native",
+              "value": "1",
+              "type": "String"
+              }]
           }
         }
         const jsons = JSON.stringify(obj)

@@ -11,12 +11,12 @@
         }}</span>
       </div>
     </div>
-    <van-sticky z-index="100" :offset-top="45">
+    <!-- <van-sticky z-index="100" :offset-top="45">
       <div class="flex textc lh44 bt_gray c999 bg_white" @click="checkTab">
         <div class="flex1 relative" :class="{'active':cartab=='consultation'}" data-id="consultation">会诊医生</div>
         <div class="flex1 relative" :class="{'active':cartab=='checkout'}" data-id="checkout">检验检查</div>
       </div>
-    </van-sticky>
+    </van-sticky> -->
     <div v-if="cartab=='consultation'">
       <div v-if="!edit">
         <div v-for="(item, index) in docList" :key="index">

@@ -101,7 +101,11 @@ export default {
     },
     onClickArea(data) {
       this.$refs.area.toggle()
-      this.areaName = data.text
+      if(!data.id){
+        this.areaName = this.areaList[this.cityIndex].text
+      }else {
+        this.areaName = data.text
+      }
     },
     onClickDep(data) {
       this.$refs.dep.toggle()

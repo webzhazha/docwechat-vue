@@ -1,0 +1,4 @@
+public/
+# 忽略引入文件
+src/assets/
+src/scripts/

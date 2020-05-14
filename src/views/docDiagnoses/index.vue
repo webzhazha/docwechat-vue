@@ -1,5 +1,5 @@
 <template>
-  <div class="docDiagnoses">
+  <div class="docDiagnoses" v-title data-title="转诊/会诊">
     <!-- 顶部 -->
     <div class="nav textc typo_white">
       <span class="absolute left10" @click="closePage">

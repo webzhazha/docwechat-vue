@@ -1,5 +1,5 @@
 <template>
-  <div class="diagnosesData">
+  <div class="diagnosesData"  v-title data-title="会诊数据">
     <div class="nav textc typo_white">
       <span class="absolute left10" @click="returns">
         <i class="iconfont fs18 lh44">&#xe688;</i>

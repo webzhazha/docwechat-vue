@@ -1,5 +1,5 @@
 <template>
-  <div class="collectIndex">
+  <div class="collectIndex"  v-title data-title="我的收藏">
     <div class="h45px">
       <div class="nav">
         <span class="">
@@ -57,6 +57,7 @@
       @cancel="onCancel"
       @select="selectCancel"
     />
+    <NoData v-if="docList.length == 0" height='calc(100vh - 45px)' />
   </div>
 </template>
 <script>
@@ -64,9 +65,10 @@ import { titleLucency } from '@/mixins/pullNativeFunc'
 import service from '_services/'
 const CollectDocItem = () => import('./components/collectDocItem')
 const CheckoutItem = () => import('./components/checkoutItem')
+const NoData = () => import('@/components/noData')
 export default {
   mixins: [titleLucency],
-  components: { CollectDocItem, CheckoutItem },
+  components: { CollectDocItem, CheckoutItem, NoData },
   data() {
     return {
       cartab: 'consultation',

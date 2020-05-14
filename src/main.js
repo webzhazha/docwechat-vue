@@ -14,6 +14,8 @@ import './config/vant'
 // 引入axios配置
 import './config/axios'
 
+import './directives/'
+
 Vue.config.productionTip = false;
 
 Vue.mixin(buildImage)

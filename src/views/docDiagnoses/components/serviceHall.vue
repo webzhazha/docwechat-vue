@@ -90,7 +90,7 @@ export default {
     }
   },
   mounted() {
-    this._getHalldoctor(this.diagExtraParams)
+    this._getHalldoctor()
     // this._getHallCheck(this.checkExtraParams)
     this.$nextTick(() => {
       setTimeout(() => {
@@ -108,8 +108,6 @@ export default {
       this._getHalldoctor()
     },
     onCheckLoad() {
-      console.log('加载');
-      
       this.checkPage++
       this._getHallCheck()
     },

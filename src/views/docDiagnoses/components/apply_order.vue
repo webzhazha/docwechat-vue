@@ -106,16 +106,20 @@
             size: 10
           })
           .then((res) => {
-            console.log(res)
+            
             if (!res.data.list) {
               this.loading = false
               this.finished = true
               return
             }
-            if (res.data.list && res.data.list.length > 0) {
-              this.orderList = this.orderList.concat(res.data.list)
-            }
             this.loading = false
+            if (res.data.list && res.data.list.length > 0) {
+              if(this.page==1){
+                this.orderList = res.data.list
+              }else {
+                this.orderList = this.orderList.concat(res.data.list)
+              }
+            }
             if (res.data.list && res.data.list.length == 0) {
               this.finished = true
             }

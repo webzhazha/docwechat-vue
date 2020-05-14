@@ -94,11 +94,15 @@ export default {
   mounted() {
     this.titleLucency()
     this._get_collect_list()
-    this._get_collect_inspection_list()
+    // this._get_collect_inspection_list()
+    // 赋值刷新
+    window.webViewWillAppear = () => {
+      this.page = 1
+      this._get_collect_list()
+    }
   },
   methods: {
     checkTab(e) {
-      console.log(e)
       this.cartab = e.target.dataset.id
       this.select = []
       this.edit = false
@@ -174,6 +178,9 @@ export default {
     onCancel() {
       this.show = false
     }
+  },
+  beforeDestroy(){
+    window.webViewWillAppear = () => {}
   }
 }
 </script>

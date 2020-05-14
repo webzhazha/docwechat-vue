@@ -33,13 +33,13 @@
       <Tab ref="tab" :tabs="tabs" @tabChange="tabChange" />
     </van-sticky>
     <template v-if="curtab == 'hall'">
-      <ServiceHall />
+      <ServiceHall ref="ServiceHall"/>
     </template>
     <template v-if="curtab == 'apply'">
-      <ApplyOrder />
+      <ApplyOrder ref="ApplyOrder" />
     </template>
     <template v-if="curtab == 'received'">
-      <ReceivedOrder />
+      <ReceivedOrder ref="ReceivedOrder" />
     </template>
     <template v-if="curtab == 'checkout'">
       <ReceivedOrder />
@@ -84,7 +84,6 @@ export default {
       ]
     }
   },
-
   async created() {
   },
   mounted() {
@@ -99,13 +98,20 @@ export default {
         this.$refs.tab.changeTab(3)
       }
     })
+    // 赋值刷新
+    if(this.curtab == 'hall'){
+      window.webViewWillAppear = () => {
+        this.$refs.ServiceHall.diagPage = 1
+        this.$refs.ServiceHall._getHalldoctor()
+      }
+    }
   },
   methods: {
     closePage() {
       this.closeWebView()
     },
     instructions() {
-      document.location.href = 'http://www.baidu.com'
+      // document.location.href = 'http://www.baidu.com'
     },
     goConfig() {
       this.pullServiceConf()
@@ -118,7 +124,29 @@ export default {
     },
     tabChange(index) {
       this.curtab = this.tabs[index].id
+      // 赋值刷新
+    if(this.curtab == 'hall'){
+      window.webViewWillAppear = () => {
+        this.$refs.ServiceHall.diagPage = 1
+        this.$refs.ServiceHall._getHalldoctor()
+      }
     }
+    if(this.curtab == 'apply'){
+      window.webViewWillAppear = () => {
+        this.$refs.ApplyOrder.page = 1
+        this.$refs.ApplyOrder._get_apply_order()
+      }
+    }
+    if(this.curtab == 'received'){
+      window.webViewWillAppear = () => {
+        this.$refs.ReceivedOrder.page = 1
+        this.$refs.ReceivedOrder._get_apply_order()
+      }
+    }
+    }
+  },
+  beforeDestroy(){
+    window.webViewWillAppear = () => {}
   }
 }
 </script>

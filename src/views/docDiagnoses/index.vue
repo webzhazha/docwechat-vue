@@ -100,6 +100,10 @@ export default {
     })
     // 赋值刷新
     var that = this
+    window.onscroll=function(){
+      var a = that.curtab + 1
+      console.log(a);
+    }
     if(this.curtab == 'hall'){
       window.webViewWillAppear = () => {
         that.$refs.ServiceHall.diagPage = 1

@@ -169,13 +169,15 @@ export const pullOtherUrl = {
           }
         })
       } else {
+        console.log('打开安卓web');
         const obj = {
           "android": {
             "page_clase_name": "com.ny.jiuyi160_doctor.activity.base.WebViewActivity",
             "parameters": [
               {"name": "url",
               "value": url,
-              "type": "String"}]
+              "type": "String"}
+            ]
           }
         }
         const jsons = JSON.stringify(obj)

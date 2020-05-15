@@ -96,9 +96,10 @@ export default {
     this._get_collect_list()
     // this._get_collect_inspection_list()
     // 赋值刷新
+    var that = this
     window.webViewWillAppear = () => {
-      this.page = 1
-      this._get_collect_list()
+      that.page = 1
+      that._get_collect_list()
     }
   },
   methods: {

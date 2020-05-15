@@ -99,10 +99,11 @@ export default {
       }
     })
     // 赋值刷新
+    var that = this
     if(this.curtab == 'hall'){
       window.webViewWillAppear = () => {
-        this.$refs.ServiceHall.diagPage = 1
-        this.$refs.ServiceHall._getHalldoctor()
+        that.$refs.ServiceHall.diagPage = 1
+        that.$refs.ServiceHall._getHalldoctor()
       }
     }
   },
@@ -125,22 +126,23 @@ export default {
     tabChange(index) {
       this.curtab = this.tabs[index].id
       // 赋值刷新
+      var that = this
     if(this.curtab == 'hall'){
       window.webViewWillAppear = () => {
-        this.$refs.ServiceHall.diagPage = 1
-        this.$refs.ServiceHall._getHalldoctor()
+        that.$refs.ServiceHall.diagPage = 1
+        that.$refs.ServiceHall._getHalldoctor()
       }
     }
     if(this.curtab == 'apply'){
       window.webViewWillAppear = () => {
-        this.$refs.ApplyOrder.page = 1
-        this.$refs.ApplyOrder._get_apply_order()
+        that.$refs.ApplyOrder.page = 1
+        that.$refs.ApplyOrder._get_apply_order()
       }
     }
     if(this.curtab == 'received'){
       window.webViewWillAppear = () => {
-        this.$refs.ReceivedOrder.page = 1
-        this.$refs.ReceivedOrder._get_apply_order()
+        that.$refs.ReceivedOrder.page = 1
+        that.$refs.ReceivedOrder._get_apply_order()
       }
     }
     }

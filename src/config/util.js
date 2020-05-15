@@ -7,11 +7,11 @@
 
   window.cid = isAnd ? '100000001' : '100000002'
 
-  window.user_key = process.env.NODE_ENV == 'production' ? window.TokenNativeActionProxy.getAccessToken() : 'e0c9eca0d950ee71f745cad6435f6814QNbuOrXX20200601193754'
+  window.user_key = process.env.NODE_ENV == 'production' ? window.TokenNativeActionProxy.getAccessToken() : 'dc5f6e1577c0a2e47e5b6a695a76c3aaRreaXDTp20200604192839'
 
 // 赋值window刷新方法
 window.webViewWillAppear = (params)=>{
-  window.location.reload()
+  // window.location.reload()
 }
 
 // 获取url参数

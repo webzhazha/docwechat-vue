@@ -3,7 +3,7 @@
     <div class="diagnoses_doc" :style="'min-height:' + height">
       <van-list v-model="loading" :finished="finished" :finished-text="getNoDataTip" offset="50" @load="onLoad" :immediate-check="false">
         <!-- 会诊中 -->
-        <div v-for="(item, index) in orderList" :key="index" class="bg_white mb15" @click="goOrder(item.order_id)">
+        <div v-for="(item, index) in orderList" :key="index" class="bg_white mb15 boradius4 box_show" @click="goOrder(item.order_id)">
           <div class="top">
             <img v-if="item.order_state_other==1" src="../image/order_status_1.png" alt="" class="w16 h16 mr5 fl mt12">
             <img v-if="item.order_state_other==2" src="../image/order_status_2.png" alt="" class="w16 h16 mr5 fl mt12">
@@ -13,7 +13,7 @@
             <img v-if="item.order_state_other==6" src="../image/order_status_6.png" alt="" class="w16 h16 mr5 fl mt12">
             <span class="status" :style="'color:' +colorList[item.order_state_other]">
               {{ item.order_state_title }}</span>
-            <span v-if="(item.order_state == 1 && item.pay_state == 1)" class="c999 fs14 fr lh40">还剩{{item.end_time | filterTime}}关闭服务</span>
+            <span v-if="(item.order_state == 1 && item.pay_state == 1)" class="cFE4E4E fs14 fr lh40">还剩{{item.end_time | filterTime}}关闭服务</span>
             <span v-else class="c999 fs14 fr lh40">{{ item.add_time | formatTime}}发起</span>
           </div>
           <div class="content">
@@ -27,7 +27,7 @@
                   "></div>
                 <div>
                   <div>
-                    <span class="fs18 c333 typo_bold">{{ item.truename }}</span>
+                    <span class="fs18 c333 typo_bold names elli">{{ item.truename }}</span>
                     <span class="fs14 c333">
                       {{ item.sex == 0 ? "男" : "女" }} {{ item.age }}岁</span>
                   </div>
@@ -45,7 +45,7 @@
           </div>
         </div>
       </van-list>
-      <NoData v-if="finished && orderList.length == 0" :height="height" />
+      <NoData v-if="finished && orderList.length == 0" :height="height" bgColor="#F7F7F7"/>
     </div>
     
   </div>
@@ -106,16 +106,20 @@
             size: 10
           })
           .then((res) => {
-            console.log(res)
+            
             if (!res.data.list) {
               this.loading = false
               this.finished = true
               return
             }
-            if (res.data.list && res.data.list.length > 0) {
-              this.orderList = this.orderList.concat(res.data.list)
-            }
             this.loading = false
+            if (res.data.list && res.data.list.length > 0) {
+              if(this.page==1){
+                this.orderList = res.data.list
+              }else {
+                this.orderList = this.orderList.concat(res.data.list)
+              }
+            }
             if (res.data.list && res.data.list.length == 0) {
               this.finished = true
             }
@@ -132,7 +136,9 @@
   .diagnoses_doc {
     padding: 0.453333rem 0.32rem;
     background-color: #f7f7f7;
-
+    .box_show {
+      box-shadow:0px 18px 20px 0px rgba(178,178,178,0.06);
+    }
     .top {
       overflow: hidden;
       background-color: #fcfcfc;
@@ -161,7 +167,12 @@
         .info {
           display: flex;
           margin-bottom: 0.4rem;
-
+          .names {
+            display: inline-block;
+            max-width: 2.666667rem;
+            vertical-align: sub;
+            margin-right: .16rem;
+          }
           .info_img {
             width: 1.066667rem;
             height: 1.066667rem;
@@ -173,7 +184,7 @@
       .right {
         flex: 1;
         text-align: center;
-        padding-top: 0.266667rem;
+        padding-top: .346667rem;
 
         .price {
           color: #ff8100;

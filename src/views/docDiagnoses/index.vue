@@ -1,5 +1,5 @@
 <template>
-  <div class="docDiagnoses">
+  <div class="docDiagnoses" v-title data-title="转诊/会诊">
     <!-- 顶部 -->
     <div class="nav textc typo_white">
       <span class="absolute left10" @click="closePage">
@@ -33,24 +33,24 @@
       <Tab ref="tab" :tabs="tabs" @tabChange="tabChange" />
     </van-sticky>
     <template v-if="curtab == 'hall'">
-      <ServiceHall />
+      <ServiceHall ref="ServiceHall"/>
     </template>
     <template v-if="curtab == 'apply'">
-      <ApplyOrder />
+      <ApplyOrder ref="ApplyOrder" />
     </template>
     <template v-if="curtab == 'received'">
-      <ReceivedOrder />
+      <ReceivedOrder ref="ReceivedOrder" />
     </template>
-    <template v-if="curtab == 'checkout'">
-      <ReceivedOrder />
-    </template>
+    <!-- <template v-if="curtab == 'checkout'">
+    </template> -->
   </div>
 </template>
 <script>
 import {
   pullServiceConf,
   closeWebView,
-  titleLucency
+  titleLucency,
+  pullOtherUrl
 } from '@/mixins/pullNativeFunc'
 // const Tab = () => import('./components/tab')
 import Tab from './components/tab'
@@ -59,7 +59,7 @@ const ServiceHall = () => import('./components/serviceHall')
 const ApplyOrder = () => import('./components/apply_order')
 const ReceivedOrder = () => import('./components/received_order')
 export default {
-  mixins: [pullServiceConf, closeWebView, titleLucency],
+  mixins: [pullServiceConf, closeWebView, titleLucency, pullOtherUrl],
   components: { Tab, ServiceHall, ApplyOrder, ReceivedOrder },
   data() {
     return {
@@ -84,7 +84,6 @@ export default {
       ]
     }
   },
-
   async created() {
   },
   mounted() {
@@ -99,13 +98,23 @@ export default {
         this.$refs.tab.changeTab(3)
       }
     })
+    // 赋值刷新
+    var that = this
+    if(this.curtab == 'hall'){
+      window.webViewWillAppear = () => {
+        that.$refs.ServiceHall.diagPage = 1
+        that.$refs.ServiceHall._getHalldoctor()
+      }
+    }
   },
   methods: {
     closePage() {
       this.closeWebView()
     },
     instructions() {
-      document.location.href = 'http://www.baidu.com'
+      this.pullOtherUrl('http://www.baidu.com')
+      // this.$toast('此功能暂未开放')
+      // document.location.href = 'http://www.baidu.com'
     },
     goConfig() {
       this.pullServiceConf()
@@ -118,7 +127,30 @@ export default {
     },
     tabChange(index) {
       this.curtab = this.tabs[index].id
+      // 赋值刷新
+      var that = this
+    if(this.curtab == 'hall'){
+      window.webViewWillAppear = () => {
+        that.$refs.ServiceHall.diagPage = 1
+        that.$refs.ServiceHall._getHalldoctor()
+      }
     }
+    if(this.curtab == 'apply'){
+      window.webViewWillAppear = () => {
+        that.$refs.ApplyOrder.page = 1
+        that.$refs.ApplyOrder._get_apply_order()
+      }
+    }
+    if(this.curtab == 'received'){
+      window.webViewWillAppear = () => {
+        that.$refs.ReceivedOrder.page = 1
+        that.$refs.ReceivedOrder._get_received_order()
+      }
+    }
+    }
+  },
+  beforeDestroy(){
+    window.webViewWillAppear = () => {}
   }
 }
 </script>

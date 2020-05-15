@@ -1,6 +1,7 @@
 <template>
-  <div class="bg_white">
+  <div class="bg_white" v-title data-title="搜索">
     <van-sticky>
+      <form action="/">
       <van-search
         v-model="value"
         shape="round"
@@ -10,6 +11,7 @@
         @cancel="onCancel"
         @clear="onClear"
       />
+      </form>
     </van-sticky>
     <van-list
       v-model="loading"

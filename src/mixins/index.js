@@ -9,6 +9,7 @@ export const buildImage = {
       account_user_id : process.env.NODE_ENV == 'production'?  window.TokenNativeActionProxy.getAccountUserId():'220115649' // 登录医生id
     }
   },
+  
   methods: {
     fixImageUrl(url) {
       const RegExps = {

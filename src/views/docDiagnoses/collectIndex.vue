@@ -1,5 +1,5 @@
 <template>
-  <div class="collectIndex">
+  <div class="collectIndex"  v-title data-title="我的收藏">
     <div class="h45px">
       <div class="nav">
         <span class="">
@@ -20,12 +20,12 @@
     <div v-if="cartab=='consultation'">
       <div v-if="!edit">
         <div v-for="(item, index) in docList" :key="index">
-          <CollectDocItem :docItem="item" />
+          <CollectDocItem :docItem="item" :edit="edit"/>
         </div>
       </div>
       <div v-else class="pl25">
         <van-checkbox-group v-model="select">
-          <van-checkbox v-for="(item, index) in docList" :key="index" :name="item.account_user_id">
+          <van-checkbox v-for="(item, index) in docList" :key="index" :name="item.account_user_id" icon-size='26px'>
             <CollectDocItem :docItem="item" />
           </van-checkbox>
         </van-checkbox-group>
@@ -56,7 +56,9 @@
       cancel-text="返回"
       @cancel="onCancel"
       @select="selectCancel"
+      :round="false"
     />
+    <NoData v-if="loadfalg && docList.length == 0" height='calc(100vh - 45px)' />
   </div>
 </template>
 <script>
@@ -64,9 +66,10 @@ import { titleLucency } from '@/mixins/pullNativeFunc'
 import service from '_services/'
 const CollectDocItem = () => import('./components/collectDocItem')
 const CheckoutItem = () => import('./components/checkoutItem')
+const NoData = () => import('@/components/noData')
 export default {
   mixins: [titleLucency],
-  components: { CollectDocItem, CheckoutItem },
+  components: { CollectDocItem, CheckoutItem, NoData },
   data() {
     return {
       cartab: 'consultation',
@@ -86,17 +89,23 @@ export default {
         id: 'checkout',
         name: '检验检查'
       }
-      ]
+      ],
+      loadfalg: false
     }
   },
   mounted() {
     this.titleLucency()
     this._get_collect_list()
-    this._get_collect_inspection_list()
+    // this._get_collect_inspection_list()
+    // 赋值刷新
+    var that = this
+    window.webViewWillAppear = () => {
+      that.page = 1
+      that._get_collect_list()
+    }
   },
   methods: {
     checkTab(e) {
-      console.log(e)
       this.cartab = e.target.dataset.id
       this.select = []
       this.edit = false
@@ -122,6 +131,7 @@ export default {
           size: 100
         })
         .then((res) => {
+          this.loadfalg = true
           this.docList = res.data.list
         })
       } catch (err){
@@ -172,6 +182,9 @@ export default {
     onCancel() {
       this.show = false
     }
+  },
+  beforeDestroy(){
+    window.webViewWillAppear = () => {}
   }
 }
 </script>
@@ -192,7 +205,7 @@ export default {
       position: absolute;
       bottom: 0;
       left: 62px;
-      z-index: 9999;
+      z-index: 2000;
     }
 
     .mb88 {

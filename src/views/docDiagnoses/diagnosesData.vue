@@ -1,5 +1,5 @@
 <template>
-  <div class="diagnosesData">
+  <div class="diagnosesData"  v-title data-title="会诊数据">
     <div class="nav textc typo_white">
       <span class="absolute left10" @click="returns">
         <i class="iconfont fs18 lh44">&#xe688;</i>
@@ -26,7 +26,7 @@
         </div>
         <div class="item_right">
           <div class="num">
-            <div class="typo_black0 mb10 typo_bold fs20">
+            <div class="c333 mb10  fs20">
               {{ data.receive_times }}
             </div>
             <div class="c999 fs16">次数</div>
@@ -51,7 +51,7 @@
         </div>
         <div class="item_right">
           <div class="num">
-            <div class="typo_black0 mb10 typo_bold fs20">
+            <div class="c333 mb10  fs20">
               {{ data.request_times }}
             </div>
             <div class="c999 fs16">次数</div>
@@ -144,7 +144,7 @@ export default {
     height: 3.093333rem;
     margin-left: 0.4rem;
     overflow: hidden;
-    box-shadow: 0px 18px 20px 0px rgba(178, 178, 178, 0.06);
+    // box-shadow: 0px 18px 20px 0px rgba(178, 178, 178, 0.06);
     border-radius: 4px;
     border: 1px solid rgba(235, 235, 235, 1);
     margin-bottom: 0.64rem;

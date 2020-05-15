@@ -5,7 +5,7 @@
       <span>搜索医生以及诊疗服务</span>
     </div>
     <div class="mb25">
-      <CommonBanner id="25" />
+      <CommonBanner id="2289" />
     </div>
     <van-sticky :offset-top="90">
       <div id="bar">
@@ -90,7 +90,7 @@ export default {
     }
   },
   mounted() {
-    this._getHalldoctor(this.diagExtraParams)
+    this._getHalldoctor()
     // this._getHallCheck(this.checkExtraParams)
     this.$nextTick(() => {
       setTimeout(() => {
@@ -108,8 +108,6 @@ export default {
       this._getHalldoctor()
     },
     onCheckLoad() {
-      console.log('加载');
-      
       this.checkPage++
       this._getHallCheck()
     },

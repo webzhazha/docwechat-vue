@@ -155,13 +155,24 @@ export default {
       .van-sidebar-item--select {
         color: #009EE6;
       }
-
-      .van-tree-select__item--active {
+      .van-tree-select__nav-item {
+        color: #999;
+      }
+      .van-sidebar-item--select {
         color: #009EE6;
       }
-
+      .van-tree-select__item.van-tree-select__item--active {
+        color: #009EE6;
+        font-weight: 700;
+      }
+      .van-tree-select__item {
+        font-weight: 400;
+      }
       .van-sidebar-item--select {
         border-color: #fff;
+      }
+      .van-sidebar-item--select::before {
+        background-color: #fff;
       }
     }
 

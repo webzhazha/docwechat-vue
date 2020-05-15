@@ -56,8 +56,9 @@
       cancel-text="返回"
       @cancel="onCancel"
       @select="selectCancel"
+      :round="false"
     />
-    <NoData v-if="docList.length == 0" height='calc(100vh - 45px)' />
+    <NoData v-if="loadfalg && docList.length == 0" height='calc(100vh - 45px)' />
   </div>
 </template>
 <script>
@@ -88,7 +89,8 @@ export default {
         id: 'checkout',
         name: '检验检查'
       }
-      ]
+      ],
+      loadfalg: false
     }
   },
   mounted() {
@@ -129,6 +131,7 @@ export default {
           size: 100
         })
         .then((res) => {
+          this.loadfalg = true
           this.docList = res.data.list
         })
       } catch (err){
@@ -202,7 +205,7 @@ export default {
       position: absolute;
       bottom: 0;
       left: 62px;
-      z-index: 9999;
+      z-index: 2000;
     }
 
     .mb88 {

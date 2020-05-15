@@ -67,10 +67,11 @@ $active-color: #009ee6;
   white-space: nowrap;
   color: #666;
   background: #fff;
-  margin-bottom: 0.026667rem;
+  // margin-bottom: 0.026667rem;
   .tab-item {
     flex: 1;
     position: relative;
+    color: #999;
     height: 45px;
     line-height: 45px;
     text-align: center;
@@ -78,7 +79,7 @@ $active-color: #009ee6;
       color: $active-color;
       &::after {
         position: absolute;
-        bottom: -0.026667rem;
+        bottom: 0;
         left: 64%;
         width: 1.333333rem;
         height: .08rem;

@@ -169,7 +169,6 @@ export const pullOtherUrl = {
           }
         })
       } else {
-        console.log('打开安卓web');
         const obj = {
           "android": {
             "page_clase_name": "com.ny.jiuyi160_doctor.activity.base.WebViewActivity",

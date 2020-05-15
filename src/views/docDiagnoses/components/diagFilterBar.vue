@@ -138,7 +138,13 @@ export default {
       .van-dropdown-menu__title--active {
         color: #009EE6;
       }
-
+      .van-dropdown-menu__title {
+        font-size: .373333rem;
+      }
+      .van-dropdown-menu__bar {
+        box-shadow: none;
+        border-bottom: 1px solid #eee;
+      }
     }
 
     .van-tree-select {

@@ -79,11 +79,11 @@ $active-color: #009ee6;
       &::after {
         position: absolute;
         bottom: -0.026667rem;
-        left: 50%;
-        width: 70%;
-        height: 0.08rem;
+        left: 64%;
+        width: 1.333333rem;
+        height: .08rem;
         margin-left: -35%;
-        border-radius: 2px;
+        // border-radius: 2px;
         background: $active-color;
         content: " ";
         z-index: 300;

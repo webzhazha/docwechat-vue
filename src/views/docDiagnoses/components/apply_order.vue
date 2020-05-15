@@ -13,7 +13,7 @@
             <img v-if="item.order_state_other==6" src="../image/order_status_6.png" alt="" class="w16 h16 mr5 fl mt12">
             <span class="status" :style="'color:' +colorList[item.order_state_other]">
               {{ item.order_state_title }}</span>
-            <span v-if="(item.order_state == 1 && item.pay_state == 1)" class="c999 fs14 fr lh40">还剩{{item.end_time | filterTime}}关闭服务</span>
+            <span v-if="(item.order_state == 1 && item.pay_state == 1)" class="cFE4E4E fs14 fr lh40">还剩{{item.end_time | filterTime}}关闭服务</span>
             <span v-else class="c999 fs14 fr lh40">{{ item.add_time | formatTime}}发起</span>
           </div>
           <div class="content">

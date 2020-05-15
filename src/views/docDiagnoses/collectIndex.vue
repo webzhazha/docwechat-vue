@@ -20,12 +20,12 @@
     <div v-if="cartab=='consultation'">
       <div v-if="!edit">
         <div v-for="(item, index) in docList" :key="index">
-          <CollectDocItem :docItem="item" />
+          <CollectDocItem :docItem="item" :edit="edit"/>
         </div>
       </div>
       <div v-else class="pl25">
         <van-checkbox-group v-model="select">
-          <van-checkbox v-for="(item, index) in docList" :key="index" :name="item.account_user_id">
+          <van-checkbox v-for="(item, index) in docList" :key="index" :name="item.account_user_id" icon-size='26px'>
             <CollectDocItem :docItem="item" />
           </van-checkbox>
         </van-checkbox-group>

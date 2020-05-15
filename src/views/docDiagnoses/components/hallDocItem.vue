@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="hallDocItem bt_gray" @click="goNativeDoc">
-      <div class="backgroundimg doc_img mr16" :style="generateImageUrl(docItem.image,'/wechat/img/common/default.png')"></div>
-      <div class="relative flex1">
+    <div class="hallDocItem" @click="goNativeDoc">
+      <div class="backgroundimg doc_img mr16 mt20" :style="generateImageUrl(docItem.image,'/wechat/img/common/default.png')"></div>
+      <div class="relative flex1 pt20 pb20 bt_gray">
         <div class="mb8">
-          <span class="fs18 c333 typo_bold mr5 inBlo elli w100">{{docItem.doctor_name}}</span>
+          <span class="fs18 c333 typo_bold mr6 inBlo elli max_w100">{{docItem.doctor_name}}</span>
           <span class="fs14 c666 typo_bold inBlo elli w90">{{docItem.zc_name}}</span>
         </div>
         <div class="fs14 c999 typo_bold mb15">
@@ -72,8 +72,10 @@ export default {
 <style lang="scss" scoped>
   .hallDocItem {
     display: flex;
-    padding: 0.533333rem 0.4rem;
-
+    padding: 0 0.4rem;
+    .max_w100 {
+      max-width: 2.666667rem;
+    }
     .doc_img {
       width: 1.333333rem;
       height: 1.333333rem;
@@ -98,8 +100,8 @@ export default {
         border-radius: 0.053333rem;
         text-align: center;
         line-height: 0.426667rem;
-        color: #ffb937;
-        border: 1px solid #ffb937;
+        color: #cc7b18;
+        border:1px solid rgba(255,185,55,1);
         margin-right: 0.133333rem;
         padding: 0 .16rem;
         margin-bottom: .133333rem;
@@ -108,8 +110,8 @@ export default {
 
     .collect {
       position: absolute;
-      top: 0;
-      right: 0.266667rem;
+      top: .533333rem;
+      right: 1px;
       width: 1.866667rem;
       height: 0.853333rem;
       color: #009ee6;

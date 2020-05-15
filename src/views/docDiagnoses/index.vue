@@ -41,16 +41,16 @@
     <template v-if="curtab == 'received'">
       <ReceivedOrder ref="ReceivedOrder" />
     </template>
-    <template v-if="curtab == 'checkout'">
-      <ReceivedOrder />
-    </template>
+    <!-- <template v-if="curtab == 'checkout'">
+    </template> -->
   </div>
 </template>
 <script>
 import {
   pullServiceConf,
   closeWebView,
-  titleLucency
+  titleLucency,
+  pullOtherUrl
 } from '@/mixins/pullNativeFunc'
 // const Tab = () => import('./components/tab')
 import Tab from './components/tab'
@@ -59,7 +59,7 @@ const ServiceHall = () => import('./components/serviceHall')
 const ApplyOrder = () => import('./components/apply_order')
 const ReceivedOrder = () => import('./components/received_order')
 export default {
-  mixins: [pullServiceConf, closeWebView, titleLucency],
+  mixins: [pullServiceConf, closeWebView, titleLucency, pullOtherUrl],
   components: { Tab, ServiceHall, ApplyOrder, ReceivedOrder },
   data() {
     return {
@@ -100,10 +100,6 @@ export default {
     })
     // 赋值刷新
     var that = this
-    window.onscroll=function(){
-      var a = that.curtab + 1
-      console.log(a);
-    }
     if(this.curtab == 'hall'){
       window.webViewWillAppear = () => {
         that.$refs.ServiceHall.diagPage = 1
@@ -116,6 +112,8 @@ export default {
       this.closeWebView()
     },
     instructions() {
+      this.pullOtherUrl('http://www.baidu.com')
+      // this.$toast('此功能暂未开放')
       // document.location.href = 'http://www.baidu.com'
     },
     goConfig() {
@@ -146,7 +144,7 @@ export default {
     if(this.curtab == 'received'){
       window.webViewWillAppear = () => {
         that.$refs.ReceivedOrder.page = 1
-        that.$refs.ReceivedOrder._get_apply_order()
+        that.$refs.ReceivedOrder._get_received_order()
       }
     }
     }

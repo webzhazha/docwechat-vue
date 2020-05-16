@@ -132,7 +132,11 @@ export default {
         })
         .then((res) => {
           this.loadfalg = true
-          this.docList = res.data.list
+          if(res.data && res.data.list){
+            this.docList = res.data.list
+          }else {
+            this.docList = []
+          }
         })
       } catch (err){
         console.log(err)

@@ -174,8 +174,8 @@ export default {
   }
   .top_icon {
     position: relative;
-    background-color: #009ee6;
-
+    // background-color: #009ee6;
+    background: url('./image/huizhen_bg.png') no-repeat scroll bottom left/cover;
     .top_icon_inner {
       display: flex;
       padding: 0.8rem 0;

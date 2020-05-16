@@ -127,7 +127,8 @@ export default {
   .top {
     display: flex;
     height: 3.706667rem;
-    background-color: #009ee6;
+    // background-color: #009ee6;
+    background: url('./image/huizhen_bg.png') no-repeat scroll bottom left/cover;
     padding-left: 0.4rem;
     padding-right: 0.4rem;
     padding-top: 0.693333rem;

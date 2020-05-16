@@ -6,7 +6,7 @@
       </span>
       <span class="fs18 typo_bold lh44">会诊数据</span>
     </div>
-    <div class="top">
+    <div class="top" :style="'background:url('+huizhen_bg+') no-repeat scroll bottom left/cover'">
       <div class="left">
         <div class="typo_white fs14 mb10">累计转诊/会诊收入(元)</div>
         <div class="typo_white fs24 typo_bold">{{ data.total_income }}</div>
@@ -75,6 +75,7 @@ export default {
   mixins: [titleLucency],
   data() {
     return {
+      huizhen_bg: require('./image/huizhen_bg.png'),
       data: {}
     }
   },
@@ -128,7 +129,7 @@ export default {
     display: flex;
     height: 3.706667rem;
     // background-color: #009ee6;
-    background: url('./image/huizhen_bg.png') no-repeat scroll bottom left/cover;
+    // background: url('./image/huizhen_bg.png') no-repeat scroll bottom left/cover;
     padding-left: 0.4rem;
     padding-right: 0.4rem;
     padding-top: 0.693333rem;

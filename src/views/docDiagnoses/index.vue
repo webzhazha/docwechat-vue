@@ -8,7 +8,7 @@
       <span class="fs18 typo_bold lh45px">转诊/会诊</span>
     </div>
     <div class="h45px"></div>
-    <div class="top_icon">
+    <div class="top_icon " :style="'background:url('+huizhen_bg+') no-repeat scroll bottom left/cover'">
       <div class="top_icon_inner">
         <div class="textc flex1" @click="goMyCollect">
           <img src="./image/top_icon_1.png" alt="" class="mb20" />
@@ -63,6 +63,7 @@ export default {
   components: { Tab, ServiceHall, ApplyOrder, ReceivedOrder },
   data() {
     return {
+      huizhen_bg: require('./image/huizhen_bg.png'),
       curtab: 'hall',
       tabs: [
         {
@@ -175,7 +176,7 @@ export default {
   .top_icon {
     position: relative;
     // background-color: #009ee6;
-    background: url('./image/huizhen_bg.png') no-repeat scroll bottom left/cover;
+    // background: url('./image/huizhen_bg.png') no-repeat scroll bottom left/cover;
     .top_icon_inner {
       display: flex;
       padding: 0.8rem 0;

@@ -75,7 +75,7 @@ export default {
   mixins: [titleLucency],
   data() {
     return {
-      huizhen_bg: require('./image/huizhen_bg.png'),
+      huizhen_bg: require('@/assets/image/huizhen_bg.png'),
       data: {}
     }
   },

@@ -63,7 +63,7 @@ export default {
   components: { Tab, ServiceHall, ApplyOrder, ReceivedOrder },
   data() {
     return {
-      huizhen_bg: require('./image/huizhen_bg.png'),
+      huizhen_bg: require('@/assets/image/huizhen_bg.png'),
       curtab: 'hall',
       tabs: [
         {

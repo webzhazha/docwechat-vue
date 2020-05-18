@@ -91,20 +91,21 @@ export default {
 
     .illness {
       overflow: hidden;
-      margin-bottom: 0.426667rem;
+      margin-bottom: .213333rem;
 
       span {
          float: left;
         // width: 0.96rem;
+        font-size: 12px;
         height: 0.48rem;
         border-radius: 0.053333rem;
         text-align: center;
         line-height: 0.426667rem;
         color: #cc7b18;
-        border:1px solid rgba(255,185,55,1);
-        margin-right: 0.133333rem;
+        border:1px solid rgba(255,185,55,.5);
+        margin-right: .213333rem;
         padding: 0 .16rem;
-        margin-bottom: .133333rem;
+        margin-bottom: .213333rem;
       }
     }
 
@@ -117,7 +118,7 @@ export default {
       color: #009ee6;
       border: 1px solid #009ee6;
       text-align: center;
-      line-height: 0.8rem;
+      line-height: .906667rem;
       border-radius: 0.853333rem;
 
       &.yet {

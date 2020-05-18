@@ -1,5 +1,7 @@
 module.exports = {
-  publicPath: '/vue',
+  publicPath: process.env.NODE_ENV === 'production'
+  ? './'
+  : '/',
   productionSourceMap: false, // 生产环境不生成 sourceMap
   lintOnSave: false,
   configureWebpack: {

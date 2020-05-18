@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="hallDocItem" @click="goNativeDoc">
-      <div class="backgroundimg doc_img mr16 mt20" :style="generateImageUrl(docItem.image,'/wechat/img/common/default.png')"></div>
+      <div class="backgroundimg doc_img mr16 mt20" :style="generateImageUrl(docItem.image,'/wechat/img/familyActivity/doctorAvatar.png')"></div>
       <div class="relative flex1 pt20 pb20 bt_gray">
-        <div class="mb8">
+        <div class="mb2">
           <span class="fs18 c333 typo_bold mr6 inBlo elli max_w100">{{docItem.doctor_name}}</span>
           <span class="fs14 c666 typo_bold inBlo elli w90">{{docItem.zc_name}}</span>
         </div>
@@ -91,7 +91,7 @@ export default {
 
     .illness {
       overflow: hidden;
-      margin-bottom: .213333rem;
+      margin-bottom: .133333rem;
 
       span {
          float: left;

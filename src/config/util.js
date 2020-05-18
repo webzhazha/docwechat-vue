@@ -7,7 +7,7 @@
 
   window.cid = isAnd ? '100000001' : '100000002'
 
-  window.user_key = process.env.NODE_ENV == 'production' ? window.TokenNativeActionProxy.getAccessToken() : '3d466aa11d12421892d80be693540779Lw5ewkZB20200605172358'
+  window.user_key = process.env.NODE_ENV == 'production' ? window.TokenNativeActionProxy.getAccessToken() : 'c577d67f39e39b379b440c56a65e581fmDJdFpUF20200607141626'
 
 // 赋值window刷新方法
 window.webViewWillAppear = (params)=>{

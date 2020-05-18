@@ -63,7 +63,6 @@ export default {
   components: { Tab, ServiceHall, ApplyOrder, ReceivedOrder },
   data() {
     return {
-      huizhen_bg: require('@/assets/image/huizhen_bg.png'),
       curtab: 'hall',
       tabs: [
         {
@@ -176,7 +175,7 @@ export default {
   .top_icon {
     position: relative;
     // background-color: #009ee6;
-    background: url('../../assets/image/huizhen_bg.png') no-repeat scroll bottom left/cover;
+    background: url('//wximg.91160.com/wechat/img/common/huiyi_bg.png') no-repeat scroll bottom left/cover;
     .top_icon_inner {
       display: flex;
       padding: 0.8rem 0;

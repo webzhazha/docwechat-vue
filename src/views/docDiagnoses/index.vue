@@ -7,7 +7,7 @@
       </span>
       <span class="fs18 typo_bold lh45px">转诊/会诊</span>
     </div>
-    <div class="h45px"></div>
+    <div class="h43px"></div>
     <div class="top_icon ">
       <div class="top_icon_inner">
         <div class="textc flex1" @click="goMyCollect">
@@ -168,6 +168,9 @@ export default {
   }
   .h45px {
     height: 45px;
+  }
+  .h43px {
+    height: 43px;
   }
   .lh45px {
     line-height: 45px;

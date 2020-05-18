@@ -142,6 +142,9 @@ export default {
         font-size: .373333rem;
         color: #999;
       }
+      .van-dropdown-menu__title.van-dropdown-menu__title--active {
+        color: #009EE6;
+      }
       .van-dropdown-menu__title::after {
         border-color: transparent transparent #888 #888;
       }
@@ -184,6 +187,9 @@ export default {
     .van-popup {
       .van-cell__title {
         color: #333;
+      }
+      .van-dropdown-item__option--active .van-cell__title {
+        color: #009EE6;
       }
       .van-dropdown-item__icon {
         display: none;

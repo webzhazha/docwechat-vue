@@ -81,7 +81,7 @@ export default {
         height: 0.48rem;
         border-radius: 0.053333rem;
         text-align: center;
-        line-height: 0.426667rem;
+        line-height: .533333rem;
         color: #cc7b18;
         border:1px solid rgba(255,185,55,.5);
         margin-right: .213333rem;

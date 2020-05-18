@@ -12,7 +12,7 @@
       <div class="top_icon_inner">
         <div class="textc flex1" @click="goMyCollect">
           <img src="./image/top_icon_1.png" alt="" class="mb20" />
-          <div class="fs14 typo_white lh16">ta的收藏</div>
+          <div class="fs14 typo_white lh16">我的收藏</div>
         </div>
         <div class="textc flex1" @click="goDiagData">
           <img src="./image/top_icon_2.png" alt="" class="mb20" />

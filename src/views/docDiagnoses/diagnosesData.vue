@@ -26,13 +26,13 @@
         </div>
         <div class="item_right">
           <div class="num">
-            <div class="c333 mb10  fs20">
+            <div class="c333 mb10  fs20 typo_bold">
               {{ data.receive_times }}
             </div>
             <div class="c999 fs16">次数</div>
           </div>
           <div class="income">
-            <div class="cFF8100 fs20 mb10">{{ data.receive_income }}</div>
+            <div class="cFF8100 fs20 mb10 typo_bold">{{ data.receive_income }}</div>
             <div class="c999 fs16">收益元</div>
           </div>
           <div class="arrow">
@@ -51,13 +51,13 @@
         </div>
         <div class="item_right">
           <div class="num">
-            <div class="c333 mb10  fs20">
+            <div class="c333 mb10  fs20 typo_bold">
               {{ data.request_times }}
             </div>
             <div class="c999 fs16">次数</div>
           </div>
           <div class="income">
-            <div class="cFF8100 fs20 mb10">{{ data.request_income }}</div>
+            <div class="cFF8100 fs20 mb10 typo_bold">{{ data.request_income }}</div>
             <div class="c999 fs16">收益元</div>
           </div>
           <div class="arrow">
@@ -125,6 +125,7 @@ export default {
   height: 100vh;
   .top {
     display: flex;
+    margin-top: -0.053333rem;
     height: 3.706667rem;
     // background-color: #009ee6;
     background: url('//wximg.91160.com/wechat/img/common/huiyi_bg.png') no-repeat scroll bottom left/cover;
@@ -144,9 +145,10 @@ export default {
     height: 3.093333rem;
     margin-left: 0.4rem;
     overflow: hidden;
+    font-size: 18px;
     // box-shadow: 0px 18px 20px 0px rgba(178, 178, 178, 0.06);
     border-radius: 4px;
-    border: 1px solid rgba(235, 235, 235, 1);
+    border: 1px solid rgba(235, 235, 235, .5);
     margin-bottom: 0.64rem;
     .items {
       display: flex;

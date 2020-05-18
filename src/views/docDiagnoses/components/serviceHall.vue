@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="search" @click="goSearch">
-      <i class="iconfont mr10">&#xe725;</i>
+      <i class="iconfont mr9">&#xe725;</i>
       <span class="c999">搜索医生以及诊疗服务</span>
     </div>
     <div class="mb25">

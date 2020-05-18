@@ -3,11 +3,11 @@
     <div class="hallDocItem" @click="goNativeDoc">
       <div class="backgroundimg doc_img mr16 mt20" :style="generateImageUrl(docItem.image,'/wechat/img/familyActivity/doctorAvatar.png')"></div>
       <div class="relative flex1 pt20 pb20 bt_gray">
-        <div class="mb2">
+        <div class="mb3">
           <span class="fs18 c333 typo_bold mr6 inBlo elli max_w100">{{docItem.doctor_name}}</span>
-          <span class="fs14 c666 typo_bold inBlo elli w90">{{docItem.zc_name}}</span>
+          <span class="fs14 c666 typo_bold inBlo elli w90 mb1">{{docItem.zc_name}}</span>
         </div>
-        <div class="fs14 c999 typo_bold mb15">
+        <div class="fs14 c999 typo_bold mb15 ">
           {{docItem.unit_name}}
         </div>
         <div v-if="docItem.ill_names && docItem.ill_names.length>0" class="illness">
@@ -118,13 +118,14 @@ export default {
       color: #009ee6;
       border: 1px solid #009ee6;
       text-align: center;
-      line-height: .906667rem;
+      line-height: .853333rem;
       border-radius: 0.853333rem;
 
       &.yet {
         color: #999;
         background-color: #F7F7F7;
         border: none;
+        padding-top: .053333rem;
       }
     }
   }

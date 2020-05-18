@@ -27,10 +27,10 @@
                 <div>
                   <div>
                     <span class="fs18 c333 typo_bold names elli">{{ item.truename }}</span>
-                    <span class="fs14 c333">
+                    <span class="fs14 c333 mb1">
                       {{ item.sex == 0 ? "男" : "女" }} {{ item.age }}岁</span>
                   </div>
-                  <div class="c999 fs14 elli w150">{{ item.purpose }}</div>
+                  <div class="c999 fs14 elli w150 typo_bold">{{ item.purpose }}</div>
                 </div>
               </div>
               <div class="c999 fs14">
@@ -157,7 +157,7 @@
 
     .content {
       display: flex;
-      padding: 0.4rem;
+      padding: 0.4rem 0 0.4rem 0.4rem;
 
       .left {
         width: 5.84rem;

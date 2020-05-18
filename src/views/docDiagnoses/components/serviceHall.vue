@@ -2,7 +2,7 @@
   <div>
     <div class="search" @click="goSearch">
       <i class="iconfont mr10">&#xe725;</i>
-      <span>搜索医生以及诊疗服务</span>
+      <span class="c999">搜索医生以及诊疗服务</span>
     </div>
     <div class="mb25">
       <CommonBanner id="2289" />

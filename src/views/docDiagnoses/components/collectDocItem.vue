@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="collectDocItem bt_gray" @click="goNativeDoc">
-      <div class="backgroundimg doc_img mr16" :style="generateImageUrl(docItem.image,'/wechat/img/familyActivity/doctorAvatar.png')"></div>
-      <div class="relative flex1">
+    <div class="collectDocItem" @click="goNativeDoc">
+      <div class="backgroundimg doc_img mr16 mt20" :style="generateImageUrl(docItem.image,'/wechat/img/familyActivity/doctorAvatar.png')"></div>
+      <div class="relative flex1 pt20 pb20 bt_gray">
         <div class="mb2">
           <span class="fs18 c333 typo_bold mr6 inBlo elli max_w100">{{docItem.doctor_name}}</span>
-          <span class="fs14 c666 typo_bold inBlo elli w90">{{docItem.zc_name}}</span>
+          <span class="fs14 c666 typo_bold inBlo elli w90 mb1">{{docItem.zc_name}}</span>
         </div>
-        <div class="fs14 c999 mb15">
+        <div class="fs14 c999 mb15 w220 elli">
           {{docItem.unit_name}} | {{docItem.dep_name}}
         </div>
         <div v-if="docItem.ill_tags && docItem.ill_tags.length>0" class="illness">
@@ -53,7 +53,7 @@ export default {
 
   .collectDocItem {
     display: flex;
-    padding: 0.533333rem 0.4rem;
+    padding: 0 0 0 0.4rem;
     .max_w100 {
       max-width: 2.666667rem;
     }

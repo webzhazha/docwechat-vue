@@ -164,7 +164,9 @@ textarea {
 .w150 {
   width: 4rem;
 }
-
+.w220 {
+  width: 5.866667rem;
+}
 .w345 {
   width: 9.2rem;
 }
@@ -286,6 +288,9 @@ textarea {
 .mt25 {
   margin-top: 0.666667rem;
 }
+.mb1 {
+  margin-bottom: .026667rem;
+}
 .mb2 {
   margin-bottom: .053333rem;
 }
@@ -341,7 +346,12 @@ textarea {
 .fs24 {
   font-size: 0.64rem;
 }
-
+.lh14 {
+  line-height: .373333rem;
+}
+.lh16 {
+  line-height: .426667rem;
+}
 // border
 .bt_gray {
   border-bottom: 1px solid #f1f1f1;

@@ -12,19 +12,19 @@
       <div class="top_icon_inner">
         <div class="textc flex1" @click="goMyCollect">
           <img src="./image/top_icon_1.png" alt="" class="mb20" />
-          <div class="fs14 typo_white">ta的收藏</div>
+          <div class="fs14 typo_white lh16">我的收藏</div>
         </div>
         <div class="textc flex1" @click="goDiagData">
           <img src="./image/top_icon_2.png" alt="" class="mb20" />
-          <div class="fs14 typo_white">会诊数据</div>
+          <div class="fs14 typo_white lh16">会诊数据</div>
         </div>
         <div class="textc flex1" @click="goConfig">
           <img src="./image/top_icon_3.png" alt="" class="mb20" />
-          <div class="fs14 typo_white">服务配置</div>
+          <div class="fs14 typo_white lh16">服务配置</div>
         </div>
         <div class="textc flex1" @click="instructions">
           <img src="./image/top_icon_4.png" alt="" class="mb20" />
-          <div class="fs14 typo_white">操作指南</div>
+          <div class="fs14 typo_white lh16">操作指南</div>
         </div>
       </div>
       <div class="round_bot"></div>

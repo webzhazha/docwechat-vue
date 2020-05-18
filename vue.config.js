@@ -1,6 +1,6 @@
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
-  ? './'
+  ? '/vue'
   : '/',
   productionSourceMap: false, // 生产环境不生成 sourceMap
   lintOnSave: false,

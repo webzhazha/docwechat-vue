@@ -171,11 +171,14 @@ export const pullOtherUrl = {
       } else {
         const obj = {
           "android": {
-            "page_clase_name": "com.ny.jiuyi160_doctor.activity.base.WebViewActivity",
+            "page_clase_name": "com.ny.jiuyi160_doctor.activity.base.WebSameImageActivity",
             "parameters": [
               {"name": "url",
               "value": url,
-              "type": "String"}
+              "type": "String"},
+              {"name":"updateTitle",
+              "value":"true",
+              "type":"java.lang.Boolean"}
             ]
           }
         }

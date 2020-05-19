@@ -1,7 +1,7 @@
 <template>
   <div class="noData" :style="{backgroundColor: bgColor, height: height}">
     <slot name="content">
-      <div class="content">
+      <div class="content" :style="{top: top}">
         <div class="image"></div>
         <div class="text">{{text}}</div>
       </div>
@@ -25,6 +25,10 @@ export default {
       type: String,
       required: false,
       default: '暂无数据~'
+    },
+    top: {
+      type: String,
+      default: '50%'
     }
   },
   data() {
@@ -39,7 +43,7 @@ export default {
     background-color: #FFF;
     .content {
       position: absolute;
-      top: 50%;
+      // top: 50%;
       left: 50%;
       z-index: 1;
       transform: translate(-50%, -50%);
@@ -51,7 +55,7 @@ export default {
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
-      background-image: url('../assets/image/no-data@2x.png');
+      background-image: url('//wximg.91160.com/wechat/img/doctor/no-data@2x.png');
     }
     .text {
       font-size: .373333rem;

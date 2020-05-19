@@ -1,13 +1,13 @@
 <template>
   <div>
     <div class="hallDocItem" @click="goNativeDoc">
-      <div class="backgroundimg doc_img mr16 mt20" :style="generateImageUrl(docItem.image,'/wechat/img/common/default.png')"></div>
+      <div class="backgroundimg doc_img mr16 mt20" :style="generateImageUrl(docItem.image,'/wechat/img/familyActivity/doctorAvatar.png')"></div>
       <div class="relative flex1 pt20 pb20 bt_gray">
-        <div class="mb8">
+        <div class="mb3">
           <span class="fs18 c333 typo_bold mr6 inBlo elli max_w100">{{docItem.doctor_name}}</span>
-          <span class="fs14 c666 typo_bold inBlo elli w90">{{docItem.zc_name}}</span>
+          <span class="fs14 c666 typo_bold inBlo elli w90 mb1">{{docItem.zc_name}}</span>
         </div>
-        <div class="fs14 c999 typo_bold mb15">
+        <div class="fs14 c999 typo_bold mb15 ">
           {{docItem.unit_name}}
         </div>
         <div v-if="docItem.ill_names && docItem.ill_names.length>0" class="illness">
@@ -15,8 +15,8 @@
         </div>
         <div>
           <span class="price typo_bold">￥{{docItem.price}}</span>
-          <span v-if="docItem.city_area" class="c_ccc">
-            <i class="iconfont">&#xe697;</i>
+          <span v-if="docItem.city_area" class="c999">
+            <i class="iconfont c_ccc">&#xe697;</i>
             {{docItem.city_area }}</span>
         </div>
         <template v-if="isHall">
@@ -91,20 +91,22 @@ export default {
 
     .illness {
       overflow: hidden;
-      margin-bottom: 0.426667rem;
+      margin-bottom: .133333rem;
 
       span {
          float: left;
         // width: 0.96rem;
+        font-size: .32rem;
         height: 0.48rem;
         border-radius: 0.053333rem;
         text-align: center;
-        line-height: 0.426667rem;
+        line-height: .32rem;
         color: #cc7b18;
-        border:1px solid rgba(255,185,55,1);
-        margin-right: 0.133333rem;
+        border:1px solid rgba(255,185,55,.5);
+        margin-right: .213333rem;
         padding: 0 .16rem;
-        margin-bottom: .133333rem;
+        padding-top: .08rem;
+        margin-bottom: .213333rem;
       }
     }
 
@@ -117,13 +119,14 @@ export default {
       color: #009ee6;
       border: 1px solid #009ee6;
       text-align: center;
-      line-height: 0.8rem;
+      line-height: .853333rem;
       border-radius: 0.853333rem;
 
       &.yet {
         color: #999;
         background-color: #F7F7F7;
         border: none;
+        padding-top: .053333rem;
       }
     }
   }

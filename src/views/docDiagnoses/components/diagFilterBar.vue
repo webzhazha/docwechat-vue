@@ -140,6 +140,16 @@ export default {
       }
       .van-dropdown-menu__title {
         font-size: .373333rem;
+        color: #999;
+      }
+      .van-dropdown-menu__title.van-dropdown-menu__title--active {
+        color: #009EE6;
+      }
+      .van-dropdown-menu__title::after {
+        border-color: transparent transparent #888 #888;
+      }
+      .van-dropdown-menu__title--active::after {
+        border-color: transparent transparent currentColor currentColor;
       }
       .van-dropdown-menu__bar {
         box-shadow: none;
@@ -156,7 +166,7 @@ export default {
         color: #009EE6;
       }
       .van-tree-select__nav-item {
-        color: #999;
+        color: #666;
       }
       .van-sidebar-item--select {
         color: #009EE6;
@@ -166,6 +176,7 @@ export default {
         font-weight: 700;
       }
       .van-tree-select__item {
+        color: #333;
         font-weight: 400;
       }
       .van-sidebar-item--select {
@@ -177,6 +188,12 @@ export default {
     }
 
     .van-popup {
+      .van-cell__title {
+        color: #333;
+      }
+      .van-dropdown-item__option--active .van-cell__title {
+        color: #009EE6;
+      }
       .van-dropdown-item__icon {
         display: none;
       }

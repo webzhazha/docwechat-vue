@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="search" @click="goSearch">
-      <i class="iconfont mr10">&#xe725;</i>
-      <span>搜索医生以及诊疗服务</span>
+      <i class="iconfont mr9">&#xe725;</i>
+      <span class="c999">搜索医生以及诊疗服务</span>
     </div>
     <div class="mb25">
       <CommonBanner id="2289" />
@@ -147,10 +147,12 @@ export default {
             this.finished = true
             return
           }
-          this.docList = this.docList.concat(res.data)
+          if(this.diagPage==1){
+            this.docList = res.data
+          }else {
+             this.docList = this.docList.concat(res.data)
+          }
           if (res.data.length == 0) {
-            console.log('哈哈哈');
-            
             this.finished = true
           }
         })

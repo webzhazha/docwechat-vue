@@ -77,6 +77,7 @@ $active-color: #009ee6;
     text-align: center;
     &.active {
       color: $active-color;
+      font-weight: bold;
       &::after {
         position: absolute;
         bottom: 0;

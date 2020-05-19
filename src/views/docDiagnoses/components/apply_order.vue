@@ -3,7 +3,7 @@
     <div class="diagnoses_doc" :style="'min-height:' + height">
       <van-list v-model="loading" :finished="finished" :finished-text="getNoDataTip" offset="50" @load="onLoad" :immediate-check="false">
         <!-- 会诊中 -->
-        <div v-for="(item, index) in orderList" :key="index" class="bg_white mb15 boradius4 box_show hidden" @click="goOrder(item.order_id)">
+        <div v-for="(item, index) in orderList" :key="index" class="bg_white mb16 boradius4 box_show hidden" @click="goOrder(item.order_id)">
           <div class="top">
             <img v-if="item.order_state_other==1" src="../image/order_status_1.png" alt="" class="w16 h16 mr5 fl mt12">
             <img v-if="item.order_state_other==2" src="../image/order_status_2.png" alt="" class="w16 h16 mr5 fl mt12">

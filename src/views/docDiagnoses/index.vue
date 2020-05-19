@@ -103,6 +103,7 @@ export default {
     if(this.curtab == 'hall'){
       window.webViewWillAppear = () => {
         that.$refs.ServiceHall.diagPage = 1
+        that.$refs.ServiceHall.finished = false
         that.$refs.ServiceHall._getHalldoctor()
       }
     }

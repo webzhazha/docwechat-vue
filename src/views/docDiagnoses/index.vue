@@ -7,24 +7,24 @@
       </span>
       <span class="fs18 typo_bold lh45px">转诊/会诊</span>
     </div>
-    <div class="h45px"></div>
-    <div class="top_icon">
+    <div class="h43px"></div>
+    <div class="top_icon ">
       <div class="top_icon_inner">
         <div class="textc flex1" @click="goMyCollect">
           <img src="./image/top_icon_1.png" alt="" class="mb20" />
-          <div class="fs14 typo_white">我的收藏</div>
+          <div class="fs14 typo_white lh16">我的收藏</div>
         </div>
         <div class="textc flex1" @click="goDiagData">
           <img src="./image/top_icon_2.png" alt="" class="mb20" />
-          <div class="fs14 typo_white">会诊数据</div>
+          <div class="fs14 typo_white lh16">会诊数据</div>
         </div>
         <div class="textc flex1" @click="goConfig">
           <img src="./image/top_icon_3.png" alt="" class="mb20" />
-          <div class="fs14 typo_white">服务配置</div>
+          <div class="fs14 typo_white lh16">服务配置</div>
         </div>
         <div class="textc flex1" @click="instructions">
           <img src="./image/top_icon_4.png" alt="" class="mb20" />
-          <div class="fs14 typo_white">操作指南</div>
+          <div class="fs14 typo_white lh16">操作指南</div>
         </div>
       </div>
       <div class="round_bot"></div>
@@ -103,6 +103,8 @@ export default {
     if(this.curtab == 'hall'){
       window.webViewWillAppear = () => {
         that.$refs.ServiceHall.diagPage = 1
+        that.$refs.ServiceHall.docList = []
+        that.$refs.ServiceHall.finished = false
         that.$refs.ServiceHall._getHalldoctor()
       }
     }
@@ -132,18 +134,24 @@ export default {
     if(this.curtab == 'hall'){
       window.webViewWillAppear = () => {
         that.$refs.ServiceHall.diagPage = 1
+        that.$refs.ServiceHall.docList = []
+        that.$refs.ServiceHall.finished = false
         that.$refs.ServiceHall._getHalldoctor()
       }
     }
     if(this.curtab == 'apply'){
       window.webViewWillAppear = () => {
         that.$refs.ApplyOrder.page = 1
+        that.$refs.ApplyOrder.orderList = []
+        that.$refs.ApplyOrder.finished = false
         that.$refs.ApplyOrder._get_apply_order()
       }
     }
     if(this.curtab == 'received'){
       window.webViewWillAppear = () => {
         that.$refs.ReceivedOrder.page = 1
+        that.$refs.ReceivedOrder.orderList = []
+        that.$refs.ReceivedOrder.finished = false
         that.$refs.ReceivedOrder._get_received_order()
       }
     }
@@ -169,13 +177,17 @@ export default {
   .h45px {
     height: 45px;
   }
+  .h43px {
+    height: 43px;
+    background-color: #009ee6;
+  }
   .lh45px {
     line-height: 45px;
   }
   .top_icon {
     position: relative;
-    background-color: #009ee6;
-
+    // background-color: #009ee6;
+    background: url('//wximg.91160.com/wechat/img/common/huiyi_bg.png') no-repeat scroll bottom left/cover;
     .top_icon_inner {
       display: flex;
       padding: 0.8rem 0;

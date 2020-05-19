@@ -6,3 +6,7 @@ Vue.directive('title', (el, binding) => {
     document.title = el.dataset.title
   }
 })
+
+// Vue.directive('focus', (el, binding) => {
+//   el.focus()
+// })

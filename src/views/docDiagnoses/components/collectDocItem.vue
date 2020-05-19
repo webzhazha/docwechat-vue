@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="collectDocItem bt_gray" @click="goNativeDoc">
-      <div class="backgroundimg doc_img mr16" :style="generateImageUrl(docItem.image,'/wechat/img/common/default.png')"></div>
-      <div class="relative flex1">
-        <div class="mb8">
+    <div class="collectDocItem" @click="goNativeDoc">
+      <div class="backgroundimg doc_img mr16 mt20" :style="generateImageUrl(docItem.image,'/wechat/img/familyActivity/doctorAvatar.png')"></div>
+      <div class="relative flex1 pt20 pb20 bt_gray">
+        <div class="mb3">
           <span class="fs18 c333 typo_bold mr6 inBlo elli max_w100">{{docItem.doctor_name}}</span>
-          <span class="fs14 c666 typo_bold inBlo elli w90">{{docItem.zc_name}}</span>
+          <span class="fs14 c666 typo_bold inBlo elli w90 mb1">{{docItem.zc_name}}</span>
         </div>
-        <div class="fs14 c999 mb15">
+        <div class="fs14 c999 mb15 w220 elli">
           {{docItem.unit_name}} | {{docItem.dep_name}}
         </div>
         <div v-if="docItem.ill_tags && docItem.ill_tags.length>0" class="illness">
@@ -53,7 +53,7 @@ export default {
 
   .collectDocItem {
     display: flex;
-    padding: 0.533333rem 0.4rem;
+    padding: 0 0 0 0.4rem;
     .max_w100 {
       max-width: 2.666667rem;
     }
@@ -72,20 +72,22 @@ export default {
 
     .illness {
       overflow: hidden;
-      margin-bottom: 0.426667rem;
+      margin-bottom: .133333rem;
 
       span {
-        float: left;
+         float: left;
         // width: 0.96rem;
+        font-size: .32rem;
         height: 0.48rem;
         border-radius: 0.053333rem;
         text-align: center;
-        line-height: 0.426667rem;
+        line-height: .32rem;
         color: #cc7b18;
-        border: 1px solid #ffb937;
-        margin-right: 0.133333rem;
+        border:1px solid rgba(255,185,55,.5);
+        margin-right: .213333rem;
         padding: 0 .16rem;
-        margin-bottom: .133333rem;
+        padding-top: .08rem;
+        margin-bottom: .213333rem;
       }
     }
 

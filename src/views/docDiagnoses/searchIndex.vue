@@ -1,12 +1,12 @@
 <template>
-  <div class="bg_white" v-title data-title="搜索">
+  <div class="searchIndex bg_white" v-title data-title="搜索">
     <van-sticky>
       <form action="/">
       <van-search
         v-model="value"
         shape="round"
         show-action
-        placeholder="请输入搜索关键词"
+        placeholder="搜索医生以及诊疗服务"
         @search="onSearch"
         @cancel="onCancel"
         @clear="onClear"
@@ -27,6 +27,7 @@
   </div>
 </template>
 <script>
+import $ from 'jquery'
 import { titleLucency } from '@/mixins/pullNativeFunc'
 import service from '_services/'
 const HallDocItem = () => import('./components/hallDocItem')
@@ -44,6 +45,9 @@ export default {
   },
   mounted() {
     this.titleLucency()
+    this.$nextTick(()=>{
+      $('.van-field__control').focus()
+    })
   },
   methods: {
     onLoad() {
@@ -85,4 +89,30 @@ export default {
   }
 }
 </script>
-<style lang="scss"></style>
+<style lang="scss">
+.searchIndex {
+  .van-search__action {
+    color: #009EE6;
+  }
+  .van-search__content {
+    background-color: #eee;
+    height: .906667rem;
+    border-radius: .453333rem;
+  }
+  .van-icon-search::before {
+    content: '\e725';
+    font-family: "iconfont";
+    color: #999;
+    margin-left: .213333rem;
+  }
+  .van-field__left-icon {
+    margin-right: .213333rem;
+  }
+  .van-field__control {
+    margin-top: .053333rem;
+  }
+  .van-cell {
+    padding-top: .08rem;
+  }
+}
+</style>

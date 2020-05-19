@@ -117,7 +117,7 @@ export default {
       service.docDiagnoses
         .get_collect_inspection_list({
           page: this.page,
-          size: 100
+          size: 1000
         })
         .then((res) => {
           this.checkList = res.data.list
@@ -128,11 +128,15 @@ export default {
         service.docDiagnoses
         .get_collect_list({
           page: this.page,
-          size: 100
+          size: 1000
         })
         .then((res) => {
           this.loadfalg = true
-          this.docList = res.data.list
+          if(res.data && res.data.list){
+            this.docList = res.data.list
+          }else {
+            this.docList = []
+          }
         })
       } catch (err){
         console.log(err)

@@ -3,7 +3,7 @@
     <div class="diagnoses_doc" :style="'min-height:' + height">
       <van-list v-model="loading" :finished="finished" :finished-text="getNoDataTip" offset="50" @load="onLoad" :immediate-check="false">
         <!-- 会诊中 -->
-        <div v-for="(item, index) in orderList" :key="index" class="bg_white mb15 boradius4 box_show" @click="goOrder(item.order_id)">
+        <div v-for="(item, index) in orderList" :key="index" class="bg_white mb16 boradius4 box_show hidden" @click="goOrder(item.order_id)">
           <div class="top">
             <img v-if="item.order_state_other==1" src="../image/order_status_1.png" alt="" class="w16 h16 mr5 fl mt12">
             <img v-if="item.order_state_other==2" src="../image/order_status_2.png" alt="" class="w16 h16 mr5 fl mt12">
@@ -28,10 +28,10 @@
                 <div>
                   <div>
                     <span class="fs18 c333 typo_bold names elli">{{ item.truename }}</span>
-                    <span class="fs14 c333">
+                    <span class="fs14 c333 mb1">
                       {{ item.sex == 0 ? "男" : "女" }} {{ item.age }}岁</span>
                   </div>
-                  <div class="c999 fs14 elli w150">{{ item.purpose }}</div>
+                  <div class="c999 fs14 elli w150 typo_bold">{{ item.purpose }}</div>
                 </div>
               </div>
               <div class="c999 fs14">
@@ -45,7 +45,7 @@
           </div>
         </div>
       </van-list>
-      <NoData v-if="finished && orderList.length == 0" :height="height" bgColor="#F7F7F7"/>
+      <NoData v-if="finished && orderList.length == 0" :height="height" bgColor="#F7F7F7" top="38%"/>
     </div>
     
   </div>
@@ -92,7 +92,7 @@
     mounted() {
       this._get_apply_order();
       this.$nextTick(() => {
-        this.height = $('body').height() - 40 + 'px'
+        this.height = $('body').height() - 80 + 'px'
       })
     },
     methods: {
@@ -137,7 +137,7 @@
     padding: 0.453333rem 0.32rem;
     background-color: #f7f7f7;
     .box_show {
-      box-shadow:0px 18px 20px 0px rgba(178,178,178,0.06);
+      box-shadow:3px 18px 20px 0px rgba(178,178,178,0.06);
     }
     .top {
       overflow: hidden;
@@ -158,7 +158,7 @@
 
     .content {
       display: flex;
-      padding: 0.4rem;
+      padding: 0.4rem 0 0.4rem 0.4rem;
 
       .left {
         width: 5.84rem;

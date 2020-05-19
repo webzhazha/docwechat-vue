@@ -147,10 +147,12 @@ export default {
             this.finished = true
             return
           }
-          this.docList = this.docList.concat(res.data)
+          if(this.diagPage==1){
+            this.docList = res.data
+          }else {
+             this.docList = this.docList.concat(res.data)
+          }
           if (res.data.length == 0) {
-            console.log('哈哈哈');
-            
             this.finished = true
           }
         })

@@ -120,7 +120,7 @@ export default {
   background-color: #009ee6;
 }
 .diagnosesData {
-  background-color: #fcfcfc;
+  background-color: #f7f7f7;
   width: 100%;
   height: 100vh;
   .top {

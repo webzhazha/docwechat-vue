@@ -15,8 +15,8 @@
         </div>
         <div>
           <span class="price typo_bold">￥{{docItem.price}}</span>
-          <span v-if="docItem.city_area" class="c_ccc">
-            <i class="iconfont">&#xe697;</i>
+          <span v-if="docItem.city_area" class="c999">
+            <i class="iconfont c_ccc">&#xe697;</i>
             {{docItem.city_area }}</span>
         </div>
         <template v-if="isHall">
@@ -96,7 +96,7 @@ export default {
       span {
          float: left;
         // width: 0.96rem;
-        font-size: 12px;
+        font-size: .32rem;
         height: 0.48rem;
         border-radius: 0.053333rem;
         text-align: center;

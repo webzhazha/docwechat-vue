@@ -77,11 +77,11 @@ export default {
       span {
          float: left;
         // width: 0.96rem;
-        font-size: 12px;
+        font-size: .32rem;
         height: 0.48rem;
         border-radius: 0.053333rem;
         text-align: center;
-        line-height: .48rem;
+        line-height: .32rem;
         color: #cc7b18;
         border:1px solid rgba(255,185,55,.5);
         margin-right: .213333rem;

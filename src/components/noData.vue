@@ -1,7 +1,7 @@
 <template>
   <div class="noData" :style="{backgroundColor: bgColor, height: height}">
     <slot name="content">
-      <div class="content">
+      <div class="content" :style="{top: top}">
         <div class="image"></div>
         <div class="text">{{text}}</div>
       </div>
@@ -25,6 +25,10 @@ export default {
       type: String,
       required: false,
       default: '暂无数据~'
+    },
+    top: {
+      type: String,
+      default: '50%'
     }
   },
   data() {
@@ -39,7 +43,7 @@ export default {
     background-color: #FFF;
     .content {
       position: absolute;
-      top: 50%;
+      // top: 50%;
       left: 50%;
       z-index: 1;
       transform: translate(-50%, -50%);

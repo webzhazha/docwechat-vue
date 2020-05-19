@@ -81,11 +81,12 @@ export default {
         height: 0.48rem;
         border-radius: 0.053333rem;
         text-align: center;
-        line-height: .533333rem;
+        line-height: .48rem;
         color: #cc7b18;
         border:1px solid rgba(255,185,55,.5);
         margin-right: .213333rem;
         padding: 0 .16rem;
+        padding-top: .053333rem;
         margin-bottom: .213333rem;
       }
     }

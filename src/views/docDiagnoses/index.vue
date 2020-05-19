@@ -166,6 +166,7 @@ export default {
 .docDiagnoses {
   background-color: #fff;
   min-height: 100vh;
+  width: 100%;
   .nav {
     position: fixed;
     top: 0;

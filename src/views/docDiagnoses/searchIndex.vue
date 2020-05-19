@@ -16,6 +16,7 @@
     <van-list
       v-model="loading"
       :finished="finished"
+      :immediate-check="false"
       finished-text=""
       offset="50"
       @load="onLoad"
@@ -24,6 +25,7 @@
         <HallDocItem :isHall="false" :docItem="item" />
       </div>
     </van-list>
+    <NoData v-if="finished && docList.length == 0" text="无搜索结果" :height="noDataHeight"/>
   </div>
 </template>
 <script>
@@ -31,22 +33,27 @@ import $ from 'jquery'
 import { titleLucency } from '@/mixins/pullNativeFunc'
 import service from '_services/'
 const HallDocItem = () => import('./components/hallDocItem')
+const NoData = () => import('@/components/noData')
 export default {
   mixins: [titleLucency],
-  components: { HallDocItem },
+  components: { HallDocItem, NoData },
   data() {
     return {
       value: '',
       docList: [],
       page: 1,
       loading: false,
-      finished: false
+      finished: false,
+      noDataHeight: '100vh'
     }
   },
   mounted() {
     this.titleLucency()
     this.$nextTick(()=>{
       $('.van-field__control').focus()
+    })
+    this.$nextTick(()=>{
+      this.noDataHeight = (document.body.clientHeight - $('.van-sticky').height()) + 'px'
     })
   },
   methods: {

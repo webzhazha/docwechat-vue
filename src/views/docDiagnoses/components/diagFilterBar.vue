@@ -148,6 +148,9 @@ export default {
       .van-dropdown-menu__title::after {
         border-color: transparent transparent #888 #888;
       }
+      .van-dropdown-menu__title--active::after {
+        border-color: transparent transparent currentColor currentColor;
+      }
       .van-dropdown-menu__bar {
         box-shadow: none;
         border-bottom: 1px solid #eee;

@@ -51,7 +51,7 @@ export default {
       background-repeat: no-repeat;
       background-position: center;
       background-size: cover;
-      background-image: url('../assets/image/no-data@2x.png');
+      background-image: url('//wximg.91160.com/wechat/img/doctor/no-data@2x.png');
     }
     .text {
       font-size: .373333rem;

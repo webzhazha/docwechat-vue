@@ -92,7 +92,7 @@
     mounted() {
       this._get_apply_order();
       this.$nextTick(() => {
-        this.height = $('body').height() - 40 + 'px'
+        this.height = $('body').height() - 80 + 'px'
       })
     },
     methods: {

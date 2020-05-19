@@ -12,7 +12,7 @@
       <div class="top_icon_inner">
         <div class="textc flex1" @click="goMyCollect">
           <img src="./image/top_icon_1.png" alt="" class="mb20" />
-          <div class="fs14 typo_white lh16">ta的收藏</div>
+          <div class="fs14 typo_white lh16">我的收藏</div>
         </div>
         <div class="textc flex1" @click="goDiagData">
           <img src="./image/top_icon_2.png" alt="" class="mb20" />
@@ -134,18 +134,24 @@ export default {
     if(this.curtab == 'hall'){
       window.webViewWillAppear = () => {
         that.$refs.ServiceHall.diagPage = 1
+        that.$refs.ServiceHall.docList = []
+        that.$refs.ServiceHall.finished = false
         that.$refs.ServiceHall._getHalldoctor()
       }
     }
     if(this.curtab == 'apply'){
       window.webViewWillAppear = () => {
         that.$refs.ApplyOrder.page = 1
+        that.$refs.ApplyOrder.orderList = []
+        that.$refs.ApplyOrder.finished = false
         that.$refs.ApplyOrder._get_apply_order()
       }
     }
     if(this.curtab == 'received'){
       window.webViewWillAppear = () => {
         that.$refs.ReceivedOrder.page = 1
+        that.$refs.ReceivedOrder.orderList = []
+        that.$refs.ReceivedOrder.finished = false
         that.$refs.ReceivedOrder._get_received_order()
       }
     }

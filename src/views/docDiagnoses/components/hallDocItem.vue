@@ -105,7 +105,7 @@ export default {
         border:1px solid rgba(255,185,55,.5);
         margin-right: .213333rem;
         padding: 0 .16rem;
-        padding-top: .053333rem;
+        padding-top: .08rem;
         margin-bottom: .213333rem;
       }
     }

@@ -41,7 +41,7 @@ export default {
       this._getAdvertData({
         location_id: this.id
       }).then(res=>{
-        this.bannerAdList = res.data[this.id]
+        this.bannerAdList = res.data[this.id].slice(0,1)
       })
     }
   },

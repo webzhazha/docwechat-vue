@@ -7,6 +7,3 @@ Vue.directive('title', (el, binding) => {
   }
 })
 
-// Vue.directive('focus', (el, binding) => {
-//   el.focus()
-// })

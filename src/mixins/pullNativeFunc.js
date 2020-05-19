@@ -146,6 +146,34 @@ export const pullDiagOrder = {
     }
   }
 }
+// 打开医生小助
+export const pullDocAssis = {
+  methods: {
+    pullDocAssis() {
+      if (process.env.NODE_ENV == 'development') {
+        return
+      }
+      if (isIos) {
+        window.NativeActionProxy.callbackNative({
+          "ios": {
+            "storyboard_name": "HomePage",
+            "page_clase_name": "LittleHelperTableViewController",
+            "show_type": "push"
+          }
+        })
+      } else {
+        const obj = {
+          "android": {
+            "page_clase_name": "com.ny.jiuyi160_doctor.activity.tab.message.AssistantActivity",
+            "parameters": []
+          }
+        }
+        const jsons = JSON.stringify(obj)
+        window.NativeActionProxy.callbackNativeFunc(jsons)
+      }
+    }
+  }
+}
 
 // 使用webview打开对应地址
 export const pullOtherUrl = {

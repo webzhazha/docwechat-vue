@@ -40,6 +40,8 @@ export const setStatusBarColor = {
       if (process.env.NODE_ENV == 'development') {
         return
       }
+      console.log('设置背景');
+      console.log(color);
       if (isIos) {
         window.NativeActionProxy.doJSAction({ "action": "setStatusBarColor", "params": {
           "color": color

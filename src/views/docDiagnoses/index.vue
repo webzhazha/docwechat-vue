@@ -50,7 +50,8 @@ import {
   pullServiceConf,
   closeWebView,
   titleLucency,
-  pullOtherUrl
+  pullOtherUrl,
+  setStatusBarColor
 } from '@/mixins/pullNativeFunc'
 // const Tab = () => import('./components/tab')
 import Tab from './components/tab'
@@ -59,7 +60,7 @@ const ServiceHall = () => import('./components/serviceHall')
 const ApplyOrder = () => import('./components/apply_order')
 const ReceivedOrder = () => import('./components/received_order')
 export default {
-  mixins: [pullServiceConf, closeWebView, titleLucency, pullOtherUrl],
+  mixins: [pullServiceConf, closeWebView, titleLucency, pullOtherUrl, setStatusBarColor],
   components: { Tab, ServiceHall, ApplyOrder, ReceivedOrder },
   data() {
     return {
@@ -85,6 +86,7 @@ export default {
     }
   },
   async created() {
+    this.setStatusBarColor('#009ee6')
   },
   mounted() {
     this.titleLucency() // 隐藏导航栏
@@ -158,6 +160,7 @@ export default {
     }
   },
   beforeDestroy(){
+    this.setStatusBarColor('#ffffff')
     window.webViewWillAppear = () => {}
   }
 }

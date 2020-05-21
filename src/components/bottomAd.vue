@@ -28,6 +28,8 @@ export default {
   },
   methods: {
     goConsult(){
+      console.log('上面调用');
+      
       this.pullDocAssis()
     },
     setLink() {
@@ -42,12 +44,32 @@ export default {
         // v-drag 中阻止了a 标签父元素的默认事件
         endTime = new Date().getTime()
         if (endTime - startTime < 200) {
-          that.pullDocAssis()
+          console.log('调用');
+          that.debounce(()=>{
+            console.log('触发');
+            
+            that.pullDocAssis()
+          },1000)()
+          
         }
       })
     },
     greet(val) {
       this.isTransition = val === 'end'
+    },
+    // 防抖函数 立即执行
+    debounce(func, wait) {
+        let timer;
+        return function() {
+          let context = this; // 这边的 this 指向谁?
+          let args = arguments; // arguments中存着e
+          if (timer) clearTimeout(timer);
+          let callNow = !timer;
+          timer = setTimeout(() => {
+            timer = null;
+          }, wait)
+          if (callNow) func.apply(context, args);
+        }
     }
   }
 }

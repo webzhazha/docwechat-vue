@@ -33,6 +33,27 @@ export const closeWebView = {
   }
 }
 
+// 设置导航栏
+export const setStatusBarColor = {
+  methods: {
+    setStatusBarColor(color) {
+      if (process.env.NODE_ENV == 'development') {
+        return
+      }
+      if (isIos) {
+        window.NativeActionProxy.doJSAction({ "action": "setStatusBarColor", "params": {
+          "color": color
+        } });
+      } else {
+        const jsons = JSON.stringify({ "action": "setStatusBarColor", "params": {
+          "color": color
+        } })
+        window.NativeActionProxy.doJSAction(jsons)
+      }
+    }
+  }
+}
+
 // 打开服务配置页
 export const pullServiceConf = {
   methods: {
@@ -138,6 +159,34 @@ export const pullDiagOrder = {
               "value": "1",
               "type": "String"
               }]
+          }
+        }
+        const jsons = JSON.stringify(obj)
+        window.NativeActionProxy.callbackNativeFunc(jsons)
+      }
+    }
+  }
+}
+// 打开医生小助
+export const pullDocAssis = {
+  methods: {
+    pullDocAssis() {
+      if (process.env.NODE_ENV == 'development') {
+        return
+      }
+      if (isIos) {
+        window.NativeActionProxy.callbackNative({
+          "ios": {
+            "storyboard_name": "HomePage",
+            "page_clase_name": "LittleHelperTableViewController",
+            "show_type": "push"
+          }
+        })
+      } else {
+        const obj = {
+          "android": {
+            "page_clase_name": "com.ny.jiuyi160_doctor.activity.tab.message.AssistantActivity",
+            "parameters": []
           }
         }
         const jsons = JSON.stringify(obj)

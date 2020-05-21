@@ -69,17 +69,22 @@
   </div>
 </template>
 <script>
-import { titleLucency } from '@/mixins/pullNativeFunc'
+import { titleLucency, setStatusBarColor } from '@/mixins/pullNativeFunc'
 import service from '_services/'
 export default {
-  mixins: [titleLucency],
+  mixins: [titleLucency, setStatusBarColor],
   data() {
     return {
       data: {}
     }
   },
+  created(){
+  },
   mounted() {
     this.titleLucency()
+    this.$nextTick(()=>{
+      this.setStatusBarColor('#009ee6')
+    })
     service.docDiagnoses.get_order_data().then((res) => {
       this.data = res.data
     })
@@ -104,6 +109,9 @@ export default {
     returns() {
       this.$router.go(-1)
     }
+  },
+  beforeDestroy(){
+    this.setStatusBarColor('#ffffff')
   }
 }
 </script>

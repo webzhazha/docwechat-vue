@@ -46,11 +46,13 @@
   </div>
 </template>
 <script>
+
 import {
   pullServiceConf,
   closeWebView,
   titleLucency,
-  pullOtherUrl
+  pullOtherUrl,
+  setStatusBarColor
 } from '@/mixins/pullNativeFunc'
 // const Tab = () => import('./components/tab')
 import Tab from './components/tab'
@@ -59,7 +61,7 @@ const ServiceHall = () => import('./components/serviceHall')
 const ApplyOrder = () => import('./components/apply_order')
 const ReceivedOrder = () => import('./components/received_order')
 export default {
-  mixins: [pullServiceConf, closeWebView, titleLucency, pullOtherUrl],
+  mixins: [pullServiceConf, closeWebView, titleLucency, pullOtherUrl, setStatusBarColor],
   components: { Tab, ServiceHall, ApplyOrder, ReceivedOrder },
   data() {
     return {
@@ -85,17 +87,20 @@ export default {
     }
   },
   async created() {
+    this.$nextTick(()=>{
+      this.setStatusBarColor('#009ee6')
+    })
   },
   mounted() {
     this.titleLucency() // 隐藏导航栏
     this.$nextTick(() => {
       if (this.$route.query.curtab == 'apply') {
         this.curtab = 'apply'
-        this.$refs.tab.changeTab(2)
+        this.$refs.tab.changeTab(1)
       }
       if (this.$route.query.curtab == 'received') {
         this.curtab = 'received'
-        this.$refs.tab.changeTab(3)
+        this.$refs.tab.changeTab(2)
       }
     })
     // 赋值刷新
@@ -158,14 +163,17 @@ export default {
     }
   },
   beforeDestroy(){
+    this.setStatusBarColor('#ffffff')
     window.webViewWillAppear = () => {}
   }
 }
 </script>
 <style scoped lang="scss">
 .docDiagnoses {
+  position: relative;
   background-color: #fff;
   min-height: 100vh;
+  width: 100%;
   .nav {
     position: fixed;
     top: 0;

@@ -59,7 +59,7 @@
       :round="false"
     />
     <NoData v-if="loadfalg && docList.length == 0" height='calc(100vh - 45px)' />
-    <FloatingWindow />
+    <BottomAd />
   </div>
 </template>
 <script>
@@ -68,10 +68,10 @@ import service from '_services/'
 const CollectDocItem = () => import('./components/collectDocItem')
 const CheckoutItem = () => import('./components/checkoutItem')
 const NoData = () => import('@/components/noData')
-const FloatingWindow = () => import('@/components/floatingWindow')
+const BottomAd = () => import('@/components/bottomAd')
 export default {
   mixins: [titleLucency],
-  components: { CollectDocItem, CheckoutItem, NoData, FloatingWindow },
+  components: { CollectDocItem, CheckoutItem, NoData, BottomAd },
   data() {
     return {
       cartab: 'consultation',

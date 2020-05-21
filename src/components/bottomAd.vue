@@ -28,8 +28,6 @@ export default {
   },
   methods: {
     goConsult(){
-      console.log('上面调用');
-      
       this.pullDocAssis()
     },
     setLink() {
@@ -44,10 +42,7 @@ export default {
         // v-drag 中阻止了a 标签父元素的默认事件
         endTime = new Date().getTime()
         if (endTime - startTime < 200) {
-          console.log('调用');
           that.debounce(()=>{
-            console.log('触发');
-            
             that.pullDocAssis()
           },1000)()
           

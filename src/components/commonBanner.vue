@@ -54,4 +54,9 @@ export default {
   .my-swipe /deep/ .van-swipe__track {
       height: 2.4rem;
     }
+  .my-swipe {
+    img {
+      border-radius: .106667rem;
+    }
+  }
 </style>

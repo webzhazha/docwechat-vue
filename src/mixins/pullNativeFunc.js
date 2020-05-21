@@ -33,6 +33,27 @@ export const closeWebView = {
   }
 }
 
+// 设置导航栏
+export const setStatusBarColor = {
+  methods: {
+    setStatusBarColor(color) {
+      if (process.env.NODE_ENV == 'development') {
+        return
+      }
+      if (isIos) {
+        window.NativeActionProxy.doJSAction({ "action": "setStatusBarColor", "params": {
+          "color": color
+        } });
+      } else {
+        const jsons = JSON.stringify({ "action": "setStatusBarColor", "params": {
+          "color": color
+        } })
+        window.NativeActionProxy.doJSAction(jsons)
+      }
+    }
+  }
+}
+
 // 打开服务配置页
 export const pullServiceConf = {
   methods: {

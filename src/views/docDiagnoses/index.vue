@@ -46,6 +46,7 @@
   </div>
 </template>
 <script>
+
 import {
   pullServiceConf,
   closeWebView,
@@ -169,6 +170,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .docDiagnoses {
+  position: relative;
   background-color: #fff;
   min-height: 100vh;
   width: 100%;

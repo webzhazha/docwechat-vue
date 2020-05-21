@@ -13,8 +13,8 @@
     </div>
     <!-- <van-sticky z-index="100" :offset-top="45">
       <div class="flex textc lh44 bt_gray c999 bg_white" @click="checkTab">
-        <div class="flex1 relative" :class="{'active':cartab=='consultation'}" data-id="consultation">会诊医生</div>
-        <div class="flex1 relative" :class="{'active':cartab=='checkout'}" data-id="checkout">检验检查</div>
+        <div class="flex1 relative" :class="{'actives':cartab=='consultation'}" data-id="consultation">会诊医生</div>
+        <div class="flex1 relative" :class="{'actives':cartab=='checkout'}" data-id="checkout">检验检查</div>
       </div>
     </van-sticky> -->
     <div v-if="cartab=='consultation'">
@@ -59,6 +59,7 @@
       :round="false"
     />
     <NoData v-if="loadfalg && docList.length == 0" height='calc(100vh - 45px)' />
+    <BottomAd />
   </div>
 </template>
 <script>
@@ -67,9 +68,10 @@ import service from '_services/'
 const CollectDocItem = () => import('./components/collectDocItem')
 const CheckoutItem = () => import('./components/checkoutItem')
 const NoData = () => import('@/components/noData')
+const BottomAd = () => import('@/components/bottomAd')
 export default {
   mixins: [titleLucency],
-  components: { CollectDocItem, CheckoutItem, NoData },
+  components: { CollectDocItem, CheckoutItem, NoData, BottomAd },
   data() {
     return {
       cartab: 'consultation',
@@ -196,12 +198,12 @@ export default {
   .collectIndex {
     background-color: #fff;
     min-height: 100vh;
-    .active {
+    .actives {
       color: #009EE6;
       font-weight: bold;
     }
 
-    .active::before {
+    .actives::before {
       content: " ";
       width: 62px;
       height: 3px;

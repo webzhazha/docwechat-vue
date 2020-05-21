@@ -95,11 +95,11 @@ export default {
     this.$nextTick(() => {
       if (this.$route.query.curtab == 'apply') {
         this.curtab = 'apply'
-        this.$refs.tab.changeTab(2)
+        this.$refs.tab.changeTab(1)
       }
       if (this.$route.query.curtab == 'received') {
         this.curtab = 'received'
-        this.$refs.tab.changeTab(3)
+        this.$refs.tab.changeTab(2)
       }
     })
     // 赋值刷新

@@ -86,7 +86,9 @@ export default {
     }
   },
   async created() {
-    this.setStatusBarColor('#009ee6')
+    this.$nextTick(()=>{
+      this.setStatusBarColor('#009ee6')
+    })
   },
   mounted() {
     this.titleLucency() // 隐藏导航栏

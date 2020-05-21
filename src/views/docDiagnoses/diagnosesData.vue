@@ -79,10 +79,12 @@ export default {
     }
   },
   created(){
-    this.setStatusBarColor('#009ee6')
   },
   mounted() {
     this.titleLucency()
+    this.$nextTick(()=>{
+      this.setStatusBarColor('#009ee6')
+    })
     service.docDiagnoses.get_order_data().then((res) => {
       this.data = res.data
     })

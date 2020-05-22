@@ -119,9 +119,8 @@ export default {
       this.closeWebView()
     },
     instructions() {
-      this.pullOtherUrl('http://www.baidu.com')
+      this.pullOtherUrl('https://weixin.91160.com/scan/index.html?scancode=5%7C%7C%7C%7C4%7C1590150689')
       // this.$toast('此功能暂未开放')
-      // document.location.href = 'http://www.baidu.com'
     },
     goConfig() {
       this.pullServiceConf()

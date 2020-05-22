@@ -94,7 +94,7 @@ export default {
       this.$router.push({
         path: './index',
         query: {
-          curtab: 'apply'
+          curtab: 'received'
         }
       })
     },
@@ -102,7 +102,7 @@ export default {
       this.$router.push({
         path: './index',
         query: {
-          curtab: 'received'
+          curtab: 'apply'
         }
       })
     },

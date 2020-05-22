@@ -96,6 +96,7 @@
     },
     methods: {
       goOrder(order_id) {
+        this.orderList = []
         this.pullDiagOrder(order_id)
       },
       _get_received_order() {

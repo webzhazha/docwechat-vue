@@ -26,6 +26,10 @@ export default {
   mounted() {
     this.setLink()
   },
+  beforeDestroy(){
+    $(document.body).off('touchstart', '#link')
+    $(document.body).off('touchend', '#link')
+  },
   methods: {
     goConsult(){
       this.pullDocAssis()

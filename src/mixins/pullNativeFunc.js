@@ -210,7 +210,7 @@ export const pullOtherUrl = {
             "parameters": [
             {
             "name": "url",
-            "value": url,
+            "value": url + '&cid=' +cid,
             "type": "url"
             }
             ],
@@ -223,7 +223,7 @@ export const pullOtherUrl = {
             "page_clase_name": "com.ny.jiuyi160_doctor.activity.base.WebSameImageActivity",
             "parameters": [
               {"name": "url",
-              "value": url,
+              "value": url + '&cid=' +cid,
               "type": "String"},
               {"name":"updateTitle",
               "value":"true",

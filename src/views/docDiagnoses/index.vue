@@ -119,7 +119,7 @@ export default {
       this.closeWebView()
     },
     instructions() {
-      this.pullOtherUrl('https://weixin.91160.com/scan/index.html?scancode=5%7C%7C%7C%7C4%7C1590150689')
+      this.pullOtherUrl('https://wap.91160.com/diycms/index.html?page_id=10697')
       // this.$toast('此功能暂未开放')
     },
     goConfig() {
